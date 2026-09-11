@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Layout, Navbar, Footer } from "nextra-theme-docs";
-import { Banner } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import "nextra-theme-docs/style.css";
 import "./globals.css";
@@ -16,15 +15,13 @@ export default async function RootLayout({
         <Layout
           pageMap={await getPageMap()}
           navbar={
-            <Navbar logo={<span className="wwa-logo">World Without Answers</span>} />
-          }
-          banner={
-            <Banner dismissible={false}>
-              <span className="wwa-banner">
-                An engine measured every step of the way. Every claim on this
-                site is bound to its measurement; failures stay visible.
-              </span>
-            </Banner>
+            <Navbar
+              logo={
+                <span className="wwa-logo">
+                  World Without Answers
+                </span>
+              }
+            />
           }
           docsRepositoryBase="https://github.com/BenMohStem/documentation-starter-kit/tree/main"
           nextThemes={{ defaultTheme: "dark" }}

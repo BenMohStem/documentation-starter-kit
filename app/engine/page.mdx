@@ -1,69 +1,34 @@
 # The Engine
 
-import StatusBadge from "@/components/status-badge";
-import FactGrid from "@/components/fact-grid";
-import { Cards } from "nextra/components";
+<span className="wwa-page-title">The engine</span>
 
-Status: <StatusBadge status="FOUNDATION" /> — the base architecture every
-other result builds on.
+Beneath the world there is an engine, written from scratch in C —
+physics, rendering, sound, input, the build system, even the standard
+functions it runs on. Owned end to end, and measured at every step.
 
-## Owned end to end
+## Why build it, instead of using one
 
-The engine links against almost nothing: its own standard surface, its
-own builder, its own math, its own timing. When nothing is inherited,
-nothing is mysterious — a bug in allocation is your bug, in your file,
-with your comment above it. The modules:
+Not as a protest — as a strategy. When every layer is yours, nothing
+in the stack is mysterious: performance comes from understanding, not
+from luck, and a bug is yours to find, in your own code. And a world
+with tens of thousands of living, colliding, eating, trading things
+cannot be simulated honestly on an engine you can't see inside.
 
-- **core** — foundation types, deterministic RNG, telemetry;
-- **physics** — Verlet integration, AABB contacts, warm-started
-  manifolds, the solver research line;
-- **broadphase** — uniform grids, packed cells, SAP experiments, the
-  shared spatial layer;
-- **renderer** — CPU tiled rasterizer (8×8 production baseline), Vulkan
-  target;
-- **audio** — generated PCM, allocation-aware mixing;
-- **io / jobs / platform** — streaming, work grains, Win32/X11;
-- **simulation / mod / perf** — the world layer, the mod ABI, the timing
-  abstraction every benchmark routes through.
+The engine also sets the ceiling for the world: how many creatures can
+think, how many bodies can rest on each other, how far a signal can
+travel before the frame ends. Every month of engine work is a promise
+the world can later keep.
 
-<Cards>
-  <Cards.Card title="Std layer" href="/engine/std" subtitle="340,375 checks, 0 failures — the floor everything stands on" />
-  <Cards.Card title="Builder" href="/engine/builder" subtitle="Kahn + Graham scheduling, content-addressed, 6 ms warm no-op" />
-  <Cards.Card title="Physics" href="/engine/physics" subtitle="From Verlet to PSOR — every solver claim measured" />
-  <Cards.Card title="Broadphase & locality" href="/engine/broadphase" subtitle="One grid for everything: the 5.7× integrated win" />
-  <Cards.Card title="Renderer" href="/engine/renderer" subtitle="8×8 tiles, per-pixel oracle, SIMD kept honest" />
-  <Cards.Card title="Quantized numerics" href="/engine/numerics" subtitle="FP16→NVFP4: storage wins, compute honesty" />
-</Cards>
+## What is inside today
 
-## The two laws
+- **The floor** — the standard layer: memory, strings, math, I/O,
+  threads, tested by hundreds of thousands of automated checks;
+- **Physics** — bodies with mass and friction, warm-started contacts,
+  and a research program into the solver itself;
+- **Renderer** — a tile-based software rasterizer with an exact
+  correctness oracle, stepping toward 3D worlds;
+- **Sound, input, and jobs** — generated audio, deterministic input
+  snapshots, and work distributed across the machine.
 
-<div className="wwa-law">
-
-*Organize the data so that the cheaper physics calculation is also the
-cheaper memory traversal.*
-
-</div>
-
-<div className="wwa-law">
-
-*Literature supplies hypotheses. The reference machine decides.*
-
-</div>
-
-## What the engine has been measured doing
-
-<FactGrid facts={[
-  { number: "70.98×", label: "warm-start replay at zero drift; 21.97× at drift 0.01 — the warm-start is physical state, not cached metadata", source: "ITER 3.50" },
-  { number: "3.11×", label: "adaptive layout selector vs identity at 256K bodies on hub topologies — while never losing on hostile ones", source: "ITER 3.189" },
-  { number: "2.42×", label: "grouped-contiguous LOD vs full update (281.4 ms vs 680.4 ms, 1M bodies/120 steps) — after the famous 2.30× indexed-LOD negative", source: "ITER 2.73" },
-  { number: "1.48×", label: "Morton reordering on 131,072 particles, random vs Morton 2.847 ms vs 1.920 ms — but only where the cell census says so", source: "ITER 2.75" },
-  { number: "3–6×", label: "local-perception grid vs all-agent scan, growing with population (1.75× at 32 agents → 6.65× at 1024)", source: "ITER 2.13" },
-  { number: "0.84×", label: "AoSoA8 vs AoS on 1M-agent DOD sweep — the anti-slogan result: layout claims must be measured, not believed", source: "ITER 1.9" },
-]} />
-
-## What the engine is not
-
-It is not a library showcase. Every subsystem exists because the world
-needs it to keep its promises: consequence that is real requires ten
-thousand bodies with mass, friction, stacking and wear — not decorative.
-The engine is the price of the world, paid in C, measured every step.
+Each piece earns its place the same way: measured, compared honestly
+against its alternatives, kept or recorded as a lesson.

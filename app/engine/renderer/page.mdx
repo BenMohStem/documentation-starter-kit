@@ -1,42 +1,29 @@
 # Renderer
 
-import StatusBadge from "@/components/status-badge";
-import FactGrid from "@/components/fact-grid";
+<span className="wwa-page-title">The renderer</span>
 
-Status: <StatusBadge status="PROMOTED" /> (8×8 tiled CPU rasterizer,
-production baseline) — SIMD interior paths <StatusBadge status="NOT PROMOTED" />.
+The renderer's job is the quiet part of the world's beauty: light,
+depth, and distance — simple geometry, honestly drawn.
 
-## What ships
+## What exists today
 
-A software tile-based rasterizer: triangles binned to 8×8-pixel screen
-tiles, Pineda edge-function coverage, depth tested per pixel, RGBA8888
-framebuffer — the production baseline since 2.67, when it was promoted
-against an **independent direct-per-pixel oracle** with 0 mismatches
-across sparse/clustered/large-overlap/coherent scenes at 2,048 and 4,096
-triangles. The first-person 3D demo runs this path.
+A tile-based software rasterizer: the screen divided into small
+tiles, triangles sorted into the tiles they touch, each pixel's depth
+checked exactly. It renders the current first-person demonstration,
+and it was promoted only after passing a per-pixel oracle across a
+battery of adversarial scenes — any wrong pixel is a failed test.
 
-## The results that made it honest
+## The choices, and why
 
-<FactGrid facts={[
-  { number: "1.09–1.36×", label: "tile8 vs tile16/32/64 — tile size measured, not guessed; 8×8 is the promoted default but explicitly NOT universal", source: "ITER 2.21" },
-  { number: "2.42×", label: "batched vertex submission vs per-rect calls at 64 points (9.37× at 64, falling to 3.46× at 65,536 — the win decays with batch size)", source: "ITER 1.9" },
-  { number: "5.46×", label: "AVX2 fill vs scalar on identical triangles — bit-exact, any pixel mismatch is a failure", source: "AVX2 GATE" },
-  { number: "0.68–2.75×", label: "BVH refit vs rebuild range — traversal structure choice is workload-dependent, again", source: "ITER 2.25" },
-]} />
+- **Tiles** because they keep memory traffic local — the engine's law,
+  applied to drawing;
+- **Software first** because a renderer you can audit per-pixel is
+  the right foundation for one you later accelerate;
+- **Simple geometry, excellent light** is the target aesthetic:
+  minimal, readable, atmospheric — the beauty of the world should come
+  from composition and light, not from asset density.
 
-## What was kept out (with reasons)
-
-- **In-tile / interior SIMD raster** (2.68–2.69): exactness passed, the
-  speed gate failed — production unchanged;
-- **Fixed-point quantized rasterization** (2.67): measured, not promoted;
-- **AVX2 FP8 gather decode** (2.55): a negative result — gather decode
-  measured *slower* than AVX2 BF16; kept as research;
-- **Hierarchical screen-space bins** (2.23): research line, gated by the
-  same direct oracle before anything ships.
-
-## The discipline
-
-New raster optimizations require an exact direct-reference oracle — a
-candidate that changes pixels or depth semantics is dead regardless of
-speed. Memory-traffic measurement comes **before** lighting work; visual
-polish is deliberately postponed until the simulation earns it.
+Several faster paths were tried and not shipped: some SIMD interiors
+passed correctness but failed the honest speed bar; a quantized
+variant stayed a research note. The kept-off list is as deliberate as
+the promoted one.

@@ -1,57 +1,35 @@
-# Build & Gates
+# How It Is Tested
 
-import StatusBadge from "@/components/status-badge";
+<span className="wwa-page-title">How it is tested</span>
 
-Status: <StatusBadge status="FOUNDATION" /> — the standing validation
-surface every release must pass.
+A claim this project makes is worth exactly as much as the evidence
+behind it, so testing is not a phase — it is the way anything comes to
+exist here.
 
-## The rule
+## The habit, in brief
 
-A build that cannot run the demonstration is not a build. Every release
-of the engine passes an aggregate gate — not a sample of tests, the
-whole battery, on the reference machine:
+- **Nothing ships on reputation.** A technique from a research paper, a
+  hunch, an industry practice — all are treated the same way: build
+  the smallest honest version, measure it on this machine, and let the
+  number decide;
+- **Failures are kept.** When an idea loses, the record of *how* it
+  lost stays in the project forever — it is how the same mistake is
+  never made twice;
+- **The instruments are tested too.** The tools that measure the
+  engine are audited against the engine itself before any number they
+  produce is believed. Twice now, a promoted result turned out to be a
+  measurement artifact — both times it was caught, retracted, and the
+  testing made stronger;
+- **Every release runs everything.** The full test battery and the
+  playable demonstration must pass, or there is no release.
 
-```text
-run-tests   = RC 0
-std-check   = RC 0
-demo-check  = RC 0     reaches the real 3D demo init/simulate/shutdown path
-```
+## What that buys
 
-## Toolchain
+When the world finally runs — when the ecology lives and the economy
+moves — its behavior will rest on parts that earned their place. That
+is the whole reason the engine is built this way: **a world you can
+trust is built from parts you can check.**
 
-- **Language**: C only, dependency-light. The engine's standard surface
-  is its own (20 headers: memory, strings, math, I/O, threads, time —
-  libc helpers are not used in internals);
-- **Compilers**: GCC primary (MSYS2 UCRT64 gcc 16.2 on Windows; Linux
-  validated). `-Wall -Wextra -Werror` clean is mandatory;
-- **Build**: a native C builder — no CMake, no Makefile. One command
-  surface: `all`, `all-tests`, `std-check`, `demo-check`, `bench-*`;
-  artifacts under `build/obj` + `build/bin`;
-- **Determinism**: same inputs, same world, same bits. Replay is a
-  contract, not an aspiration;
-- **Reference machine**: AMD Ryzen 5 5600H, RTX 3050 Laptop, 32 GB —
-  every number on this site names the machine that produced it.
-
-## Sanitizer gates
-
-ASan + UBSan run under WSL2 Debian (gcc 14.2); from iteration 3.189 the
-Windows host uses MSVC 14.29 `/fsanitize=address /W4 /WX` plus
-`gcc -fanalyzer`. The strict research line (3.207+) adds
-`-Wshadow -Wconversion -mavx2` and LeakSanitizer. No promotion exists
-without a sanitizer pass.
-
-## The negative-control discipline
-
-Every benchmark carries a control that **must fail** if the oracle is
-real (`--corrupt-endpoint` corrupts one contact endpoint after
-maintenance; the exact-state oracle must catch it on every armed row). A
-control that cannot fail is not a control — the full doctrine lives in
-[Doctrine](/record/doctrine).
-
-## Platform honesty
-
-Linux is the actively validated environment. Windows/MSYS2 UCRT64 is the
-acceptance gate that has remained honestly open — the 2.23 incident
-(`0xC0000005`, no Vulkan present device) is preserved verbatim in the
-record and is not declared solved without a target-machine run. NVCC and
-interactive Vulkan are target gates, never silently assumed.
+The full engineering record — every benchmark, incident, and retracted
+claim — lives with the project's research archive and will be
+published as the site grows.

@@ -1,58 +1,45 @@
 # Roadmap
 
-import StatusBadge from "@/components/status-badge";
+<span className="wwa-page-title">Roadmap</span>
 
-Status: <StatusBadge status="FOUNDATION" /> — the standing plan, ordered
-by leverage, revised by measurement.
+The plan follows the foundation, not the calendar: the world can only
+be as honest as the engine underneath it.
 
-## The principle
+## Done — the floor exists
 
-The roadmap is not a feature wishlist; it is a research program. Each step
-exists because a measured result opened it, and the next step is always
-the one with the highest expected information. Nothing below is dated —
-dates are not a claim this project makes.
+- A from-scratch standard layer and native build system, tested to
+  hundreds of thousands of automated checks;
+- A physics core that runs, steps, and replays deterministically;
+- A playable first-person demonstration of that core, kept working at
+  every release;
+- The research habit: measured experiments, honest negative results,
+  and a literature pipeline that feeds ideas into the engine.
 
-## Now (engine foundations, in progress)
+## Now — the engine grows up
 
-- **Adaptive broadphase selector** — choose between full rebuild and
-  incremental pair maintenance using previous-frame dirty fraction, pair
-  churn, and measured costs, without future-frame knowledge (2.94's
-  pair-delta is the candidate: exact over 63 cases, faster at low churn,
-  crossovers at high churn — pair *exits* are part of correctness);
-- **Solver convergence** — the 3.207–3.213 line: projected over-relaxation
-  is the strongest current lead (chain workload: 28–31 passes at ω=1.5
-  vs 93–94 at ω=1.0; one case fell from 50.4M to 15.4M cycles). The
-  pre-committed next experiment is **adaptive PSOR** — locally estimated
-  ω with immediate fallback to ω=1, evaluated on held-out
-  topology/churn streams;
-- **Layout-manager engine port** — 3.191's pre-registrations: tombstone
-  compaction, maintenance shedding, exit hysteresis, decorrelated harness
-  touch order. The degree table's economics (amortize over world
-  lifetimes, never per-rebuild) are the design axis.
+- The solver and the memory system are being tuned together — where a
+  body sits in memory changes how fast the world can think about it;
+- The spatial foundation: one shared sense of "what is near what",
+  serving physics, sound, sight, and AI alike — already measured as a
+  large integrated win;
+- Incremental broadphase: when things move, only what moved gets
+  recomputed.
 
-## Next (the world's first systems)
+## Next — the world wakes up
 
-- Packed FP4/FP6 fused renderer packet consumption + table-free
-  vectorized FP8 decode (quantization stays storage/transport research —
-  measured, not assumed);
-- Renderer memory-traffic measurement *before* any lighting work;
-- Audio spatialization with bounded voice budgets;
-- Windows/MSYS2 + NVCC + interactive Vulkan: the standing target-machine
-  acceptance gates.
+- The first living systems enter the actual world: ecology, resource
+  flows, animal behavior — the isolated experiments connected at last;
+- Settlements: needs, work, trade — the beginning of an economy;
+- Weather, water, and growth: the processes that make a place feel
+  inhabited long before anyone lives there.
 
-## Later (the living world)
+## Later — civilization, engineering, history
 
-- Ecology: metabolism, regrowth, stigmergy, homeostasis promoted from
-  isolated prototypes into one shared world;
-- Civilization: farming, economy, diplomacy, war — each entering through
-  the same oracle/negative-control/workload gates as the solver;
-- The engineering ladder: mining → metallurgy → chemistry → electrical
-  logic → computing → robotics → space. The Moon is reached by altitude
-  and technology — never by a portal.
+- Farming to industry; machines, electricity, and the path toward
+  computing;
+- War, diplomacy, and consequence at the scale of kingdoms;
+- And one day, far up: the Moon — reached the only way that means
+  anything, by building the machines that climb.
 
-## Standing orders
-
-1. Preserve all negative results — they are the project's immune system.
-2. The demo is the permanent entry point; `demo-check` gates every
-   release.
-3. Research creates hypotheses; WWA benchmarks decide.
+No dates. The rule is simply: **measure, then trust; promote, then
+build.** The order of the world follows the order of proof.

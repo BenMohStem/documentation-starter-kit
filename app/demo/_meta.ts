@@ -1,4 +1,4 @@
 export default {
-  index: "What runs today",
-  gates: "Build & Gates",
+  index: "The demo",
+  gates: "How it is tested",
 };

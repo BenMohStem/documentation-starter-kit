@@ -1,76 +1,32 @@
 # Play It Today
 
-import StatusBadge from "@/components/status-badge";
-import ProofFigure from "@/components/proof-figure";
-import FactGrid from "@/components/fact-grid";
-
-Engine status: <StatusBadge status="PROMOTED" /> — the playable
-demonstration of the current engine core, gated by `demo-check`.
+<span className="wwa-page-title">The demo</span>
 
 ## What runs today
 
-A from-scratch C engine — physics with warm-started contacts, uniform-grid
-and packed broadphase, a tiled 3D renderer, allocation-aware audio,
-streaming IO, a job system — and a playable first-person 3D demonstration
-on top of it.
+A from-scratch C engine — physics, a first-person 3D renderer, sound,
+input, deterministic replay — and a playable demonstration built on
+it: move through a small world with real bodies, real mass, real
+contacts.
 
-<ProofFigure
-  src="/screenshots/wwa_proof_frame1_before_input.png"
-  alt="WWA 2.55 demo — frame before input"
->
-  Iteration 2.55, frame captured before input — the deterministic starting
-  state.
-</ProofFigure>
+It is deliberately plain. This is the engine proving itself, not the
+world selling itself: every frame you see is produced by rules that
+were measured before they were trusted. Visual polish comes later, on
+purpose — it is the cheapest thing to add and the easiest thing to
+hide behind.
 
-<ProofFigure
-  src="/screenshots/wwa_proof_frame_after_real_wasd_mouse_input.png"
-  alt="WWA 2.55 demo — frame after real WASD + mouse movement"
->
-  The same demo after real held-key W input and mouse motion (XTest
-  injected, first proven in 2.18): the camera moved through the actual
-  simulation loop. These frames prove the engine steps, renders, and
-  responds — nothing more. No feature is implied beyond what is listed
-  here.
-</ProofFigure>
+## What it proves
 
-## What the demo includes
+- Physics stepping live: bodies with mass, friction, contact;
+- First-person movement and mouse-look through a real 3D scene;
+- Deterministic replay: the same inputs produce the same world, every
+  time;
+- The engine survives its own tests on every release — the build
+  refuses to ship if the demonstration cannot run.
 
-- First-person movement through a real 3D scene: WASD, mouse look, jump;
-  a developer fly mode and pause;
-- The physics core stepping live: bodies with mass, contacts, friction;
-  warm-started persistent manifolds — the solver remembers between frames
-  (measured 70.98× replay speedup at zero drift in the micro-benchmark);
-- Broadphase switchable live between linked and packed cell layouts (**P**
-  key) on a deterministic world — the packed path is the production
-  default from the 2.10–2.13 spatial work;
-- Generated PCM audio with rate-limited collision tones (**H**);
-- Deterministic reset, headless bounded 120-frame validation runs with
-  framebuffer proofs at start/mid/end.
+## What it does not include yet
 
-## What it does not include (yet)
-
-- No animals, plants, ecology — the mechanisms are measured prototypes
-  ([Emergence](/world/emergence)) but are not in the shipped demo;
-- No building, crafting, or machines — planned, not built;
-- No save meta-world — planned;
-- No audio spatialization; the audio layer is allocation-aware but
-  positional research is queued.
-
-This list is kept strict on purpose: **the demo page never implies a
-feature the frames above do not show.**
-
-## Where it has been proven
-
-<FactGrid facts={[
-  { number: "2.18", label: "first real-input proof — XTest-injected held W + mouse motion visibly changed the frames", source: "ITER 2.18" },
-  { number: "0.64 s", label: "headless 60-frame Xvfb validation run of the 3D demo initialization/simulation/shutdown path", source: "DEMO-CHECK" },
-  { number: "120 Hz", label: "demo loop target with fixed 1/60 s physics steps", source: "ITER 2.4" },
-  { number: "24 / 60", label: "default training-yard crates (24) and stress mode (60)", source: "ITER 2.27" },
-]} />
-
-## The honesty contract
-
-The demo is a technical laboratory, not a trailer. Expensive visual
-polish is deliberately postponed until the simulation underneath earns
-it. When the demo gains a feature, this page gains the measurement that
-proves it — in that order.
+No animals, no ecology, no building, no economy — those systems are
+being measured in isolation and enter the world one honest piece at a
+time. This page will say exactly when that happens, and what each
+piece proved.

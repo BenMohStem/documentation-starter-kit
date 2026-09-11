@@ -1,12 +1,10 @@
-import StatusBadge from "@/components/status-badge";
-import StatusLegend from "@/components/status-legend";
-import FactGrid from "@/components/fact-grid";
-import ProofFigure from "@/components/proof-figure";
+import HomeHero from "@/components/home-hero";
+import SystemGlyph from "@/components/system-glyph";
+import Link from "next/link";
 
 export const useMDXComponents = (components) => ({
   ...components,
-  StatusBadge,
-  StatusLegend,
-  FactGrid,
-  ProofFigure,
+  HomeHero,
+  SystemGlyph,
+  Link,
 });

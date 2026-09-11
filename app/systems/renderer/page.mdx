@@ -1,0 +1,29 @@
+# Renderer
+
+import StatusBadge from "@/components/status-badge";
+
+Status: <StatusBadge status="FOUNDATION" /> — tiled paths, validated; nothing
+enters without beating the oracle.
+
+## What runs today
+
+- A tiled renderer with validated paths — every rendering change measured
+  against a reference frame before it ships;
+- The proof-of-render and the playable demo's frames (see
+  [Play It Today](/game/demo)) are real outputs of this renderer.
+
+## The lesson kept visible
+
+The **interior-SIMD negative result**: an attempt to vectorize tile
+interiors measured slower than the scalar path — the memory pattern fought
+the layout. The failure is preserved in the project's records because it
+defines the rule: renderer optimizations are admitted only when they beat
+the reference on the target workload, with complete-path cost charged —
+the same law as the solver's.
+
+## What is next
+
+- Tile pass integration with the shared locality layer's consumer masks
+  (the renderer already culls through it);
+- The M3 consolidation: renderer, audio, IO, jobs all on the one
+  foundation, at frame budget, with deterministic replay.

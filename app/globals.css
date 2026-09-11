@@ -1,0 +1,74 @@
+:root {
+  /* WWA observatory palette (spec section 11) */
+  --wwa-charcoal: #17191a;
+  --wwa-night-green: #10201a;
+  --wwa-moss: #5f7161;
+  --wwa-stone: #8d8d85;
+  --wwa-paper: #ece9e2;
+  --wwa-silver: #b8bcbe;
+  --wwa-moonlight: #cdd7d4;
+  --wwa-amber: #d9a662;
+  --wwa-pale-green: #9ec49a;
+}
+
+/* calm motion: nothing bounces (spec section 12) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
+.nx-banner {
+  background: var(--wwa-night-green) !important;
+  color: var(--wwa-moonlight) !important;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--wwa-moss);
+}
+
+.wwa-banner {
+  opacity: 0.9;
+  letter-spacing: 0.01em;
+}
+
+.wwa-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 2rem;
+}
+
+.wwa-footer-quiet {
+  opacity: 0.55;
+  font-size: 0.85rem;
+}
+
+/* ---- game-centered homepage ---- */
+.wwa-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.wwa-hero img {
+  border-radius: 0.5rem;
+  border: 1px solid var(--wwa-moss);
+  max-width: 100%;
+  height: auto;
+}
+
+.wwa-hero-caption {
+  font-size: 0.82rem;
+  color: var(--wwa-stone);
+  letter-spacing: 0.01em;
+  max-width: 60ch;
+}
+
+.wwa-milestone {
+  border-left: 2px solid var(--wwa-moss);
+  padding: 0.4rem 0 0.4rem 1rem;
+  margin: 1rem 0;
+}

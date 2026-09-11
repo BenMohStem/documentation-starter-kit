@@ -1,0 +1,30 @@
+# Audio & IO
+
+import StatusBadge from "@/components/status-badge";
+
+Status: <StatusBadge status="FOUNDATION" /> — allocation-free hot paths,
+budget-gated.
+
+## Audio
+
+- **Allocation-free mixing**: the mixer never allocates — voices, busses,
+  and buffers are reserved up front;
+- **Voice budget**: a fixed voice count with priority-based culling; the
+  budget is a design contract, not a tuning knob discovered in production;
+- **Consumer-mask integration**: audio asks the shared spatial layer which
+  emitters matter for the listener this frame — the same structure physics
+  and AI read.
+
+## IO & streaming
+
+- Streaming with an explicit budget: what loads, when, and what evicts are
+  decisions the engine measures rather than hopes;
+- Deterministic ordering for replay: streaming events must not perturb the
+  simulation's determinism — the replay gate applies to IO like everything
+  else.
+
+## What is next
+
+The M3 consolidation mounts these on the shared foundation at the frame
+budget. No audio or IO feature ships without its allocation and budget
+evidence.

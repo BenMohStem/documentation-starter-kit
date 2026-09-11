@@ -1,0 +1,85 @@
+# Roadmap
+
+Every milestone below carries its real status. Nothing is dated — dates we
+cannot keep are not promises we make.
+
+## Now — the engine core
+
+<div className="wwa-milestone">
+
+**M1 — Dynamic layout manager** <StatusBadge status="PROMOTED" /> (scoped)
+
+The topology-adaptive layout research (3.185–3.187) landed its first
+full-gate promotion: on community-structured contact topologies at low
+churn, BFS-family layouts + an O(1) cheap-swap repair beat never-reordering
+beyond the measured noise floor. The engine's solver sweep can now be managed
+conditioned on measured topology — the "no universal best" doctrine,
+implemented. See [Research](/research).
+
+</div>
+
+<div className="wwa-milestone">
+
+**M2 — Integrated physics pipeline**
+
+Assemble the validated pieces into one end-to-end frame: broadphase →
+contact discovery → persistent manifolds → geometry epochs → warm impulse
+validity → coloring → compact packets → 6-DoF solve → exact reference →
+SIMD → writeback → telemetry. The 3.187 harness is the testbed.
+
+</div>
+
+<div className="wwa-milestone">
+
+**M3 — Engine foundations consolidation**
+
+Renderer (tiling, validated paths only), audio (allocation-free mixing,
+voice budget), IO/streaming, jobs/memory — all mounted on the shared
+locality layer. Gate: integrated engine step at frame budget with
+deterministic replay.
+
+</div>
+
+## Next — the living world
+
+<div className="wwa-milestone">
+
+**M4 — Playable vertical slice**
+
+The full pipeline inside the wandering demo: move, observe, interact
+physically. All systems cooperating in one world — the mature form of the
+[playable demo](/game/demo).
+
+</div>
+
+<div className="wwa-milestone">
+
+**M5 — Ecosystem**
+
+Realistic animal AI on the shared spatial layer: perception, needs, flee and
+hunt, death and birth. The mechanism prototypes (metabolism, regrowth,
+stigmergy, homeostasis) graduate from laboratories into the world. Gate: a
+32K-entity-class integrated workload within frame budget.
+
+</div>
+
+## Far — the civilization
+
+<div className="wwa-milestone">
+
+**M6 — Civilization layers**
+
+Economy, farming, crafting, building, engineering mechanisms, societies,
+war — each as a falsifiable mechanism experiment first, promoted by
+measurement only. The far vision (moon and heights, deep underworld) stays
+vision-tier until the engine earns it.
+
+</div>
+
+## Standing rules
+
+- Never promote on a single multiplier — complete-path cost always charged;
+- Failed experiments are knowledge — preserved and visible in the
+  [Journal](/journal);
+- The world must run, breathe, and be worth investigating — that is the
+  final validator.

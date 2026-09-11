@@ -1,0 +1,35 @@
+# Repository & Build
+
+Status: the engine builds and its gates pass — the website you are reading
+is the documentation layer.
+
+## The engine
+
+- **Language**: C (dependency-light; the standard library is its own,
+  headers stabilized across Windows/MSYS2-UCRT64, Linux, macOS — the 2.70
+  Windows header-boundary doctrine);
+- **Compilers**: GCC and Clang validated; `-Wall -Wextra -Werror` clean;
+  ASan + UBSan gates run under WSL2 Debian for the Windows host;
+- **Build**: the native builder with the `build/` layout; `demo-check` is
+  the standing gate — a build that cannot run the demonstration is not a
+  build;
+- **Determinism**: same inputs, same world, same bits — replay is a
+  contract, not an aspiration.
+
+## The research corpus
+
+The project's literature pipeline lives beside the engine: a local corpus
+of thousands of papers (arXiv-sourced, checksummed, full-text indexed)
+organized into research threads that feed engine hypotheses. Selected
+notes and the paper notes template are described in
+[Research Library](/source/research).
+
+## This website
+
+- Nextra 4 + Next.js (App Router), TypeScript, MDX;
+- Static-rendered; status vocabulary enforced site-wide;
+- Content rules: every claim carries a status label, screenshots carry
+  provenance, failures stay visible.
+
+The website consumes frozen exports of engine results — it never invents
+content, and it never blocks engine work.

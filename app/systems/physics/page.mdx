@@ -1,0 +1,37 @@
+# Physics
+
+import StatusBadge from "@/components/status-badge";
+
+Status: <StatusBadge status="FOUNDATION" /> — the engine's most-validated
+system.
+
+## What runs today
+
+- **6-DoF frictional contacts** — bodies with mass, inverse mass, inertia
+  tensors; normal + friction impulses through the full contact set;
+- **Warm-started persistent manifolds** — contact state persists across
+  frames and is re-validated against geometry epochs; the replay harness
+  measured a 70.98x warm-start speedup at zero drift in micro-benchmarks;
+- **Graph coloring → wide SIMD batches** — contacts colored into
+  independence batches, packed into compact packets, solved with vector
+  lanes; the coloring contract and the one-packet numerical audits hold the
+  line on bitwise behavior;
+- **Exact-state oracle discipline** — every solver experiment replays
+  logical state exactly against an independent reference.
+
+## What it costs to be this sure
+
+Each claim above survived the full battery: oracle PASS, negative control
+FAIL (correctly), sanitizers clean, complete-path cost accounting. The
+[Research](/research/layout) section shows the current live thread —
+topology-adaptive layout management — and the incidents that shaped the
+doctrine.
+
+## What is next
+
+- The integrated pipeline assembly (M2): broadphase → manifolds → coloring →
+  solve → writeback as one measured end-to-end frame;
+- The layout manager's scoped promotion (community topologies, low churn)
+  integrated behind a measured topology detector.
+
+No new physics feature enters without its oracle.

@@ -1,22 +1,34 @@
-# Nextra Docs Template 
+# World Without Answers — Website
 
-This is a template for creating documentation with [Nextra](https://nextra.site).
+The documentation and showcase website for **World Without Answers (WWA)**:
+a game about a world that does not explain itself, built on a native C
+engine measured every step of the way.
 
-[**Live Demo →**](https://nextra-docs-template.vercel.app)
+This site documents the project honestly: every claim carries a status
+label (`FOUNDATION`, `PROMOTED`, `CANDIDATE`, `RESEARCH ONLY`, `NOT
+PROMOTED`, `REJECTED`, `INVALIDATED`, `SUPERSEDED`), screenshots carry
+provenance, and failures stay visible in the journal.
 
-[![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
+## Sections
 
-## Quick Start
-
-Click the button to clone this repository and deploy it on Vercel:
-
-[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra-docs-template&showOptionalTeamCreation=false)
+- **Game** — the vision, the playable demo, observation and emergence
+- **World** — the premise and the philosophy of the world
+- **Systems** — physics, broadphase, renderer, audio/IO, jobs/memory
+- **Research** — dynamic layout management, benchmark doctrine, integrity incidents
+- **Engineering** — philosophy, data-oriented design, numerical contracts
+- **Journal** — the project's memory, including failures
+- **Source** — repository, build, and the research library
 
 ## Local Development
 
-First, run `pnpm i` to install the dependencies.
+First, run `npm i` to install the dependencies.
 
-Then, run `pnpm dev` to start the development server and visit localhost:3000.
+Then, run `npm run dev` to start the development server and visit
+localhost:3000.
+
+## Deploy
+
+The site deploys automatically to Vercel from `main`.
 
 ## License
 

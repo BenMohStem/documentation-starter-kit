@@ -1,0 +1,90 @@
+# The Project's Memory
+
+The journal preserves the project's history — including its failures.
+Later entries never erase earlier ones; a corrected claim keeps its
+invalidated ancestor visible.
+
+## The era map
+
+| Era | Iterations | What happened |
+|---|---|---|
+| Origins | 1.8 – 2.0 | First engine steps: window, renderer proof, the first benchmark discipline |
+| The lab | 2.12 – 2.25 | Mechanism prototypes: metabolism, regrowth, stigmergy, homeostasis — measured in deterministic laboratories |
+| The shared world | 2.13 | The spatial locality layer: one grid serving physics, AI, audio, rendering (~5.7x integrated win) |
+| The playable demo | 2.26 – 2.95 | Broadphase benchmarks, the demo, WASD + mouse proof, release hardening |
+| The research chain | 3.104 – 3.172 | Manifold warm solver (70.98x replay at zero drift), K-cache epochs, SIMD numerical contracts, one-packet audits |
+| Layout research | 3.173 – 3.179 | Cache/layout policies: 224.4 vs 45.6 cycles/contact spread measured; the T_amortized cost model; no-universal-best found |
+| Topology churn | 3.180 – 3.184 | Churn benchmarks; the mean-reuse-distance predictor failed; honesty rules hardened |
+| The manager arrives | 3.185 – 3.187 | Incident 3.185-1 (caught and retracted), the rebuilt instrument, adversarial topologies, first scoped promotion |
+| The manager earns its keep | 3.188 – 3.189 | Topology-adaptive selector promoted; its new probe audited by confusion matrix before any claim; chains promoted at scale; verification to 256K bodies |
+| Instruments are not free | 3.190 | Graph-degree probe (order-invariant) replaces the walk clause; the 1% miss resolved as instrument-bound; chain scope extends to 0–1%; one published verdict corrected in public when a cost model caught a 64× overallocation |
+
+## Selected entries, in the project's own words
+
+### 3.174 — Preparation must be paid
+
+A solver reorganization measured a 4.9x solve speedup and lost anyway: its
+preparation cost was 5.2x. The complete-path cost law was born, and every
+promotion since charges organization + remap + maintenance against savings.
+
+### 3.178–3.179 — The amortization model
+
+`T_amortized(H) = (T_prepare + T_remap)/H + T_solve(H)` — the horizon H over
+which an organization must repay itself. Initially published with an
+incorrect amortization computation, then **corrected in public**: the
+corrected tables changed the decision. The error stays visible.
+
+### 3.180 — The oracle that compares itself
+
+A churn benchmark was caught comparing an oracle against its own state
+rather than an independent reference — the defect was found, disclosed, and
+the negative-control discipline extended.
+
+### 3.185–3.187 — The noise incident and the honest win
+
+The full arc lives in [Research](/research/layout): a promotion caught
+being noise, an instrument rebuilt, and the first result that survived every
+gate.
+
+### 3.189 — The audit that caught its own author
+
+A chain-detection probe was designed, its predictions written down, and
+then — before measuring any policy — the probe was measured itself
+against all seven topology families. The audit refuted the predictions:
+grids and hubs walk through the contact array too, and only the *shape*
+of the walk (index-local vs scatter-jumping) separates them. The rule
+was fixed, re-registered, and only then allowed to gate results. The
+same session caught a contaminated timing battery (background runs on
+the pinned core) by cross-checking against a clean anchor and re-running.
+The instruments are now audited like the claims.
+
+### 3.190 — Five bugs, one answer, one correction in public
+
+The maintained degree table was built to be array-order-independent —
+and it entered testing with four defects that its own gates caught: a
+deletion scheme that wrapped a counter, an allocation tax, a hash that
+put half a grid's edges in one slot, and a record-stream bug that had
+made the audit itself lie. Every number was re-derived after each
+fix. With the clean instrument the 3.189 open question closed — the
+1% miss was the old probe's, not the world's — and the chain scope
+extended.
+
+Then, after the report shipped, the fifth catch: a back-of-envelope
+cost model refused to accept a measured 110M-cycle rebuild that
+arithmetic said should cost ~10M. The edge table had been allocated
+64× larger than its registered size — a defect no gate could see,
+because content is capacity-independent and every policy was priced
+against the same inflated table. At the registered size the prices
+collapsed (+10–15 became +2–4) and one published verdict flipped: the
+mix battery the report had conceded to the old probe, the selector in
+fact wins against every static at every churn. The correction was
+published with the error left visible, and the cost model became the
+fifth standing gate. The deepest lesson of the iteration is not about
+hash tables at all: **a measurement that flatters your expectations
+deserves the same suspicion as one that contradicts them.**
+
+---
+
+The complete iteration history (1.8 → 3.190, every experiment with its
+evidence) is preserved in the project handoff archives; the website surfaces
+the load-bearing entries and the lessons.

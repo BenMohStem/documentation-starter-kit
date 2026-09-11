@@ -1,0 +1,37 @@
+# The Systems
+
+import { Cards } from "nextra/components";
+
+The engine is native C, dependency-light, and measured at every layer. Each
+system page states what runs today and what is planned — nothing more.
+
+<Cards>
+  <Cards.Card title="Physics" href="/systems/physics"
+        subtitle="6-DoF contacts, warm starting, exact-state oracles" />
+  <Cards.Card title="Broadphase" href="/systems/broadphase"
+        subtitle="Sweep-and-prune, grids — chosen by workload, measured" />
+  <Cards.Card title="Renderer" href="/systems/renderer"
+        subtitle="Tiled paths; the interior-SIMD lesson kept visible" />
+  <Cards.Card title="Audio & IO" href="/systems/audio"
+        subtitle="Allocation-free mixing; streaming with a budget" />
+  <Cards.Card title="Jobs & Memory" href="/systems/jobs"
+        subtitle="Work stealing, arena discipline, deterministic replay" />
+</Cards>
+
+## The architecture law
+
+All systems mount on **one shared spatial locality layer**: a single world
+grid with per-consumer masks. Physics reads contacts through it; AI queries
+neighborhoods through it; audio asks which emitters matter; the renderer
+culls with it. No system keeps its own private copy of the world.
+
+This is the foundation the whole engine is built on — measured, integrated,
+and promoted (the ~5.7x integrated-workload win, host-measured).
+
+## The engineering rules that bind every system
+
+- C-first, warning-clean, sanitizer-gated, `demo-check` as the standing gate;
+- allocation-free hot paths (the audio mixer never allocates; the solver
+  never allocates);
+- deterministic replay: same inputs, same world, same bits;
+- every optimization claim carries its measurement and its status label.

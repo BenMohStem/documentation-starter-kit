@@ -1,0 +1,43 @@
+# Research Library
+
+import StatusBadge from "@/components/status-badge";
+
+Status: <StatusBadge status="RESEARCH ONLY" /> — the corpus is the
+hypothesis engine; WWA's own measurements decide.
+
+## The pipeline
+
+The project runs a literature pipeline beside the engine:
+
+1. **Harvest** — thousands of open-access papers (arXiv), keyword-targeted
+   per research thread, checksummed and full-text indexed locally;
+2. **Rank** — every paper scored by relevance to the live engine threads
+   (contact solvers, data layout & cache, SIMD numerics, graph coloring,
+   broadphase, benchmark methodology, ECS/scheduling, world simulation);
+3. **Read** — deep-read structured notes: claim, method, assumptions, what
+   WWA can reuse, what WWA must **not** copy, threats to validity, and the
+   proposed WWA experiment with its oracle;
+4. **Decide** — the papers never decide; the benchmarks decide. The corpus
+   defines hypotheses; WWA measurements decide (the standing use policy).
+
+## How it fed the engine
+
+The layout-manager arc is the first full loop:
+
+| Paper | What it contributed |
+|---|---|
+| Roy 2012 — Memory Hierarchy Sensitive Graph Layout (arXiv:1203.5675) | Two-level hierarchical blocking; the piggyback-re-layout idea |
+| Fauzia et al. 2014 — Beyond Reuse Distance Analysis (arXiv:1401.5024) | Why current-order histograms underestimate reordering potential; the headroom idea (v1 honestly rejected as non-discriminative) |
+| Satav & Singh 2022 — Locality-based Graph Reordering (arXiv:2111.12281) | The reorder-cost/exec-time trade-off framing; community-based layouts |
+| Shanmugavelu et al. 2024 — FP Non-Associativity (arXiv:2408.05148) | Independent confirmation of the numerical-contract doctrine |
+
+The result chain: hypotheses → 3.185 (incident caught) → 3.186 (instrument
+rebuilt) → 3.187 (first scoped promotion). Each paper's note records what
+was actually used — and what was rejected.
+
+## The reading discipline
+
+A paper is a hypothesis source, never an authority. Speedups reported on
+power-law social graphs do not transfer to contact graphs; every reused
+idea re-measures on WWA's own topology families, scales, and churn — or it
+does not ship.

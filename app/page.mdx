@@ -1,0 +1,63 @@
+# World Without Answers
+
+**A game about a world that does not explain itself.**
+
+You wake in a valley with no tutorial, no quest markers, and no explanations.
+Rivers carve, trees grow, animals hunt and flee — because of rules, not
+scripts. What you understand of this world, you earn by watching it.
+
+<div className="wwa-hero">
+
+![WWA 2.55 demo — real render, real input](/screenshots/wwa_proof_frame_after_real_wasd_mouse_input.png)
+
+<span className="wwa-hero-caption">
+The playable demonstration, iteration 2.55: actual engine frame after real
+WASD + mouse input. It is a proof, not a promise.
+</span>
+
+</div>
+
+## The game we are building
+
+import { Cards } from "nextra/components";
+
+<Cards>
+  <Cards.Card title="A world that observes itself" href="/game/vision"
+        subtitle="Ecology, weather, animals with needs — every process real, none of them narrated." />
+  <Cards.Card title="Emergence over scripts" href="/game/emergence"
+        subtitle="Small rules, faithfully applied, every frame. Nothing staged." />
+  <Cards.Card title="No HUD hand-holding" href="/game/observation"
+        subtitle="Understanding is earned: noticing is the whole mechanic." />
+  <Cards.Card title="Run it today" href="/game/demo"
+        subtitle="The current playable demo — what works, and what honestly does not." />
+</Cards>
+
+## Where the project stands
+
+| Layer | Status |
+|---|---|
+| Native C engine core (physics, broadphase, renderer, audio, IO, jobs) | **Runs today** — `demo-check` gated |
+| Playable 3D demonstration | **Runs today** — see [Demo](/game/demo) |
+| Spatial locality foundation (physics + AI + audio + render share one grid) | Measured, integrated (~5.7x on host workload) |
+| Dynamic layout management (topology-adaptive) | First promotion landed — [Research](/research) |
+| Ecosystem: animals, plants, needs, food chains | **Planned** — prototypes measured in isolation |
+| Civilization: economy, farming, building, war | **Planned** — years of work, honestly labeled |
+
+Nothing on this site claims more than has been measured. Failed experiments
+stay visible in the [Journal](/journal).
+
+## Why an engine, not a mod
+
+The goal is a world where **consequence is real**: ten thousand bodies with
+mass, friction, stacking and wear — not decorative. That requires owning the
+whole stack, in C, measured every step. The
+[Engineering](/engineering) section shows what that costs and what it buys.
+
+import StatusLegend from "@/components/status-legend";
+
+## Status vocabulary
+
+Every claim carries one of these labels — a visitor should never guess what
+is real:
+
+<StatusLegend />

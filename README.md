@@ -1,23 +1,49 @@
-# Nextra Docs Template 
+# World Without Answers — Website
 
-This is a template for creating documentation with [Nextra](https://nextra.site).
+The public evidence site for **World Without Answers (WWA)**: a game
+about a world that does not explain itself, built on a from-scratch C
+engine measured every step of the way.
 
-[**Live Demo →**](https://nextra-docs-template.vercel.app)
+This site is organized around the project's core discipline: **every
+claim is bound to its measurement**. Promotions, negative results,
+retractions, and the doctrine that decides between them are all
+published. A visitor should never have to guess what is real.
 
-[![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
+## Sections
 
-## Quick Start
+- **World** — the premise, emergence, observation, and roadmap
+- **Demo** — what runs today, and the build/validation gates
+- **Engine** — std layer, builder, physics, broadphase & locality,
+  renderer, quantized numerics
+- **Record** — evidence ledger, the doctrine (D1–D8), integrity
+  incidents, era timeline
+- **Research** — the paper corpus, a full literature-to-engine loop,
+  and the use policy
 
-Click the button to clone this repository and deploy it on Vercel:
+## Status vocabulary
 
-[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra-docs-template&showOptionalTeamCreation=false)
+Every claim carries a status label: `FOUNDATION`, `PROMOTED`,
+`PROMOTED (SCOPED)`, `CANDIDATE`, `RESEARCH ONLY`, `NOT PROMOTED`,
+`REJECTED`, `RETRACTED`, `INVALIDATED`, `SUPERSEDED`.
 
 ## Local Development
 
-First, run `pnpm i` to install the dependencies.
+```bash
+npm i        # install dependencies
+npm run dev  # development server at localhost:3000
+```
 
-Then, run `pnpm dev` to start the development server and visit localhost:3000.
+## Verification
+
+```bash
+npm run build       # production build (all pages static)
+npm run typecheck   # TypeScript, strict
+```
+
+## Deploy
+
+Deploys automatically to Vercel from `main`.
 
 ## License
 
-This project is licensed under the MIT License.
+MIT

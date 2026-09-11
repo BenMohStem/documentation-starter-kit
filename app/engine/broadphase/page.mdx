@@ -1,0 +1,64 @@
+# Broadphase & Locality
+
+import StatusBadge from "@/components/status-badge";
+import FactGrid from "@/components/fact-grid";
+
+Status: <StatusBadge status="PROMOTED" /> (shared spatial layer) —
+adaptive layout management <StatusBadge status="PROMOTED (SCOPED)" />.
+
+## One grid for everything
+
+The 2.13 result that shaped the architecture: one shared packed spatial
+index serving physics, perception, audio, renderer visibility, and mod
+dispatch — stable IDs, active hot packing, consumer masks — instead of
+four separate spatial structures per consumer:
+
+<FactGrid facts={[
+  { number: "5.73×", label: "shared packed index vs four separate structures — 32,768 entities at 1‰ churn, exact (5.59× at 0.1‰, 5.32× at 2.5‰)", source: "ITER 3.08" },
+  { number: "6.65×", label: "XZ-grid local perception vs all-agent scan at 1,024 agents (grows from 1.75× at 32)", source: "ITER 2.13" },
+  { number: "28.9×", label: "dirty-set broadphase vs full rebuild at 0% movement — but complete-step parity ~1.0× at 50%: traversal dominates; promoted as a data contract only", source: "ITER 2.83" },
+  { number: "0.5×", label: "index memory of the shared layer (2,097,152 B → 1,048,576 B at 131,072 entities)", source: "ITER 2.79" },
+]} />
+
+## No universal winner (measured, repeatedly)
+
+- **2.0**: brute force vs uniform grid vs SAP across
+  uniform/clustered/coherent workloads — grid won sparse/coherent,
+  brute force won clustered, full-rebuild SAP never. No method promoted;
+- **2.25**: BVH refit vs rebuild ranged 0.68×–2.75× by workload —
+  "refit is not a universal replacement";
+- **2.98**: linked vs packed vs packed-Morton broadphase, all exact
+  against a brute-force oracle: linked wins uniform/coherent, Morton
+  wins dense clusters when construction is counted. The research-only
+  selector rule: `max_cell ≥ 24 → consider Morton`;
+- **2.78**: an adaptive spatial manager was **REJECTED** outright — a
+  state-integrity failure (storage order coupled to identity; candidate
+  sets diverged). The failure is kept because it taught the design
+  constraint the successful selector later obeyed.
+
+## The layout manager arc (3.185–3.191)
+
+The deepest locality study: whether a dynamic layout manager can decide,
+every frame, *repair locally, rebuild globally, or leave alone*. The arc
+is the project's doctrine in miniature — an incident caught, an
+instrument rebuilt, an honest promotion:
+
+| Iteration | What happened |
+|---|---|
+| 3.185 | First full test; a 1.44× promotion **retracted the same session** — fresh-process noise (59–302 cycles/contact) exceeded the effect |
+| 3.186 | Instrument rebuilt: interleaved per-frame measurement, min-of-K, explicit noise floors. Confirmed: no policy beat identity on that workload — the natural order was already optimal by construction |
+| 3.187 | Adversarial topology families built; **first honest promotion**: O(1) cheap-swap repair + BFS layout on hub topologies, low churn — beyond 2× noise on two independent runs |
+| 3.188 | The adaptive selector: probes the live contact array; starts as identity, must earn its layout; declines to act (never-lose) on all hostile families |
+| 3.189 | Chain promotion at 128K bodies; hub re-verified at 256K: **selector 50.27 vs identity 156.37 cycles/contact (3.11×)**, beating every always-policy |
+| 3.190 | Order-invariant degree probe; the 1% miss resolved as instrument-bound (chain scope extended to 0–1% churn, clearing the bar ~9×); the maintained instrument's honest price recorded (+10–15 cycles never-lose) |
+| 3.191 | Pre-registered, not yet run: compaction, maintenance shedding, exit hysteresis, decorrelated touch order |
+
+The standing law from the amortization model (3.178–3.179):
+
+<div className="wwa-law">
+
+*T_amortized(H) = (T_prepare + T_remap)/H + T_solve(H)* — an organization
+must repay itself over horizon H, and **no layout is universally best**
+is now a measured fact, not a slogan.
+
+</div>

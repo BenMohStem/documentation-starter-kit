@@ -1,0 +1,56 @@
+# The Corpus
+
+import StatusBadge from "@/components/status-badge";
+import FactGrid from "@/components/fact-grid";
+
+Status: <StatusBadge status="FOUNDATION" /> — the standing literature
+pipeline beside the engine. 6,299 metadata works across 8 threads; 428
+PDFs harvested, checksummed, and full-text indexed.
+
+## Papers are hypotheses; measurements decide
+
+The project runs a local research corpus — papers are never authority.
+A paper may show an optimization winning on its workload; WWA's
+benchmark must show it winning on the 5600H, the actual data layout,
+and the actual workload. If it doesn't, the result is kept — labeled,
+not deleted.
+
+<FactGrid facts={[
+  { number: "428", label: "PDFs harvested with sha256 provenance (1.09 GB), 426 extracted texts, 0 duplicates, 5/5 spot-checks", source: "CORPUS LOG" },
+  { number: "6,299", label: "metadata works across 8 threads, 2,220 ranked high-relevance", source: "CORPUS LOG" },
+  { number: "8", label: "research threads, each mapped to a live engine problem", source: "TAXONOMY" },
+  { number: "FTS5", label: "full-text SQLite index: warm-starting=25, cache-aware=116, graph-coloring=296, reproducible=109 hits", source: "DB VERIFY" },
+]} />
+
+## The threads
+
+| Thread | Topic | Live engine problem |
+|---|---|---|
+| A | Contact & constraint solvers | warm starting, shock propagation, stacking, ordering |
+| B | Data layout & cache locality | dynamic layout manager, churn, amortized rebuild |
+| C | SIMD & FP numerics | bitwise-identical lanes, FMA hazards, reproducible reductions |
+| D | Graph layout & coloring | wide-SIMD coloring, body ordering policies |
+| E | Broadphase & collision | SAP/grids/BVH under churn, temporal coherence |
+| F | Benchmark methodology | measurement integrity, statistics, negative controls |
+| G | ECS & scheduling | archetype storage, work stealing, multi-rate steps |
+| H | World simulation | emergence, ecosystems — future layers, metadata-first |
+
+Every thread's reading guide ranks papers by WWA relevance — not by
+prestige — with each top paper carrying a note skeleton: claim, method,
+assumptions, **what WWA can reuse, what WWA must NOT copy**, threats to
+validity, and the proposed WWA experiment with its oracle.
+
+## The pipeline
+
+1. **Harvest** — arXiv keyword-targeted per thread, checkpointed, one
+   process at a time (two concurrent = timeouts — a measured failure
+   that became a rule), every step appended to an audit log;
+2. **Rank** — relevance scoring against the live engine threads;
+3. **Read** — deep-read structured notes (the template demands the
+   threats and the must-not-copy columns);
+4. **Decide** — hypotheses enter the pre-registration → gates → verdict
+   pipeline; the corpus never decides.
+
+Failures are knowledge here too: OpenAlex is parked (HTTP 429), the
+arXiv pacing rules and http→https upgrade were all learned the hard way
+and written down in the corpus log.

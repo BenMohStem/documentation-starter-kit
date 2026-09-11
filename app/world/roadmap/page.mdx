@@ -1,0 +1,58 @@
+# Roadmap
+
+import StatusBadge from "@/components/status-badge";
+
+Status: <StatusBadge status="FOUNDATION" /> — the standing plan, ordered
+by leverage, revised by measurement.
+
+## The principle
+
+The roadmap is not a feature wishlist; it is a research program. Each step
+exists because a measured result opened it, and the next step is always
+the one with the highest expected information. Nothing below is dated —
+dates are not a claim this project makes.
+
+## Now (engine foundations, in progress)
+
+- **Adaptive broadphase selector** — choose between full rebuild and
+  incremental pair maintenance using previous-frame dirty fraction, pair
+  churn, and measured costs, without future-frame knowledge (2.94's
+  pair-delta is the candidate: exact over 63 cases, faster at low churn,
+  crossovers at high churn — pair *exits* are part of correctness);
+- **Solver convergence** — the 3.207–3.213 line: projected over-relaxation
+  is the strongest current lead (chain workload: 28–31 passes at ω=1.5
+  vs 93–94 at ω=1.0; one case fell from 50.4M to 15.4M cycles). The
+  pre-committed next experiment is **adaptive PSOR** — locally estimated
+  ω with immediate fallback to ω=1, evaluated on held-out
+  topology/churn streams;
+- **Layout-manager engine port** — 3.191's pre-registrations: tombstone
+  compaction, maintenance shedding, exit hysteresis, decorrelated harness
+  touch order. The degree table's economics (amortize over world
+  lifetimes, never per-rebuild) are the design axis.
+
+## Next (the world's first systems)
+
+- Packed FP4/FP6 fused renderer packet consumption + table-free
+  vectorized FP8 decode (quantization stays storage/transport research —
+  measured, not assumed);
+- Renderer memory-traffic measurement *before* any lighting work;
+- Audio spatialization with bounded voice budgets;
+- Windows/MSYS2 + NVCC + interactive Vulkan: the standing target-machine
+  acceptance gates.
+
+## Later (the living world)
+
+- Ecology: metabolism, regrowth, stigmergy, homeostasis promoted from
+  isolated prototypes into one shared world;
+- Civilization: farming, economy, diplomacy, war — each entering through
+  the same oracle/negative-control/workload gates as the solver;
+- The engineering ladder: mining → metallurgy → chemistry → electrical
+  logic → computing → robotics → space. The Moon is reached by altitude
+  and technology — never by a portal.
+
+## Standing orders
+
+1. Preserve all negative results — they are the project's immune system.
+2. The demo is the permanent entry point; `demo-check` gates every
+   release.
+3. Research creates hypotheses; WWA benchmarks decide.

@@ -1,0 +1,44 @@
+# Builder
+
+import StatusBadge from "@/components/status-badge";
+import FactGrid from "@/components/fact-grid";
+
+Status: <StatusBadge status="PROMOTED" /> — the single native build
+system; no CMake, no Makefile.
+
+## What Forge is
+
+A build engine written in the project's own C: a 58-node dependency DAG,
+topologically ordered by Kahn's algorithm (O(V+E), with cycle detection
+tested on a planted A→B→C cycle), scheduled by Graham's list algorithm
+with critical-path priority — the (2−1/m) bound honored in practice.
+Benchmark logic lives in native C; shell wrappers only bootstrap.
+
+<FactGrid facts={[
+  { number: "6 ms", label: "warm no-op build — 58/58 nodes clean, content-addressed short-circuit", source: "ITER 2.87" },
+  { number: "18 s", label: "cold full rebuild from scratch", source: "ITER 2.87" },
+  { number: "29.87 s", label: "clean all-tests after the 2.95 graph-locality fix (previously >300 s — duplicated demo compilation removed; cached 3.25 s)", source: "ITER 2.95" },
+  { number: "1 + 6", label: "objects + links rebuilt per file change (incremental)", source: "ITER 2.87" },
+]} />
+
+## Content-addressed manifests
+
+The manifest is an append-only binary ("FORGEMAN") of
+`[path_hash u64][content_hash u64][cmd_hash u64][mtime i64][size i64]`
+records — deterministic, cross-filesystem, tamper-evident. A node is
+clean only when all three hashes match; wyhash does the hashing.
+
+## The 2.95 lesson
+
+The builder itself is a measured subsystem. Iteration 2.95 found the cold
+`all-tests` path recompiling the same engine source set for the demo and
+cut it: the demo now reuses cached objects and performs a final link.
+Clean 29.87 s, cached 3.25 s, `demo-check` 3.64 s — a 10× cold-path win
+from reading the graph, not from caching harder.
+
+## Why it matters
+
+An engine that studies locality for a living cannot build itself with an
+opaque dependency blob. The builder is legible, fast where it can be
+(6 ms no-op) and honest where it cannot — and it is the thing that runs
+the gates.

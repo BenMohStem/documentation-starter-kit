@@ -1,0 +1,65 @@
+# Physics
+
+import StatusBadge from "@/components/status-badge";
+import FactGrid from "@/components/fact-grid";
+
+Status: <StatusBadge status="PROMOTED" /> (core) — Verlet integration,
+AABB contacts, warm-started manifolds; solver research line ongoing
+through 3.213.
+
+## The core that runs today
+
+Position-based Verlet integration (unconditionally stable, fixed 1/60 s
+steps), exact AABB narrowphase with minimum-penetration axis, impulse
+resolution with Baumgarte position correction (slop 0.01) and Coulomb
+friction, ground-plane reflection, static/dynamic/kinematic body types —
+up to 4,096 bodies in the demo configuration, SoA storage at 64-byte
+cache lines.
+
+The famous negative that shaped the doctrine: **indexed LOD cost ≈ 2.30×
+the full update** (grouped-contiguous later won at 0.41×) — reordering is
+not free, and "smarter" traversal lost to the simple full scan on this
+machine. The lesson became a law: organize data so the cheaper
+calculation is the cheaper traversal.
+
+## The research line, honestly
+
+The 3.x line studies the solver as a coupled physics/memory problem. Key
+measured results:
+
+<FactGrid facts={[
+  { number: "70.98×", label: "warm-start replay at zero drift — 32 cold iterations vs 0 warm; degrades honestly with drift (0.01 → 21.97×)", source: "ITER 3.50" },
+  { number: "1.27–1.88×", label: "contact traversal order alone, 8,192 bodies / 16,384 contacts / 32 GS iterations", source: "ITER 3.205" },
+  { number: "W = JM⁻¹Jᵗ", label: "Delassus oracle: 2.22e-16 max disagreement with independent unit-impulse response over 5,000 configs", source: "ITER 3.120" },
+  { number: "95.05%", label: "of 100k random trials: independent tangent clamps violate the circular Coulomb cone — friction needs one clamped cone", source: "ITER 3.130" },
+  { number: "≤ 6", label: "rank of the two-body 12×12 four-point W — common rigid motion lives in ker(J)", source: "ITER 3.123" },
+  { number: "9.02×", label: "cached-K⁻¹ vs recompute at 65,536 entries — and 4.25× at 262,144: memory hierarchy changes the benefit; K-caching is not the target", source: "ITER 3.162" },
+]} />
+
+## Convergence, corrected in public
+
+The 3.206 convergence claims were **retracted**: the earlier kernel never
+accumulated projected contact impulse across Gauss-Seidel sweeps, so the
+convergence measurements were invalid (timing kept only as a kernel
+microbenchmark). The corrected line (3.207–3.210) uses Fischer–Burmeister
+complementarity residuals φ(λ,w) = √(λ²+w²) − λ − w with target
+‖φ‖_RMS ≤ 1e-6, and produced a law: **fewer iterations ⇏ faster solver**
+— T_solution = N_sweeps × T_sweep (identity order: ~66 sweeps/82M cycles
+vs random order: ~66 sweeps/113M).
+
+## The current lead: PSOR
+
+3.211 rejected symmetric Gauss-Seidel for this contact formulation (at 64
+passes on the chain workload: PGS residual 1.06e-5 vs SGS 1.52e-4; ~93
+vs ~128 passes to target). 3.212/3.213 found projected over-relaxation
+genuinely promising — and workload-dependent:
+
+| Workload | Best ω | Passes vs ω=1.0 |
+|---|---|---|
+| Chain-like | 1.5 | 28–31 vs 93–94 (one case: 50.4M → 15.4M cycles) |
+| Random topology | 1.2–1.3 | 17–18 vs ~93 |
+| Beyond useful region | 1.6 → worse; 1.9 → budget miss (129) | — |
+
+No promotion. The pre-committed next experiment is **adaptive PSOR**:
+ω_t = clamp(locally estimated useful relaxation), fallback to ω=1 on any
+deterioration, decided by measurement, evaluated on held-out streams.

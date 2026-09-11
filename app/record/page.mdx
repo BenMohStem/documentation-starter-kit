@@ -1,0 +1,43 @@
+# The Record
+
+import { Cards } from "nextra/components";
+
+This section is what makes the project unusual: the **permanent,
+append-only record of its own claims** — promotions, negative results,
+retractions, and the doctrine that decides between them.
+
+The project's history is preserved in its own words, in its own files,
+with its own numbers. Nothing is cleaned up for presentation. When a
+measurement invalidated an earlier claim, both the claim and the
+invalidation stayed in the record.
+
+<Cards>
+  <Cards.Card title="Evidence ledger" href="/record/ledger"
+        subtitle="Every headline result, its gate, and its label — one page, nothing hidden." />
+  <Cards.Card title="The doctrine" href="/record/doctrine"
+        subtitle="D1–D8: the promotion rules, the noise floors, the gates that decide." />
+  <Cards.Card title="Integrity incidents" href="/record/incidents"
+        subtitle="The times the project caught itself lying — and what it changed." />
+  <Cards.Card title="Era timeline" href="/record/timeline"
+        subtitle="From Vulkan smoke test to adaptive layout manager: the whole arc." />
+</Cards>
+
+## Why keep failures?
+
+Because in simulation research, the most expensive mistakes are the ones
+you don't know you made. Every incident in this record was caught by a
+gate built from an earlier incident; every negative result is a wall
+that stops a future session from walking the same dead end:
+
+- The LOD reordering that lost (2.30× *worse*) is why grouped-contiguous
+  could be trusted when it won at 0.41×;
+- The adaptive spatial manager's state-integrity failure (2.78) taught
+  the design constraint the successful layout selector (3.188) obeyed;
+- The 3.185 noise artifact is why every promotion since carries a noise
+  floor and two independent runs;
+- The 3.190 record-pair bug that silently corrupted *every* degree
+  measurement is why the audit envelope is now stated honestly as 0–10%,
+  not "5/5 through 20%".
+
+The failure trail **is** the diagnosis record. That sentence is the
+project's shortest self-description.

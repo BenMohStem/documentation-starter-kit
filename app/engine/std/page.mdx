@@ -1,0 +1,56 @@
+# Std Layer
+
+import StatusBadge from "@/components/status-badge";
+import FactGrid from "@/components/fact-grid";
+
+Status: <StatusBadge status="FOUNDATION" /> — 340,375 self-test checks,
+0 failures (Round 11, Windows MSYS2 UCRT64, 2026-08-20).
+
+## The floor
+
+Before the engine, the floor: a from-scratch standard surface — memory,
+strings, integer and float math, sorting, I/O, logging, threads, hashing
+— validated by an adversarial self-test battery rather than inherited
+trust. Twenty headers: 13 WWA-owned plus 7 C11 wrapper headers
+(stddef, stdint, stdbool, float, limits, errno, assert), with
+thread-local `errno`.
+
+<FactGrid facts={[
+  { number: "0.32 ns", label: "memcpy per op, 1M elements (AVX2 runtime-dispatched, n ≥ 1024)", source: "ROUND 11" },
+  { number: "0.06 ns", label: "memset per op — near bulk-zero", source: "ROUND 11" },
+  { number: "16.10 ns", label: "strtod per op after the u64-integer rewrite (fixed 17-digit parsing)", source: "ROUND 11" },
+  { number: "+487", label: "self-test checks added in Round 11 alone (339,830 → 340,375)", source: "ROUND 11" },
+]} />
+
+## Bugs the tests caught (kept as knowledge)
+
+- **`wwa_strerror`** — `memcpy` copied 15 bytes of a 14-char literal,
+  copying the NUL into `buf[14]` and truncating every unknown-error
+  message. gdb's `finish` "fixed" it and sent the project chasing ghosts;
+  disassembly at `0x140018fb0` proved itoa innocent. Lesson:
+  `memcpy(dst, "literal", N)` requires `N == strlen(literal)`;
+- **`wwa_utoa` truncation** — kept least-significant digits instead of
+  most-significant (2³² base-2 printed as "000...0"), found by a
+  property-based round-trip sweep;
+- **`wwa_dbl_pow2` subnormals** — the n < −1022 branch constructed
+  mantissa bits wrongly;
+- **`wwa_strtod`** — rewritten from double accumulation to u64 integer +
+  single scaling, fixing 17-digit parsing;
+- **`%e/%g` accuracy** — fixed via `wwa_fmt_pow10()`.
+
+## The test method
+
+Hardcoded constants (sin(π/2)=1), algebraic identities over tens of
+thousands of iterations (sin²+cos²=1 over 20,000), round-trips
+(sin(asin(x))=x), NaN propagation (NaN ≠ NaN), argument-reduction
+boundaries near π/2 multiples, ±0.0 and subnormals, and FNV-1a
+known-vector + avalanche checks. Hashing is validated by single-bit-flip
+avalanche (~50% of output bits), streaming-vs-oneshot equality, and
+8-thread counter exactness.
+
+## The honest gap
+
+Tolerances are absolute eps, not ULP-based; physics and rendering have
+no self-test coverage beyond the AVX2 bit-exact check and bench timing.
+These gaps are documented, not hidden — ULP-based comparison is the
+registered next step.

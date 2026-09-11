@@ -1,63 +1,96 @@
 # World Without Answers
 
-**A game about a world that does not explain itself.**
+import { Cards } from "nextra/components";
+import FactGrid from "@/components/fact-grid";
+import ProofFigure from "@/components/proof-figure";
 
-You wake in a valley with no tutorial, no quest markers, and no explanations.
-Rivers carve, trees grow, animals hunt and flee — because of rules, not
-scripts. What you understand of this world, you earn by watching it.
+**A game about a world that does not explain itself — built on an engine
+that refuses to lie about its own numbers.**
 
-<div className="wwa-hero">
+You wake as an ordinary wanderer. No tutorial, no quest markers, no chosen
+one. The world runs — rivers carve, animals hunt and flee, economies shift —
+whether you act or not. What you understand of it, you earn by watching it.
+Underneath is a from-scratch C engine, measured at every step: every claim
+this project makes is bound to the measurement that produced it, and the
+failures are kept.
 
-![WWA 2.55 demo — real render, real input](/screenshots/wwa_proof_frame_after_real_wasd_mouse_input.png)
+<ProofFigure
+  src="/screenshots/wwa_proof_frame_after_real_wasd_mouse_input.png"
+  alt="WWA 2.55 demo — real render after real WASD + mouse input"
+>
+  Iteration 2.55: a real engine frame captured after real WASD + mouse
+  input through the actual simulation loop. It is a proof, not a promise —
+  it proves the engine steps, renders, and responds, nothing more.
+</ProofFigure>
 
-<span className="wwa-hero-caption">
-The playable demonstration, iteration 2.55: actual engine frame after real
-WASD + mouse input. It is a proof, not a promise.
-</span>
+## What the engine has actually done
+
+import StatusBadge from "@/components/status-badge";
+
+Every number below comes from a gated, recorded measurement on the
+reference machine (AMD Ryzen 5 5600H, RTX 3050, 32 GB). None is universal.
+
+<FactGrid facts={[
+  { number: "70.98×", label: "warm-start replay speedup at zero drift (residual target 1e-2, 32 cold vs 0 warm iterations)", source: "ITER 3.50" },
+  { number: "5.73×", label: "one shared packed spatial index vs four separate structures, 32,768 entities at 1‰ churn — exact", source: "ITER 3.08" },
+  { number: "3.11×", label: "adaptive layout selector vs identity at 256K bodies, hub topologies — beats every always-policy", source: "ITER 3.189" },
+  { number: "340,375", label: "self-test checks in the from-scratch std layer, 0 failures", source: "ROUND 11" },
+  { number: "0.86×", label: "scan-LOD vs full update — the famous LOD reordering lost; grouped-contiguous won at 0.41×", source: "ITER 2.73" },
+  { number: "29.87 s", label: "clean full all-tests build; 3.25 s cached — the native builder's graph-locality fix", source: "ITER 2.95" },
+]} />
+
+## The world we are building
+
+<Cards>
+  <Cards.Card title="The premise" href="/world"
+        subtitle="No oracle, no scripts, no authored answers — a world that runs whether or not you watch." />
+  <Cards.Card title="The playable demo" href="/demo"
+        subtitle="First-person 3D, real physics, deterministic replay — what runs today, and what honestly does not." />
+  <Cards.Card title="The engine" href="/engine"
+        subtitle="From-scratch C: physics, broadphase, renderer, audio, jobs — every subsystem measured." />
+  <Cards.Card title="The research corpus" href="/research/corpus"
+        subtitle="428 papers across 8 threads. Papers are hypotheses; WWA benchmarks decide." />
+</Cards>
+
+## How this project is different
+
+Two laws govern everything. The first is engineering:
+
+<div className="wwa-law">
+
+*Organize the data so that the cheaper physics calculation is also the
+cheaper memory traversal.*
 
 </div>
 
-## The game we are building
+The second is epistemic: **the world's complexity must be earned by
+emergence, never faked by scripts** — simple rules, faithfully applied,
+every frame. Everything else follows: no magic, no portals, no HUD
+hand-holding, and a research pipeline where a paper can propose but never
+decide. A promotion in this project survives an oracle, a negative
+control, sanitizers, fresh-process repetition, and two independent runs —
+or it does not ship.
 
-import { Cards } from "nextra/components";
-
-<Cards>
-  <Cards.Card title="A world that observes itself" href="/game/vision"
-        subtitle="Ecology, weather, animals with needs — every process real, none of them narrated." />
-  <Cards.Card title="Emergence over scripts" href="/game/emergence"
-        subtitle="Small rules, faithfully applied, every frame. Nothing staged." />
-  <Cards.Card title="No HUD hand-holding" href="/game/observation"
-        subtitle="Understanding is earned: noticing is the whole mechanic." />
-  <Cards.Card title="Run it today" href="/game/demo"
-        subtitle="The current playable demo — what works, and what honestly does not." />
-</Cards>
-
-## Where the project stands
+## Where the work stands
 
 | Layer | Status |
 |---|---|
-| Native C engine core (physics, broadphase, renderer, audio, IO, jobs) | **Runs today** — `demo-check` gated |
-| Playable 3D demonstration | **Runs today** — see [Demo](/game/demo) |
-| Spatial locality foundation (physics + AI + audio + render share one grid) | Measured, integrated (~5.7x on host workload) |
-| Dynamic layout management (topology-adaptive) | First promotion landed — [Research](/research) |
-| Ecosystem: animals, plants, needs, food chains | **Planned** — prototypes measured in isolation |
-| Civilization: economy, farming, building, war | **Planned** — years of work, honestly labeled |
+| From-scratch std layer (memory, strings, math, I/O, threads — no libc internals) | **FOUNDATION** — 340,375 checks, 0 fails |
+| Native C builder + full test/demo gates | **FOUNDATION** — Linux validated, Windows acceptance gate open |
+| Playable 3D demo (physics, input, deterministic replay) | **PROMOTED** — `demo-check` gated, permanent entry point |
+| Physics core (Verlet, warm-started contacts, solver research through 3.213) | **PROMOTED** — parts; solver research ongoing |
+| Adaptive layout manager (topology-conditional locality) | **PROMOTED (SCOPED)** — hub & chain topologies, ≥32K bodies, low churn |
+| Ecology, civilization, economy, diplomacy | **PLANNED** — prototypes measured in isolation; honestly labeled |
 
-Nothing on this site claims more than has been measured. Failed experiments
-stay visible in the [Journal](/journal).
-
-## Why an engine, not a mod
-
-The goal is a world where **consequence is real**: ten thousand bodies with
-mass, friction, stacking and wear — not decorative. That requires owning the
-whole stack, in C, measured every step. The
-[Engineering](/engineering) section shows what that costs and what it buys.
-
-import StatusLegend from "@/components/status-legend";
+Nothing on this site claims more than has been measured. When a result is
+retracted or invalidated, the record stays: see the
+[Ledger](/record/ledger).
 
 ## Status vocabulary
 
-Every claim carries one of these labels — a visitor should never guess what
-is real:
+import StatusLegend from "@/components/status-legend";
+
+Every claim on this site carries one of these labels. A visitor should
+never have to guess what is real:
 
 <StatusLegend />

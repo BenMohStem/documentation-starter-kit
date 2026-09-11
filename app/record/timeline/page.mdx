@@ -1,0 +1,140 @@
+# Era Timeline
+
+The project's whole arc, era by era, in its own numbering. Iterations
+are never renumbered; later entries never erase earlier ones.
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">v0.x – 1.0</span> — **Origins.** The
+toolchain doctrine: gcc MSYS2 UCRT, no CMake, own std layers, per-
+iteration logging. First Vulkan smoke lab: instance → surface →
+swapchain → clear → present. VS2019 demoted to nvcc host only.
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">1.4 – 1.9</span> — **The engine lab.**
+The founding benchmarks: indexed LOD loses at ~2.30× full-update cost;
+renderer batch wins measured (9.37× at 64 points, decaying with size);
+the DOD sweep that produced the anti-slogan result (AoS beat SoA and
+AoSoA on 1M agents); AVX2 3-thread 5.15 ms vs 10.05 ms scalar.
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">2.0 – 2.3</span> — **Broadphase and
+traversal.** The 2.0 broadphase matrix (no universal winner — the
+measured fact); persistence-vs-traversal locality; the 2.3 traversal
+benchmark: LOD-grouped AoS 2.281× over plain AoS at 131,072 bodies.
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">2.4 – 2.9</span> — **The playable
+demo.** 2.4: playable physics (96 bodies, mouse-spawn, generated PCM
+audio). 2.6: first-person 3D slice with CPU rasterizer. 2.7: the
+real-camera-input bug found. 2.8: uniform-grid broadphase merged into
+the demo. 2.9: the player becomes a real physics body.
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">2.10 – 2.14</span> — **The mechanism
+lab.** 2.13: the shared spatial layer (1.75× at 32 agents → 6.65× at
+1024) + Sugarscape ecology mode. 2.14: response-threshold tasks —
+spontaneous specialization from one rule, measured over 21.9M ticks.
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">2.15 – 2.25</span> — **Signal, tiles,
+and honesty.** Stigmergy fields (2.15); homeostatic drives (2.20); the
+renderer correctness defect where cube faces collapsed to one triangle
+(2.21) and the tile-size matrix that followed; hierarchical screen bins
+(2.23) beside the Windows `0xC0000005` incident — kept verbatim; BVH
+refit measured 0.68×–2.75× (2.25).
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">2.27 – 2.52</span> — **Packaging and the
+std layer.** Windows desktop package with crash filter (2.27); the
+native builder GUI (2.32); the canonical WWA std era — 20 headers, the
+own-the-floor doctrine (2.37–2.52).
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">2.53 – 2.69</span> — **Quantization and
+the oracle'd renderer.** The full FP16→NVFP4 family (2.53–2.54);
+consumer-kernel quantization with the AVX2 FP8 gather negative (2.55);
+fused BF16 setup through the real raster (2.63); 8×8 tiles promoted
+against the independent direct-per-pixel oracle (2.67); SIMD interior
+paths exact-but-slow (2.68–2.69).
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">2.70 – 2.98</span> — **Windows boundary
+and the integrated world.** The 2.70 header-boundary doctrine; all
+benchmark timers routed through the owned perf abstraction (2.73);
+grouped-contiguous LOD re-measured at 0.41× full cost (2.74); the
+rejected adaptive spatial manager (2.78); the shared spatial layer
+promoted (2.79); dirty-set migration data contract (2.83); the mod ABI
+with batch-plane economics (2.84–2.86); the builder graph-locality fix
+(2.95); the Morton broadphase study and adaptive-selector rule (2.98).
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">3.50 – 3.172</span> — **The physics
+research chain.** Warm-start replay 70.98× at zero drift; the Delassus
+oracle at 2.22e-16; the Coulomb cone violation finding (95% of
+independent-clamp trials); K-cache epochs investigated and honestly
+closed negative; the arithmetic-tree contract; one-packet numerical
+audits; the shared packed world (5.17–5.77× across churn rates).
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">3.173 – 3.184</span> — **Layout
+research.** Cache/layout policies measured: 224.4 vs 45.6 cycles/contact
+spread; the T_amortized cost model born; the mean-reuse-distance
+predictor failed; honesty rules hardened.
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">3.185 – 3.191</span> — **The manager
+earns its keep.** The incident (3.185), the rebuilt instrument (3.186),
+adversarial families and the first scoped promotion (3.187), the
+adaptive selector (3.188), chains and 256K verification (3.189), the
+order-invariant degree probe with its honest price (3.190), and the
+pre-registered next step (3.191).
+
+</div>
+
+<div className="wwa-era">
+
+<span className="wwa-era-range">3.205 – 3.213</span> — **The solver
+line, corrected in public.** Contact-order dependency (1.27–1.88×); the
+3.206 retraction; Fischer–Burmeister residuals; time-to-target as the
+metric; SGS rejected; PSOR promising and workload-dependent; adaptive
+PSOR pre-committed as the next experiment.
+
+</div>
+
+The next era is unwritten. The standing orders hold: preserve all
+negative results; the demo is the permanent entry point; research
+creates hypotheses, and WWA benchmarks decide.

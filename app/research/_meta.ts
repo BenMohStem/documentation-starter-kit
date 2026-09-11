@@ -1,5 +1,5 @@
 export default {
-  layout: "Dynamic Layout Management",
-  benchmark: "Benchmark Doctrine",
-  integrity: "Integrity Incidents",
+  corpus: "The Corpus",
+  arc: "A Full Loop: Layout Manager",
+  policy: "Use Policy",
 };

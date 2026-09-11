@@ -1,13 +1,15 @@
-import StatusBadge, { STATUS_MEANING, STATUS_COLOR } from "@/components/status-badge";
+import StatusBadge, { STATUS_MEANING } from "@/components/status-badge";
 import type { WWAStatus } from "@/components/status-badge";
 
 const ORDER: WWAStatus[] = [
   "FOUNDATION",
   "PROMOTED",
+  "PROMOTED (SCOPED)",
   "CANDIDATE",
   "RESEARCH ONLY",
   "NOT PROMOTED",
   "REJECTED",
+  "RETRACTED",
   "INVALIDATED",
   "SUPERSEDED",
 ];
@@ -31,9 +33,6 @@ export default function StatusLegend() {
           </tr>
         ))}
       </tbody>
-      <style>{`
-        td { border-color: ${STATUS_COLOR["RESEARCH ONLY"]}22; }
-      `}</style>
     </table>
   );
 }

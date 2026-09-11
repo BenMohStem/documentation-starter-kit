@@ -1,0 +1,107 @@
+# Integrity Incidents
+
+The times the project caught itself — preserved on purpose. Each
+incident below spawned a gate that now protects every later claim.
+
+<div className="wwa-incident">
+
+<span className="wwa-incident-id">INCIDENT 3.185-1</span>{" "}
+<span className="wwa-incident-title">The promotion that was noise</span>
+
+A span-triggered layout policy measured 1.44× better at 10% churn. It
+passed the oracle, the negative control, and the sanitizers — and was
+**retracted the same session** when fresh-process repetition showed the
+noise between processes (59–302 cycles/contact) was larger than the
+effect. From this: interleaved measurement, min-of-K, explicit noise
+floors, and the 2× noise rule. The 3.157 class: *a mathematically valid
+inequality is not a numerically stable evaluated difference.*
+
+</div>
+
+<div className="wwa-incident">
+
+<span className="wwa-incident-id">INCIDENT 3.189-1</span>{" "}
+<span className="wwa-incident-title">The contaminated battery</span>
+
+A hub battery ran while 128K/256K jobs held the same pinned core —
+identity measured 157 cycles/contact (true ~51), noise inflated 2–3×.
+Caught by cross-checking against a clean anchor; both jobs killed and
+re-run clean; only the clean run counted. New law: **never run timing
+batteries concurrently with other pinned work.**
+
+</div>
+
+<div className="wwa-incident">
+
+<span className="wwa-incident-id">INCIDENT 3.190-A7</span>{" "}
+<span className="wwa-incident-title">The bug that corrupted every number</span>
+
+A record-pair consumption bug silently corrupted **every** degree
+measurement — the audit that said "5/5 through 20%" was wrong (honest
+envelope 0–10%). Caught by the gates, fixed, and every number re-derived
+post-fix. Alongside it the same iteration caught: a tombstone-less
+deletion wrapping a u16 counter, a per-rep allocation costing 548M
+first-touch cycles, and a degenerate hash collapsing grid edges into one
+slot (15k-cycle probe chains). Four defects, zero thresholds tuned —
+the failure trail is the diagnosis record.
+
+</div>
+
+<div className="wwa-incident">
+
+<span className="wwa-incident-id">INCIDENT 3.206</span>{" "}
+<span className="wwa-incident-title">The retracted convergence</span>
+
+Earlier convergence claims were built on a kernel that never accumulated
+projected contact impulse across Gauss-Seidel sweeps — the measurements
+were invalid. Retracted explicitly so the old result cannot contaminate
+later conclusions; timing retained only as a kernel microbenchmark.
+
+</div>
+
+<div className="wwa-incident">
+
+<span className="wwa-incident-id">INCIDENTS 3.162 / 3.163 / 3.171</span>{" "}
+<span className="wwa-incident-title">Stated ≠ executed</span>
+
+Three audits in the K-cache line found the declared workload was not the
+executed workload: a working set confined to 65,536 entries regardless
+of nominal size; a timed region that measured a full digest on one path
+and a cheap checksum on the other; a churn selector capped at ~534 of
+12,288 contacts. Each was corrected with a coprime affine permutation,
+and the corrected K-cache verdict came out **negative** (median 0.88×) —
+the honest direction, kept.
+
+</div>
+
+<div className="wwa-incident">
+
+<span className="wwa-incident-id">INCIDENT 3.128</span>{" "}
+<span className="wwa-incident-title">The operator that wasn't there</span>
+
+A stated operator A = W + 5I was not the executed operator; residual
+growth was a harness bug (missing diagonal). The fix discipline from
+this family: verify stated operators against executed operators
+mechanically.
+
+</div>
+
+<div className="wwa-incident">
+
+<span className="wwa-incident-id">INCIDENT 3.123</span>{" "}
+<span className="wwa-incident-title">The false rank</span>
+
+The first rank audit generated its two comparison signals independently
+and produced a false rank > 6 conclusion; discarded, then re-derived
+correctly (rank ≤ 6, common rigid motion in ker(J)).
+
+</div>
+
+## The pattern
+
+Every incident above has the same shape: a claim that passed the gates
+that existed, caught by a gate that didn't — until the incident built
+it. This is why the doctrine grows, why the battery order ends with a
+sanitizer gate and a fresh-process repetition, and why this page will
+grow. An engine that cannot catch itself cannot be trusted to simulate
+a world.

@@ -1,6 +1,6 @@
 export default {
-  premise: "The World Does Not Explain Itself",
-  observation: "Observation",
+  premise: "The Premise",
   emergence: "Emergence",
-  truth: "The Search for Truth",
+  observation: "Observation",
+  roadmap: "Roadmap",
 };

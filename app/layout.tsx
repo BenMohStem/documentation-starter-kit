@@ -21,8 +21,8 @@ export default async function RootLayout({
           banner={
             <Banner dismissible={false}>
               <span className="wwa-banner">
-                This site documents research in progress. Every claim is
-                labeled with its promotion status. Nothing here is finished.
+                An engine measured every step of the way. Every claim on this
+                site is bound to its measurement; failures stay visible.
               </span>
             </Banner>
           }

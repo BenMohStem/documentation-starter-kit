@@ -1,0 +1,57 @@
+# Build & Gates
+
+import StatusBadge from "@/components/status-badge";
+
+Status: <StatusBadge status="FOUNDATION" /> — the standing validation
+surface every release must pass.
+
+## The rule
+
+A build that cannot run the demonstration is not a build. Every release
+of the engine passes an aggregate gate — not a sample of tests, the
+whole battery, on the reference machine:
+
+```text
+run-tests   = RC 0
+std-check   = RC 0
+demo-check  = RC 0     reaches the real 3D demo init/simulate/shutdown path
+```
+
+## Toolchain
+
+- **Language**: C only, dependency-light. The engine's standard surface
+  is its own (20 headers: memory, strings, math, I/O, threads, time —
+  libc helpers are not used in internals);
+- **Compilers**: GCC primary (MSYS2 UCRT64 gcc 16.2 on Windows; Linux
+  validated). `-Wall -Wextra -Werror` clean is mandatory;
+- **Build**: a native C builder — no CMake, no Makefile. One command
+  surface: `all`, `all-tests`, `std-check`, `demo-check`, `bench-*`;
+  artifacts under `build/obj` + `build/bin`;
+- **Determinism**: same inputs, same world, same bits. Replay is a
+  contract, not an aspiration;
+- **Reference machine**: AMD Ryzen 5 5600H, RTX 3050 Laptop, 32 GB —
+  every number on this site names the machine that produced it.
+
+## Sanitizer gates
+
+ASan + UBSan run under WSL2 Debian (gcc 14.2); from iteration 3.189 the
+Windows host uses MSVC 14.29 `/fsanitize=address /W4 /WX` plus
+`gcc -fanalyzer`. The strict research line (3.207+) adds
+`-Wshadow -Wconversion -mavx2` and LeakSanitizer. No promotion exists
+without a sanitizer pass.
+
+## The negative-control discipline
+
+Every benchmark carries a control that **must fail** if the oracle is
+real (`--corrupt-endpoint` corrupts one contact endpoint after
+maintenance; the exact-state oracle must catch it on every armed row). A
+control that cannot fail is not a control — the full doctrine lives in
+[Doctrine](/record/doctrine).
+
+## Platform honesty
+
+Linux is the actively validated environment. Windows/MSYS2 UCRT64 is the
+acceptance gate that has remained honestly open — the 2.23 incident
+(`0xC0000005`, no Vulkan present device) is preserved verbatim in the
+record and is not declared solved without a target-machine run. NVCC and
+interactive Vulkan are target gates, never silently assumed.

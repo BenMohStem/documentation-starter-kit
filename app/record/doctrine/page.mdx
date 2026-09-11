@@ -1,0 +1,85 @@
+# The Doctrine
+
+import StatusBadge from "@/components/status-badge";
+
+Status: <StatusBadge status="FOUNDATION" /> — the standing rule set every
+promotion must satisfy. Codified across 3.186–3.189; inherited by every
+later iteration.
+
+## The gates (D1–D8)
+
+1. **D1 — the promotion bar.** A beats B only when the median beats, the
+   effect exceeds **2× the measured noise floor**, on **both of two
+   independent runs** (≥5 repetitions each), the oracle passes every
+   row, and the negative control fails as armed. No gate, no promotion.
+2. **D2 — the never-lose bar.** A promoted policy must not lose to
+   identity anywhere within its claimed scope: |median diff| ≤ 2× max
+   noise floors, plus ≥99% correct recommended actions.
+3. **D4 — instrument before policy.** The measuring instrument is
+   validated *before it times anything* — probe audits as confusion
+   matrices, agreement ≥99% per family. The instrument that failed its
+   audit never gated a claim.
+4. **D6 — a control that cannot fail is not a control.** Every benchmark
+   carries an armed negative control (`--corrupt-endpoint`) that must
+   flip the oracle.
+5. **D7 — operator freeze.** The physics operators (`step_one`, `k_one`,
+   `vn_one`) and the FP tree are byte-frozen across research iterations;
+   changes are additive, verified by mechanical diff.
+6. **D8 — no post-hoc threshold tuning.** Frozen thresholds stay frozen.
+   Failures are findings, not knobs; new values are pre-registered for
+   *future* iterations.
+
+Plus the 3.186 measurement law: **interleaved** policy execution per
+frame (shared thermal/scheduler conditions), **min-of-K** sampling with
+explicit noise-floor columns, ≥5 fresh processes per claim.
+
+## The pre-registration rule
+
+Every iteration's DESIGN.md is written **before any run**. Deviations
+get dated, append-only amendments — never silent rewrites. Predictions
+are registered, including the predictions about the instrument itself;
+when the 3.189 probe audit refuted the pre-registered chain-probe
+predictions, the refutation was recorded before any policy timing
+existed.
+
+## The cost law
+
+<div className="wwa-law">
+
+*T_amortized(H) = (T_prepare + T_remap)/H + T_solve(H)*
+
+</div>
+
+An organization must repay itself over horizon H. Since 3.178, every
+promotion charges organization + remap + maintenance against savings.
+The corollary that became a measured fact: **no layout is universally
+best** — the selector's job is to know when *not* to act.
+
+## The instrument price law (3.190)
+
+A maintained instrument has a visible price, and the doctrine predicts
+its shape: an O(nc)-per-rebuild instrument cannot follow an
+O(epoch)-churn schedule at 32K scale. The mix battery flip (3.190's
+maintained-degree selector losing what 3.189's stateless selector won)
+was caught, priced, and published — and the fifth gate joined the law
+set: **every published cost number must survive a back-of-envelope cost
+model**, because content gates cannot see a 64× overallocation.
+
+## The hierarchy of evidence
+
+From the benchmark protocol, in ascending order: math sanity →
+independent reference → differential checks → adversarial randomized →
+sanitizers → source-to-report consistency → fresh-process timing → CPU
+affinity/migration detection → randomized order → compiler/ISA
+sensitivity → p50+MAD+raw samples → physical-quality normalization →
+**complete-frame accounting**. No single timing number is sufficient for
+promotion — time is one coordinate of a tuple that includes penetration,
+residuals, torque error, energy drift, warm-state retention, bytes per
+constraint, and SIMD lane utilization.
+
+## What this buys
+
+A number on this site means: measured on a named machine, gated by this
+doctrine, reproducible from the record. That is the whole difference
+between a claim and a hope — and it is why the failures section is the
+most valuable part of this project.

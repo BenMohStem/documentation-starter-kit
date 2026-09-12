@@ -328,6 +328,120 @@ a.wwa-system:hover {
   border-top: 1px solid rgba(95, 113, 97, 0.25);
 }
 
+/* ---------- atmosphere bands ---------- */
+.wwa-atmosphere {
+  display: block;
+  width: 100%;
+  margin: 0 0 1.4rem;
+  border-bottom: 1px solid rgba(95, 113, 97, 0.25);
+}
+
+.wwa-atmosphere-frame {
+  margin: -1.6rem -1.6rem 1.8rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(95, 113, 97, 0.25);
+}
+
+.wwa-atmosphere-frame .wwa-atmosphere {
+  margin: 0;
+  border-bottom: none;
+}
+
+/* ---------- calm reveals ---------- */
+.wwa-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+  will-change: opacity, transform;
+}
+
+.wwa-reveal.wwa-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- section links ---------- */
+.wwa-paths {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 2.4rem 0 0.6rem;
+}
+
+a.wwa-path {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.4rem 1.5rem 1.3rem;
+  border: 1px solid rgba(95, 113, 97, 0.35);
+  border-radius: 0.85rem;
+  background: linear-gradient(180deg, rgba(22, 41, 31, 0.35), rgba(12, 21, 16, 0.25));
+  text-decoration: none !important;
+  transition: border-color 0.5s ease, transform 0.5s ease;
+}
+
+a.wwa-path:hover {
+  border-color: rgba(217, 166, 98, 0.45);
+  transform: translateY(-3px);
+}
+
+.wwa-path-kind {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--wwa-stone);
+}
+
+.wwa-path-title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.3rem;
+  color: var(--wwa-paper);
+  letter-spacing: 0.03em;
+}
+
+.wwa-path-sub {
+  font-size: 0.88rem;
+  color: var(--wwa-moonlight-dim);
+  line-height: 1.6;
+}
+
+/* ---------- research library ---------- */
+.wwa-archive-era {
+  border-left: 2px solid rgba(95, 113, 97, 0.45);
+  padding-left: 1.1rem;
+  margin: 1.7rem 0;
+}
+
+.wwa-archive-era-id {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: var(--wwa-amber);
+}
+
+.wwa-archive-era-name {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.06rem;
+  color: var(--wwa-paper);
+  margin: 0.15rem 0 0.5rem;
+}
+
+.wwa-archive-era-note {
+  font-size: 0.85rem;
+  color: var(--wwa-moonlight-dim);
+  line-height: 1.6;
+  margin-bottom: 0.55rem;
+}
+
+.wwa-docs-section {
+  border: 1px solid rgba(95, 113, 97, 0.3);
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.4rem;
+  margin: 1.2rem 0;
+  background: linear-gradient(180deg, rgba(22, 41, 31, 0.25), rgba(12, 21, 16, 0.15));
+}
+
 /* ---------- footer ---------- */
 footer.nx-footer supplementary,
 .nx-footer {

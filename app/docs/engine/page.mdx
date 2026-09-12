@@ -1,0 +1,81 @@
+# The Engine
+
+<div className="wwa-atmosphere-frame"><Atmosphere variant="mist" height={150} /></div>
+
+<span className="wwa-page-title">The engine</span>
+
+Beneath the world there is an engine, written from scratch in C —
+physics, rendering, sound, input, the build system, even the standard
+functions it runs on. Owned end to end, and measured at every step.
+
+**Why build it instead of using one — not as a protest, as a
+strategy.** When every layer is yours, nothing in the stack is
+mysterious: performance comes from understanding, not from luck, and
+a bug is yours to find, in your own code. A world with tens of
+thousands of living, colliding, eating, trading things cannot be
+simulated honestly on an engine you cannot see inside.
+
+<div className="wwa-docs-section">
+
+### The floor — standard layer & builder
+
+Memory, strings, math, I/O, threads — written by hand, tested
+adversarially against designed edge cases, known vectors, and
+property-based sweeps. The build system is native C too: it knows the
+dependency graph, hashes content, and refuses to rebuild what has not
+changed. Hundreds of thousands of automated checks stand under
+everything else.
+
+</div>
+
+<div className="wwa-docs-section">
+
+### Physics
+
+The classical core done carefully — fixed timestep, exact overlap
+tests, impulse resolution with friction — plus a research program:
+warm-started contacts that replay near-instantly and exactly; the
+discovery that *where bodies sit in memory* changes how fast the
+solver can think; the convergence behavior of relaxation methods. The
+physics is treated as a research subject, and its claims survive
+oracles, corrupted controls, and repetition.
+
+</div>
+
+<div className="wwa-docs-section">
+
+### Renderer
+
+A tile-based software rasterizer: triangles sorted into screen tiles,
+exact per-pixel depth, promoted only after passing a per-pixel oracle
+across adversarial scenes. The target aesthetic is set: simple
+geometry, excellent light — the beauty of the world will come from
+composition and atmosphere, not asset density. Faster paths that
+failed honest speed bars were kept out — deliberately.
+
+</div>
+
+<div className="wwa-docs-section">
+
+### Sound, input, jobs
+
+Generated audio (no recorded assets), deterministic input snapshots
+(the same inputs always produce the same world), and a job system
+that spreads work across the machine — with grain sizes measured, not
+guessed.
+
+</div>
+
+<div className="wwa-docs-section">
+
+### The discipline that binds it
+
+Every subsystem earns its place the same way: measured on the
+reference machine, compared honestly against alternatives, kept or
+recorded as a lesson. The instruments themselves are audited — twice
+a promoted result turned out to be a measurement artifact, was
+retracted within the session, and made the rules stronger. The full
+record of that discipline — every benchmark, incident, retraction —
+is the [Research library](/research).
+
+</div>

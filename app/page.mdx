@@ -1,8 +1,8 @@
 <HomeHero />
 
-## What this is
+<Reveal>
 
-<div className="wwa-home-section">
+## What this is
 
 A quiet, large simulation, built from scratch and measured every step.
 One day: a world that keeps living whether you watch or not — rivers
@@ -10,9 +10,9 @@ carving, animals hunting, economies shifting, civilizations rising and
 declining by their own arithmetic. Today: the engine that must exist
 first, and the discipline that keeps it honest.
 
-</div>
+</Reveal>
 
-<div className="wwa-home-section">
+<Reveal delay={80}>
 
 ## Where it is going
 
@@ -44,9 +44,9 @@ first, and the discipline that keeps it honest.
 
 </div>
 
-</div>
+</Reveal>
 
-<div className="wwa-home-section">
+<Reveal delay={60}>
 
 ## Where it stands
 
@@ -54,9 +54,29 @@ A playable demonstration of the engine core runs today — physics,
 first-person movement, deterministic replay. The world's living
 systems are being measured in isolation before they enter it. Nothing
 ships that has not survived its gates; failures are kept and learned
-from. The details are in the [documentation](/demo).
+from.
+
+</Reveal>
+
+<Reveal delay={120}>
+
+<div className="wwa-paths">
+
+<Link className="wwa-path" href="/docs">
+  <span className="wwa-path-kind">Documentation</span>
+  <span className="wwa-path-title">The project, in full</span>
+  <span className="wwa-path-sub">The idea, the plan, the steps — every system and every engine part, documented in depth as it grows.</span>
+</Link>
+
+<Link className="wwa-path" href="/research">
+  <span className="wwa-path-kind">Research</span>
+  <span className="wwa-path-title">The record library</span>
+  <span className="wwa-path-sub">The project's own archive: every experiment, measurement, and failure, organized by era — rigorous to the axiom.</span>
+</Link>
 
 </div>
+
+</Reveal>
 
 <div className="wwa-quiet-note">
 

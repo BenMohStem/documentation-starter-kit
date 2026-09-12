@@ -1,0 +1,57 @@
+# The Doctrine
+
+<div className="wwa-atmosphere-frame"><Atmosphere variant="stars" height={150} /></div>
+
+<span className="wwa-page-title">The doctrine</span>
+
+How the library decides what is true. These rules were not written
+in advance and then followed — they were *learned*, one caught
+mistake at a time, and each rule exists because a measurement without
+it once fooled the project.
+
+## What a claim must survive
+
+1. **An independent oracle.** Every experiment defines, before it
+   runs, the exact independent check that will verify its result.
+   The oracle must be able to *fail* — a check that cannot fail is
+   not a check;
+2. **An armed negative control.** Every benchmark carries a
+   deliberately corrupted run that must be caught. If the corruption
+   is not detected, the measurement is invalid — the instrument, not
+   the idea, is what got tested;
+3. **Sanitizers.** Memory and undefined-behavior gates run before
+   any number is believed;
+4. **Repetition across fresh processes.** A single run proves
+   nothing: the noise *between* runs once exceeded a claimed effect,
+   and the claim was retracted the same session. Since then, effects
+   must clear the measured noise floor — twice over — on two
+   independent runs before promotion;
+5. **Frozen instruments.** The measuring code is frozen across
+   comparisons; thresholds are never tuned after the fact. A failure
+   is a finding, not a knob;
+6. **Pre-registration.** Each experiment's design is written before
+   it runs. Deviations get dated amendments — never silent rewrites.
+
+## What the numbers must carry
+
+A result is not "2× faster." A result is: on this machine, this
+workload, this scale, this churn, with these compiler flags, measured
+by this frozen instrument, surviving these gates — with the raw
+samples kept. And it holds *in its scope*: the project's most
+repeated finding is that no technique wins everywhere, so every
+promotion states where it wins and where it is known to lose.
+
+## The economics rule
+
+An optimization must pay for its own organization: preparation and
+remapping costs are charged against the savings, amortized over the
+horizon that will actually use them. A "smarter" structure that
+scatters memory loses to a simple scan — measured, more than once.
+
+## Why so strict
+
+Because the world is the point. One day the ecology, the economy,
+and the wars will all stand on these numbers, and a world that rests
+on unverified claims is a world that cannot be trusted — which is
+the only kind of world worth simulating. The strictness is not
+ceremony; it is the load-bearing wall.

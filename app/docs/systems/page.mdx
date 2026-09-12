@@ -6,20 +6,98 @@
 
 A small set of systems that genuinely interact — resources feed
 economies, economies feed politics, politics feeds war, war feeds
-hunger.
+hunger. Each entry below is the design contract for that system:
+what it must do when it arrives, and what it must never fake.
+
+<div className="wwa-docs-section">
+
+### Living ecology
 
 <GlyphCards cards={[
-  { glyph: "bear", title: "Living ecology", sub: "Hunger, fear, territory, memory. A bear can outrun you. Distant regions run statistically; nearby ones, honestly individual." },
-  { glyph: "city", title: "Civilization & economy", sub: "Prices that mean something: war raises grain, a broken road starves a market. No scripted outcomes — consequence is computed." },
-  { glyph: "machine", title: "Building & engineering", sub: "Levers, gears, wires, gates — into doors, farms, calculators, robots. No magical computer block; understanding is assembled." },
-  { glyph: "battle", title: "War & battles", sub: "Armies that need food and roads. Battles joined personally — one participant in a real melee, never a camera." },
-  { glyph: "farm", title: "Science & discovery", sub: "Knowledge found by experimenting — materials, mechanics, electricity. Never unlocked from a menu." },
-  { glyph: "moon", title: "The Moon", sub: "Reached the only way that means anything: by building the machines that climb." },
+  { glyph: "bear", title: "Animals are organisms", sub: "Hunger, fear, aggression, reproduction, territory, predator and prey — species by species, not props." },
+  { glyph: "wolf", title: "Populations breathe", sub: "Predators eat prey; herbivores graze; reproduction responds to food and pressure. Over-hunting empties a valley for real." },
+  { glyph: "farm", title: "The land answers", sub: "Agriculture changes landscapes; deforestation changes ecosystems; introducing livestock alters environments." },
 ]} />
+
+Scalable abstraction, honestly: distant regions run statistically;
+nearby regions run per-entity; detail increases with proximity — by
+measurement, not by promise.
+
+</div>
+
+<div className="wwa-docs-section">
+
+### Civilization & economy
+
+<GlyphCards cards={[
+  { glyph: "city", title: "Real economies", sub: "Production, consumption, supply, demand, prices, transport, labor, taxation, trade, shortages, surpluses." },
+  { glyph: "wanderer", title: "Consequence chains", sub: "War raises grain. Drought raises food prices. A mine creates wealth. A broken road starves a market. A new tool changes production." },
+  { glyph: "horse", title: "Societies, not factions", sub: "Cultures, laws, languages, political structures — cities grow and decline, kingdoms split, trade routes develop." },
+]} />
+
+Diplomacy runs on interests — agreements, alliances, vassalage,
+tribute, marriages, espionage, embargoes — never fixed scripted
+outcomes.
+
+</div>
+
+<div className="wwa-docs-section">
+
+### Building & engineering
+
+<GlyphCards cards={[
+  { glyph: "machine", title: "Simple components, honest physics", sub: "Switches, levers, wires, gates, timers, pistons, gears, shafts, pumps, generators — combinable into anything." },
+  { glyph: "machine", title: "Computers emerge", sub: "Logic gates + memory + clock + input + output. Never a magical 'computer block' — the player can understand the machine." },
+  { glyph: "farm", title: "Automation is earned", sub: "Automatic farms, sorting machines, calculators, robots — assembled by players, understood by players." },
+]} />
+
+Crafting is grounded transformation: ore → smelting → metal; sand →
+heating → glass. Never riddles.
+
+</div>
+
+<div className="wwa-docs-section">
+
+### War & battles
+
+<GlyphCards cards={[
+  { glyph: "battle", title: "War emerges", sub: "From resources, territory, politics, trade, revenge, ideology, security — never spawned for spectacle." },
+  { glyph: "horse", title: "Armies are logistics", sub: "Food, equipment, horses, money, manpower — and they march. Never teleport." },
+  { glyph: "battle", title: "Personal participation", sub: "Fight, ride, command formations, scout, retreat, negotiate — one participant in a real melee, never a camera." },
+]} />
+
+Damage is physical: weapon type, velocity, impact location, armor,
+penetration, angle, anatomy. Armor protects the areas it actually
+covers. Combat is never artificially safe for balance.
+
+</div>
+
+<div className="wwa-docs-section">
+
+### Science & discovery
+
+<GlyphCards cards={[
+  { glyph: "crow", title: "Learn by noticing", sub: "The world never explains what it can teach by being consistent." },
+  { glyph: "machine", title: "Experiment reveals", sub: "Materials, mechanics, chemistry, electricity, biology, astronomy, geology — discovered, never unlocked from a menu." },
+  { glyph: "moon", title: "Unusual paths allowed", sub: "No forced linear technology tree. A player who finds a strange route may take it." },
+]} />
+
+</div>
+
+<div className="wwa-docs-section">
+
+### The Moon
+
+<GlyphCards cards={[
+  { glyph: "moon", title: "A real destination", sub: "Reached through technological progression — altitude and machines, never a portal. The endgame of the engineering ladder." },
+]} />
+
+</div>
 
 <div className="wwa-quiet-note">
 
 Each system enters the same way: designed, measured in isolation,
-gated, then connected.
+gated, then connected. When one ships, its section grows a "shipped"
+note with what it proved.
 
 </div>

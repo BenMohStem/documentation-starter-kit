@@ -1,6 +1,7 @@
 export default {
   index: "Documentation",
   idea: "The Idea",
+  design: "The Design",
   plan: "The Plan",
   steps: "Steps & Eras",
   systems: "Systems",

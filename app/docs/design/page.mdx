@@ -1,0 +1,184 @@
+# The Design
+
+<SceneHeader scene="plan" height={240} />
+
+<span className="wwa-page-title">The design</span>
+
+This page is the design constitution: the rules the world is built to
+obey. It is written as **intent** — what the game must do when each
+system arrives — and every design decision below is measured against
+it. Nothing here describes finished features; that distinction is
+never blurred on this site.
+
+## The player
+
+Not a chosen hero. No prophecy, no supernatural destiny, no forced
+main quest. The player starts as an ordinary person and *decides*
+what to become — hunter, farmer, fisherman, shepherd, carpenter,
+blacksmith, miner, engineer, trader, explorer, soldier, mercenary,
+knight, commander, politician, governor, scientist, inventor, ruler —
+or remains a simple traveler forever. **Exploration itself is the
+primary motivation.**
+
+## The world
+
+A large procedurally generated world, inspired by Earth but entirely
+fictional: mountains, valleys, plains, forests, deserts, rivers,
+lakes, oceans, islands, caves, underground regions, coastlines, snow
+country, fertile regions, dry regions. Structure like Minecraft
+where useful, but terrain smoother and more natural — closer to
+Valheim's feel.
+
+**Verticality is real.** The world is divided by continuous altitude
+and geography — never by portals. Going underground means physically
+descending: caves, underground rivers, minerals, geological
+formations, underground animals, dangerous environments, ancient
+ruins, extremely deep regions. Going up means climbing or flying. The
+Moon is reached one day by actual technological progression — a real
+celestial destination, not a teleport.
+
+## No magic
+
+No spells, no mana, no gods as gameplay entities, no supernatural
+powers, no teleportation, no fantasy crafting ingredients, no
+arbitrary fantasy physics. Everything has a physical or technological
+explanation. **If something seems extraordinary, the player can
+investigate it** rather than be told a supernatural cause.
+
+## AI is the heart
+
+Every important entity has goals, needs, memory, relationships, and
+decision-making. A villager needs food, water, shelter, safety,
+employment, family, social contact. A merchant monitors prices, buys
+cheap, travels to profitable markets, avoids dangerous roads, reacts
+to war. A soldier follows orders, fears, protects allies, retreats
+when badly hurt. A ruler manages taxes, armies, treaties, rebellions.
+
+**Animals are real organisms** — deer, wolves, bears, horses,
+elephants, cattle, sheep, goats, pigs, chickens, fish, birds — with
+hunger, fear, aggression, reproduction, territory, predator/prey
+relationships, environmental preferences, movement patterns. A bear
+behaves like a bear and can outrun a human. The world is never
+balanced around player convenience.
+
+## Combat
+
+Physical and consequential. Damage depends on weapon type, velocity,
+impact location, armor, penetration, angle, anatomy, sharpness, and
+force. A sufficiently powerful strike to an unprotected vital can
+kill immediately. Armor protects the areas it actually covers.
+Weapons behave differently: spear = reach, sword = cutting, mace =
+blunt trauma, axe = chopping, dagger = penetration, bow/crossbow =
+projectiles with distinct mechanics, shield = protection and impact
+surface. **Combat is never artificially safe for balance.** Skill and
+preparation matter.
+
+Mount & Blade-style participation: fight personally, ride, command
+formations, issue orders, scout, retreat, capture enemies, defend
+castles, negotiate with commanders, become a commander, eventually a
+ruler. **The player is one participant inside the battle, never an
+omniscient camera.** Horses and large animals have stamina, speed,
+acceleration, health, temperament, training, carrying capacity — and
+their physical size affects combat.
+
+## Building, engineering, crafting
+
+Simple building rules, Minecraft-inspired, creative combinations
+over hundreds of arbitrary recipes. The engineering system is
+redstone-like in spirit — switches, pressure plates, levers, buttons,
+wires, logic gates, sensors, timers, pistons, motors, gears, shafts,
+pumps, generators, batteries, relays, signal transmitters — combinable
+into automatic farms, doors, elevators, traps, sorting machines,
+factories, calculators, logic circuits, simple computers, robots.
+
+**Computers emerge, never appear**: logic gates + memory + clock +
+input + output, assembled by the player who can understand how the
+machine works. Robots likewise: sensors + motors + power + control
+logic + structure. Progression: stone tools → metallurgy → mechanical
+engineering → electricity → automation → computing → robotics → space.
+
+Crafting is grounded: ore → smelting → metal; wood → processing →
+planks; sand → heating → glass; metal → machining → components.
+Never "3 magical rocks + 1 flower = machine."
+
+## Farming, economy, civilization
+
+Farming is systemic: soil preparation, planting, irrigation,
+fertilization, harvesting, storage, animal husbandry, selective
+breeding, crop rotation, automation. Economies are real: production,
+consumption, supply, demand, prices, transportation, labor, taxation,
+trade, shortages, surpluses — war affects the economy, drought
+affects food prices, a mine creates wealth, a destroyed road
+disrupts trade, a new technology changes production.
+
+Civilizations are cultures, not stat-bonused factions: languages,
+laws, political structures, technologies, military traditions,
+architecture, relationships, beliefs, values. Cities grow and
+decline; settlements are founded; kingdoms split; wars begin; peace
+treaties occur; trade routes develop; political factions compete.
+Diplomacy runs on interests — trade agreements, alliances, vassalage,
+tribute, prisoner exchanges, marriages, espionage, embargoes — never
+fixed scripted outcomes.
+
+**War emerges from the simulation**: resources, territory, politics,
+trade, revenge, ideology, security, leadership. Armies require food,
+equipment, horses, logistics, money, manpower — and never teleport.
+
+## Technology and science
+
+Technology emerges through experimentation and civilization
+development. The player can discover unusual paths; there is no
+forced linear tree. Science is discovering relationships — materials,
+mechanics, chemistry, electricity, biology, astronomy, geology — by
+experimenting. Never an unlock screen: the player discovers a
+material conducts electricity and *uses that knowledge* to create
+something new.
+
+## UI and the HUD
+
+Minimal. **The world itself communicates information whenever
+possible.** Clear interfaces exist only for inventory, crafting,
+building, engineering, diplomacy, army orders, economy, and the world
+map. Avoid excessive HUD elements. Noticing is the mechanic.
+
+## Graphics direction
+
+Minimalist, stylized, low-poly, pixelated textures, Valheim-inspired
+simplicity. **Excellent lighting, strong atmosphere, readable
+silhouettes, beautiful skies, dynamic shadows, day/night cycle,
+weather.** Volumetric-looking lighting where practical. Explicitly
+not photorealistic. The world should look simple but impressive:
+excellent light + strong composition + simple geometry + beautiful
+atmosphere.
+
+## Performance as a core feature
+
+Level-of-detail simulation, spatial partitioning, entity sleeping,
+population abstraction, distance-based AI updates, procedural
+generation, instancing, pooling, multithreading where appropriate,
+deterministic simulation where useful. Hierarchical simulation:
+nearby animal = full AI + physics; nearby village = individual
+citizens; distant city = statistical population; distant civilization
+= economic abstraction. Detail increases as the player approaches —
+honestly, measurably.
+
+## The moral physics
+
+The world contains a subtle philosophical layer — existence, order,
+consciousness, morality, freedom, responsibility, cruelty,
+compassion, knowledge, the origin of the universe. **Never preached,
+never stated, never required.** Morality is an emergent consequence:
+a civilization that treats people brutally gains short-term
+efficiency and eventually suffers rebellion, economic damage,
+population decline, distrust, crime, emigration, instability. One that
+protects people develops trust, stability, productivity, cooperation,
+innovation. Not a good/evil meter — arithmetic, applied over time.
+
+## Success
+
+The prototype succeeds the day a player discovers an unscripted
+interaction: *"I built this machine, which affected this farm, which
+changed this economy, which changed this settlement, which changed
+this political situation."* That feeling of emergence is the defining
+feature. Above all: **the world must keep living even when the player
+does nothing.**

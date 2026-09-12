@@ -328,7 +328,28 @@ a.wwa-system:hover {
   border-top: 1px solid rgba(95, 113, 97, 0.25);
 }
 
-/* ---------- atmosphere bands ---------- */
+/* ---------- scene headers ---------- */
+.wwa-scene-frame {
+  margin: -1.6rem -1.6rem 1.6rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(95, 113, 97, 0.3);
+}
+
+.wwa-scene {
+  display: block;
+  width: 100%;
+}
+
+.wwa-system-static {
+  cursor: default;
+}
+
+.wwa-system-static:hover {
+  transform: none;
+  border-color: rgba(95, 113, 97, 0.35);
+}
+
+/* ---------- atmospheric bands (legacy) ---------- */
 .wwa-atmosphere {
   display: block;
   width: 100%;

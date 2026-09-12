@@ -1,86 +1,25 @@
 # Systems
 
-<div className="wwa-atmosphere-frame"><Atmosphere variant="mist" height={150} /></div>
+<SceneHeader scene="systems" height={230} />
 
 <span className="wwa-page-title">Systems</span>
 
-The world is designed as a small set of systems that genuinely
-interact — resources feed economies, economies feed politics, politics
-feeds war, war feeds hunger. Each page documents the design in depth:
-what the system does, what rules produce it, what it refuses to fake,
-and what has been measured so far.
+A small set of systems that genuinely interact — resources feed
+economies, economies feed politics, politics feeds war, war feeds
+hunger.
 
-<div className="wwa-docs-section">
+<GlyphCards cards={[
+  { glyph: "bear", title: "Living ecology", sub: "Hunger, fear, territory, memory. A bear can outrun you. Distant regions run statistically; nearby ones, honestly individual." },
+  { glyph: "city", title: "Civilization & economy", sub: "Prices that mean something: war raises grain, a broken road starves a market. No scripted outcomes — consequence is computed." },
+  { glyph: "machine", title: "Building & engineering", sub: "Levers, gears, wires, gates — into doors, farms, calculators, robots. No magical computer block; understanding is assembled." },
+  { glyph: "battle", title: "War & battles", sub: "Armies that need food and roads. Battles joined personally — one participant in a real melee, never a camera." },
+  { glyph: "farm", title: "Science & discovery", sub: "Knowledge found by experimenting — materials, mechanics, electricity. Never unlocked from a menu." },
+  { glyph: "moon", title: "The Moon", sub: "Reached the only way that means anything: by building the machines that climb." },
+]} />
 
-### Living ecology
+<div className="wwa-quiet-note">
 
-Animals that are organisms — hunger, fear, territory, memory — not
-wandering decorations. Plants grow, are grazed, recover or collapse.
-Predators hunt; prey flees; populations breathe. **The rule:** the
-world is not balanced around the player's convenience; a bear can
-outrun you. Distant regions run statistically, nearby ones
-individually — detail comes with proximity, honestly. *Measured in
-isolation:* energy budgets, regrowth, signal fields, spontaneous
-division of labor. *Not yet in the demo.*
-
-</div>
-
-<div className="wwa-docs-section">
-
-### Civilization & economy
-
-Settlements with needs, work, and trade. Prices that mean something:
-a war raises grain, a broken road starves a market, a new tool
-changes everything. Civilizations have cultures, laws, and their own
-arithmetic of growth and decline — brutal ones reap rebellion, kind
-ones reap trust. **The rule:** no scripted outcomes; consequence is
-computed, not authored. *Foundation measured:* task specialization
-from one threshold rule. *Not yet in the demo.*
+Each system enters the same way: designed, measured in isolation,
+gated, then connected.
 
 </div>
-
-<div className="wwa-docs-section">
-
-### Building & engineering
-
-Simple, combinable mechanisms — levers, gears, shafts, wires, gates,
-timers, motors — from which players build doors, farms, calculators,
-and one day robots and primitive computers. **The rule:** simple
-components, honest combination; no magical "computer block" —
-understanding is built from what a machine visibly does. Recipes are
-transformations (ore → smelting → metal), never riddles.
-
-</div>
-
-<div className="wwa-docs-section">
-
-### War & battles
-
-Armies that need food, equipment, horses, and roads — that walk, not
-teleport. Battles joined personally: you ride, you command, you
-retreat, you negotiate — one participant in a real melee, never an
-omniscient camera. **The rule:** damage is physical — weapon, angle,
-armor, anatomy — and skill plus preparation matter. War emerges from
-civilization simulation, it is never spawned for spectacle.
-
-</div>
-
-<div className="wwa-docs-section">
-
-### Science & discovery
-
-Knowledge is found by experimenting — materials, mechanics,
-electricity, biology — never unlocked from a menu. The player notices,
-hypothesizes, tests, and either learns or is surprised. **The rule:**
-the game never explains what the world can teach by being consistent.
-
-</div>
-
-Each system enters the playable world the same way: designed here,
-measured in isolation, gated, then connected. When one ships, its page
-grows a "shipped" section with what it proved.
-
-The world-side pages — [premise](/world/premise),
-[emergence](/world/emergence), [observation](/world/observation),
-[roadmap](/world/roadmap) — hold the shorter, quieter versions of
-these ideas. This is the deep shelf.

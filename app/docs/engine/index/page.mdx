@@ -1,0 +1,37 @@
+# Overview
+
+<SceneHeader scene="engine" height={230} />
+
+<span className="wwa-page-title">The engine</span>
+
+Beneath the world: an engine written from scratch in C — physics,
+rendering, sound, input, the build system, even the standard functions
+it runs on. Owned end to end. Measured at every step.
+
+<GlyphCards cards={[
+  { glyph: "machine", title: "Why build it, not use one", sub: "When every layer is yours, nothing is mysterious. Performance comes from understanding, not luck." },
+  { glyph: "bear", title: "The ceiling setter", sub: "How many creatures think, how many bodies rest on each other, how far a signal travels before the frame ends." },
+  { glyph: "moon", title: "The price of the world", sub: "Paid in C, measured every step. The engine is not a detour from the idea — it is the idea, taken seriously." },
+]} />
+
+<div className="wwa-paths" style={{ marginTop: "1.6rem" }}>
+
+<Link className="wwa-path" href="/docs/engine/std">
+  <span className="wwa-path-kind">Part 1</span>
+  <span className="wwa-path-title">The floor</span>
+  <span className="wwa-path-sub">Memory, strings, math — written by hand, tested adversarially.</span>
+</Link>
+
+<Link className="wwa-path" href="/docs/engine/physics">
+  <span className="wwa-path-kind">Part 2</span>
+  <span className="wwa-path-title">Physics</span>
+  <span className="wwa-path-sub">The classical core, plus a research program into memory and convergence.</span>
+</Link>
+
+<Link className="wwa-path" href="/docs/engine/renderer">
+  <span className="wwa-path-kind">Part 3</span>
+  <span className="wwa-path-title">Renderer</span>
+  <span className="wwa-path-sub">Simple geometry, excellent light — promoted against a per-pixel oracle.</span>
+</Link>
+
+</div>

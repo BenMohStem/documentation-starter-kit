@@ -1,51 +1,25 @@
 # The Plan
 
-<div className="wwa-atmosphere-frame"><Atmosphere variant="mist" height={150} /></div>
+<SceneHeader scene="plan" height={230} />
 
 <span className="wwa-page-title">The plan</span>
 
-The plan follows a simple conviction: **the world can only be as
-honest as the engine underneath it.** So the engine comes first — not
-all of it, but everything the world's first promises will stand on.
+The world can only be as honest as the engine underneath it.
 
-## The order
+<GlyphCards cards={[
+  { glyph: "farm", title: "1 · The floor", sub: "A from-scratch standard layer, tested adversarially. Own every layer; nothing stays mysterious." },
+  { glyph: "bear", title: "2 · The physics core", sub: "Bodies, mass, friction, contact — running, replaying deterministically, staying correct at scale." },
+  { glyph: "wanderer", title: "3 · The senses", sub: "One shared sense of what-is-near-what, serving physics, sound, sight, and AI alike." },
+  { glyph: "city", title: "4–6 · The world wakes", sub: "Ecology connects. Settlements trade. Kingdoms emerge. And far up — the Moon, by machine." },
+]} />
 
-1. **The floor** — a from-scratch standard layer and build system,
-   tested adversarially. When every layer is owned, nothing in the
-   stack is mysterious, and performance comes from understanding
-   rather than luck.
-2. **The physics core** — bodies, mass, friction, contact — running,
-   replaying deterministically, and staying correct while thousands of
-   them interact.
-3. **The senses** — one shared spatial sense of *what is near what*,
-   serving physics, sound, sight, and AI alike, so the world can
-   afford to be full of things that notice each other.
-4. **The world's first systems** — ecology, resources, animal
-   behavior: the isolated experiments connected at last into one
-   living place.
-5. **Civilization** — needs, work, trade, settlements: the beginning
-   of an economy that can price a war.
-6. **Engineering, kingdoms, history** — machines from levers to
-   computers; war, diplomacy, consequence; and far up, one day, the
-   Moon — reached the only way that means anything, by building the
-   machines that climb.
+> A step is taken when two things are true: the design cannot proceed
+> honestly without it, and the engine can carry it — measured, not
+> assumed.
 
-## How each step is chosen
+<div className="wwa-quiet-note">
 
-Not by feature lists — by leverage and by proof. A step is taken when
-two things are true: the world needs it (the design cannot honestly
-proceed without it), and the engine can carry it (measured, not
-assumed). Ideas from research papers are hypotheses; the reference
-machine decides. Techniques that lose are recorded, not retried
-blindly.
+Done will mean: one region where a player who walks away for an hour
+returns to a place that changed without them.
 
-## What "done" will mean
-
-Not a finished game in the commercial sense — a vertical slice of a
-living world: one region where the ecology runs, the economy prices,
-people work and trade and feud, machines can be built, and a player
-who walks away for an hour returns to a place that changed without
-them. Everything past that is the same discipline, applied further.
-
-No dates are promised. The rule is: measure, then trust; promote, then
-build. The order of the world follows the order of proof.
+</div>

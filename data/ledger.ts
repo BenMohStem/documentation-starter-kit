@@ -188,6 +188,16 @@ export const ledger: LedgerEntry[] = [
     tags: ["layout", "selector", "instrument"],
   },
   {
+    id: "3.205",
+    era: "3.205",
+    title: "Contact traversal order",
+    claim: "The order contacts are visited changes solver time, independent of layout and iteration count.",
+    status: "RESEARCH ONLY",
+    whatHappened: "8,192 bodies, 16,384 contacts, 32 Gauss-Seidel sweeps: random order was 1.27–1.88× slower than identity across chain, mixed, and random topologies. But the dependency statistics that were supposed to explain the winner failed universally — the chain's identity order has nearly complete consecutive body reuse yet is fast; the mixed topology's fastest order has almost none.",
+    why: "Order matters, but 'more reuse ⇒ slower' is not the law. Kept as research knowledge: the order effect is real, the explanation is not yet earned.",
+    tags: ["solver", "layout"],
+  },
+  {
     id: "3.207",
     era: "3.207",
     title: "The retracted accumulation kernel",

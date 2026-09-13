@@ -229,6 +229,27 @@ export const eras: Era[] = [
         body: "Iteration 3.191 is designed before it runs: DESIGN.md with frozen thresholds, hypotheses, and a self-doubt log, dated amendments only — never silent rewrites. The pre-registration practice (§38 provenance) is now how every iteration works.",
         kind: "milestone",
       },
+      {
+        id: "3.205",
+        date: "era 3.205",
+        title: "Contact order alone: 1.27–1.88×",
+        body: "Traversal order itself dominates solver time even with layout, contact set, arithmetic, and iteration count unchanged: random order was 1.27–1.88× slower across chain, mixed, and random topologies (8,192 bodies, 16,384 contacts, 32 sweeps). The deeper finding: simple dependency statistics do not explain the winner universally — more reuse does not mean slower.",
+        kind: "milestone",
+      },
+      {
+        id: "3.211",
+        date: "era 3.211",
+        title: "Symmetric Gauss-Seidel is rejected",
+        body: "At equal contact-visit counts, forward PGS achieved substantially lower complementarity residuals: chain at 64 passes, PGS 1.06×10⁻⁵ vs SGS 1.52×10⁻⁴; target counts ~93–94 PGS passes vs ~128 SGS. Three fresh processes reproduced the counts exactly; sanitizers passed. Measured and declined, with the numbers.",
+        kind: "rejection",
+      },
+      {
+        id: "3.212",
+        date: "era 3.212",
+        title: "PSOR: promising, workload-dependent",
+        body: "Projected over-relaxation cuts chain passes from 93–94 (ω=1.0) to 28–31 (ω=1.5) — one case fell from 50.4M to 15.4M cycles. But random topology preferred ω=1.2–1.3, and beyond the useful region performance degraded rapidly (ω=1.8 very worse, 1.9 misses budget). Verdict: a fixed global ω would be the wrong architecture; adaptive PSOR with fallback to ω=1 is pre-committed as the next experiment. No production promotion.",
+        kind: "milestone",
+      },
     ],
   },
   {

@@ -499,6 +499,111 @@ a.wwa-system:hover {
   text-decoration-color: var(--wwa-amber) !important;
 }
 
+/* ---------- evidence ledger ---------- */
+.wwa-ledger {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.wwa-ledger-row {
+  border: 1px solid rgba(95, 113, 97, 0.3);
+  border-radius: 0.75rem;
+  background: linear-gradient(180deg, rgba(22, 41, 31, 0.25), rgba(12, 21, 16, 0.15));
+  cursor: pointer;
+  transition: border-color 0.4s ease;
+  overflow: hidden;
+}
+
+.wwa-ledger-row:hover {
+  border-color: rgba(217, 166, 98, 0.35);
+}
+
+.wwa-ledger-head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.95rem 1.2rem;
+}
+
+.wwa-ledger-id {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  color: var(--wwa-amber);
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+  min-width: 3.2rem;
+}
+
+.wwa-ledger-title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.02rem;
+  color: var(--wwa-paper);
+  letter-spacing: 0.02em;
+  flex: 1;
+}
+
+.wwa-ledger-badge {
+  flex-shrink: 0;
+}
+
+.wwa-ledger-claim {
+  color: var(--wwa-moonlight);
+  line-height: 1.7;
+  font-size: 0.94rem;
+  margin: 0;
+}
+
+.wwa-ledger-claim-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  color: var(--wwa-amber);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.wwa-ledger-why {
+  color: var(--wwa-silver);
+  line-height: 1.7;
+  font-size: 0.94rem;
+  margin: 0;
+}
+
+.wwa-ledger-scope {
+  color: var(--wwa-pale-green);
+  line-height: 1.7;
+  font-size: 0.88rem;
+  margin: 0;
+  border-left: 2px solid rgba(158, 196, 154, 0.4);
+  padding-left: 0.9rem;
+}
+
+.wwa-ledger-vocab {
+  margin-top: 3rem;
+}
+
+.wwa-ledger-vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.9rem;
+}
+
+.wwa-ledger-vocab-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(95, 113, 97, 0.3);
+  border-radius: 0.75rem;
+  background: linear-gradient(180deg, rgba(22, 41, 31, 0.25), rgba(12, 21, 16, 0.15));
+}
+
+.wwa-ledger-vocab-meaning {
+  font-size: 0.84rem;
+  color: var(--wwa-moonlight-dim);
+  line-height: 1.6;
+}
+
 /* ---------- quiet sections ---------- */
 .wwa-home-section {
   margin: 3.2rem 0;

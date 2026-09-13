@@ -1,0 +1,54 @@
+# The Corpus
+
+<SceneHeader scene="research" height={230} />
+
+<span className="wwa-page-title">The literature corpus</span>
+
+The project keeps its own research library: papers harvested with
+provenance, ranked by relevance to the engine's live problems, and
+read adversarially. The corpus is organized into eight threads —
+each thread matched to a problem the engine was actually facing
+when the thread was opened.
+
+The relationship runs one direction: **papers are hypotheses; the
+machine decides.** Every note records what the project can reuse,
+what it must not copy, and the threats to the paper's validity.
+Where a thread fed an engine iteration, the trail is kept — from
+paper to hypothesis to gate to verdict in the
+[ledger](/research/ledger).
+
+<FactGrid facts={[
+  { number: "428", label: "Papers harvested with provenance — sha256, metadata, and extraction state per file.", source: "corpus log" },
+  { number: "426", label: "Full texts extracted (UTF-8), 5/5 spot-checks pass.", source: "corpus log" },
+  { number: "6,299", label: "Metadata works across 8 threads; 2,220 ranked high-relevance.", source: "corpus log" },
+  { number: "0", label: "Duplicate sha256 hashes — the harvest is clean.", source: "corpus log" },
+]} />
+
+<ResearchCorpus />
+
+## How the harvest is governed
+
+The corpus has its own operational law, learned from real failures:
+
+- One arXiv process at a time — two concurrent harvests deadlock;
+- Rate-limited sources are parked and retried politely, never hammered;
+- Every file carries its sha256, metadata, and extraction state — provenance is not optional;
+- Failures are knowledge: the harvest log keeps them with dates.
+
+## The loop that makes it worth keeping
+
+The corpus exists for one loop: **read → hypothesis → pre-registered
+experiment → gate → verdict.** The layout-manager program is the
+loop's deepest run — papers from thread B became the policies of
+3.185, the policies failed the fresh-process gate, and the failure
+became the doctrine that now governs everything. The papers did not
+build the engine. They made the questions sharper.
+
+<div className="wwa-quiet-note">
+
+The corpus is private infrastructure — a working library, not a
+publication. What it taught appears in the
+<Link href="/research/ledger"> ledger</Link>, each entry carrying
+only what was measured.
+
+</div>

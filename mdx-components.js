@@ -8,6 +8,7 @@ import FactGrid from "@/components/fact-grid";
 import ThoughtsIndex from "@/components/thoughts-index";
 import EvidenceLedger from "@/components/evidence-ledger";
 import EraTimeline from "@/components/era-timeline";
+import ResearchCorpus from "@/components/research-corpus";
 import Link from "next/link";
 
 export const useMDXComponents = (components) => ({
@@ -22,5 +23,6 @@ export const useMDXComponents = (components) => ({
   ThoughtsIndex,
   EvidenceLedger,
   EraTimeline,
+  ResearchCorpus,
   Link,
 });

@@ -704,6 +704,97 @@ a.wwa-system:hover {
   margin: 0;
 }
 
+/* ---------- research corpus ---------- */
+.wwa-corpus {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.wwa-corpus-thread {
+  border: 1px solid rgba(95, 113, 97, 0.3);
+  border-radius: 0.75rem;
+  background: linear-gradient(180deg, rgba(22, 41, 31, 0.25), rgba(12, 21, 16, 0.15));
+  padding: 1.1rem 1.3rem;
+}
+
+.wwa-corpus-thread-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+}
+
+.wwa-corpus-thread-id {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.95rem;
+  color: var(--wwa-amber);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+.wwa-corpus-thread-name {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.06rem;
+  color: var(--wwa-paper);
+  letter-spacing: 0.02em;
+  flex: 1;
+}
+
+.wwa-corpus-thread-count {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  color: var(--wwa-moonlight-dim);
+  border: 1px solid rgba(95, 113, 97, 0.4);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  flex-shrink: 0;
+}
+
+.wwa-corpus-thread-blurb {
+  font-size: 0.88rem;
+  color: var(--wwa-moonlight-dim);
+  line-height: 1.6;
+  margin: 0.5rem 0 0;
+}
+
+.wwa-corpus-seeds {
+  list-style: none;
+  padding: 0;
+  margin: 0.7rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.wwa-corpus-seeds li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.9rem;
+}
+
+.wwa-corpus-seed-title {
+  font-size: 0.84rem;
+  color: var(--wwa-silver);
+  line-height: 1.5;
+}
+
+.wwa-corpus-seed-id {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  color: var(--wwa-stone);
+  letter-spacing: 0.06em;
+}
+
+.wwa-corpus-feeds {
+  font-size: 0.84rem;
+  color: var(--wwa-pale-green);
+  line-height: 1.6;
+  margin: 0.7rem 0 0;
+  border-left: 2px solid rgba(158, 196, 154, 0.4);
+  padding-left: 0.9rem;
+}
+
 /* ---------- quiet sections ---------- */
 .wwa-home-section {
   margin: 3.2rem 0;

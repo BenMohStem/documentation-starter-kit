@@ -53,6 +53,15 @@ export default function EvidenceLedger() {
               key={e.id}
               className={`wwa-ledger-row ${expanded ? "wwa-thought-open" : ""}`}
               onClick={() => setOpen(expanded ? null : e.id)}
+              onKeyDown={(ev) => {
+                if (ev.key === "Enter" || ev.key === " ") {
+                  ev.preventDefault();
+                  setOpen(expanded ? null : e.id);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-expanded={expanded}
             >
               <div className="wwa-ledger-head">
                 <span className="wwa-ledger-id">{e.id}</span>

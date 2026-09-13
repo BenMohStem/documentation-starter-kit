@@ -22,6 +22,13 @@ body {
   background: var(--wwa-bg) !important;
 }
 
+/* accessibility: visible focus for keyboard users, calm for mouse */
+:focus-visible {
+  outline: 2px solid rgba(217, 166, 98, 0.7);
+  outline-offset: 2px;
+  border-radius: 0.3rem;
+}
+
 /* calm motion: nothing bounces; long slow fades only */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -29,6 +36,18 @@ body {
   *::after {
     animation-duration: 0.001s !important;
     transition-duration: 0.001s !important;
+  }
+}
+
+/* performance: fewer concurrent animations on small screens */
+@media (max-width: 640px) {
+  .wwa-twinkle,
+  .wwa-flicker {
+    animation-duration: 10s !important;
+  }
+  .wwa-mist-a,
+  .wwa-mist-b {
+    animation-duration: 60s !important;
   }
 }
 
@@ -351,6 +370,10 @@ a.wwa-system:hover {
   color: var(--wwa-stone);
   cursor: pointer;
   transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.wwa-thought:focus-visible {
+  outline: 2px solid rgba(217, 166, 98, 0.7);
 }
 
 .wwa-thought-chip:hover {

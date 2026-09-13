@@ -1,8 +1,35 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Layout, Navbar, Footer } from "nextra-theme-docs";
 import { getPageMap } from "nextra/page-map";
 import "nextra-theme-docs/style.css";
 import "./globals.css";
+
+const BASE = "https://documentation-starter-kit-steel.vercel.app";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(BASE),
+  title: {
+    default: "World Without Answers",
+    template: "%s — World Without Answers",
+  },
+  description:
+    "A game about a world that does not explain itself, built on a from-scratch C engine measured every step of the way. Every claim bound to its measurement.",
+  openGraph: {
+    title: "World Without Answers",
+    description:
+      "A game about a world that does not explain itself — every claim bound to its measurement, every failure kept.",
+    url: BASE,
+    siteName: "World Without Answers",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "World Without Answers",
+    description:
+      "A game about a world that does not explain itself — every claim bound to its measurement.",
+  },
+};
 
 export default async function RootLayout({
   children,
@@ -59,6 +86,7 @@ export default async function RootLayout({
                     <a className="wwa-footer-link" href="/research">The library</a>
                     <a className="wwa-footer-link" href="/research/ledger">The ledger</a>
                     <a className="wwa-footer-link" href="/research/doctrine">The doctrine</a>
+                    <a className="wwa-footer-link" href="/research/corpus">The corpus</a>
                   </div>
                 </div>
                 <div className="wwa-footer-words">

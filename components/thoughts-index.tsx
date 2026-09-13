@@ -87,11 +87,20 @@ export default function ThoughtsIndex() {
               {items.map((t) => {
                 const expanded = open === t.n;
                 return (
-                  <div
-                    key={t.n}
-                    className={`wwa-thought ${expanded ? "wwa-thought-open" : ""}`}
-                    onClick={() => setOpen(expanded ? null : t.n)}
-                  >
+            <div
+              key={t.n}
+              className={`wwa-thought ${expanded ? "wwa-thought-open" : ""}`}
+              onClick={() => setOpen(expanded ? null : t.n)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setOpen(expanded ? null : t.n);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-expanded={expanded}
+            >
                     <div className="wwa-thought-head">
                       <span className="wwa-thought-n">{String(t.n).padStart(2, "0")}</span>
                       <span className="wwa-thought-title">{t.title}</span>

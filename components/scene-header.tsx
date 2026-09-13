@@ -319,18 +319,18 @@ const scenes: Record<string, SceneSpec> = {
           <circle cx="1240" cy="272" r="1.2" /><circle cx="1290" cy="280" r="1" /><circle cx="1350" cy="270" r="1.4" />
         </g>
         {/* the wanderer, small, entering the valley from the left */}
-        <g transform="translate(120,262)" fill="#0b1610">
+        <g transform="translate(640,262)" fill="#0b1610">
           <path d="M0,14 l1.2,-8 q0.4,-2.4 0.8,-3.6 l2.4,0 q0.8,3.2 0.8,5.6 l-1.2,6 Z" />
           <path d="M3,-9 q-4.4,-1.6 -5.6,-5.2 q-1.2,-3.2 1.2,-4.8 l2,-0.8 q-1.2,-3.2 1.2,-4.4 q1.6,-0.8 3.2,1.6 l1.6,-1.6 q2.4,0.8 1.6,4 q3.2,1.6 2.4,5.2 q-0.8,3.2 -3.2,4 Z" />
           <circle cx="4" cy="-26" r="2.1" />
           <path d="M2,-27.6 q2,-1.6 3.6,0 l0.8,2.4 q-2.4,-0.8 -4.8,-0.8 Z" />
         </g>
-        <path d="M116,268 l5,-20" stroke="#3a2f22" strokeWidth="1.2" />
+        <path d="M636,268 l5,-20" stroke="#3a2f22" strokeWidth="1.2" />
         {/* footprints behind the wanderer */}
         <g fill="#0b1610" opacity="0.75">
-          <ellipse cx="98" cy="278" rx="1.6" ry="0.9" />
-          <ellipse cx="86" cy="276" rx="1.6" ry="0.9" />
-          <ellipse cx="74" cy="274" rx="1.6" ry="0.9" />
+          <ellipse cx="618" cy="278" rx="1.6" ry="0.9" />
+          <ellipse cx="606" cy="276" rx="1.6" ry="0.9" />
+          <ellipse cx="594" cy="274" rx="1.6" ry="0.9" />
         </g>
       </g>
     ) as ReactNode,
@@ -358,18 +358,18 @@ const scenes: Record<string, SceneSpec> = {
         <ellipse cx="820" cy="272" rx="200" ry="10" fill="#e8b05f" opacity="0.1" filter="url(#sc3-blur2-emergence)" />
         {/* water ripples concentric from the heron */}
         <g stroke="#1f3019" strokeWidth="1" fill="none" opacity="0.8">
-          <ellipse cx="330" cy="278" rx="26" ry="3" />
-          <ellipse cx="330" cy="278" rx="44" ry="5" opacity="0.6" />
-          <ellipse cx="330" cy="278" rx="64" ry="7" opacity="0.35" />
+          <ellipse cx="640" cy="278" rx="26" ry="3" />
+          <ellipse cx="640" cy="278" rx="44" ry="5" opacity="0.6" />
+          <ellipse cx="640" cy="278" rx="64" ry="7" opacity="0.35" />
         </g>
         {/* heron standing in shallows, neck up, watching the dawn */}
-        <g transform="translate(322,252)" fill="#0e1a10">
+        <g transform="translate(632,252)" fill="#0e1a10">
           <path d="M0,26 l-2.4,-9 q-1,-3.4 1,-6.4 l1.4,-9 q0,-2 1.4,-2.6 l3.2,-0.6 q1.6,0 1.6,1.8 l-1,4.4 q-1.2,3.4 -1,6.4 l1.2,8 q0.4,4 -2,7 Z" />
           <path d="M7,-22 l8,-5.4 1.8,2.2 -8,5.4 Z" />
           <path d="M16,-27 l4.4,-1.4 q2,0 1,1.8 l-4.4,2.4 Z" />
           <path d="M-2,26 q-4,4 -8,3 l1,-2.4 q4,0 6,-2 Z" opacity="0.8" />
         </g>
-        <circle cx="340" cy="226" r="1" fill="#d9a662" opacity="0.9" />
+        <circle cx="650" cy="226" r="1" fill="#d9a662" opacity="0.9" />
         {/* reeds on both banks */}
         <g stroke="#3a5244" strokeWidth="2" opacity="0.85">
           {[[120, 272, 16], [146, 278, 20], [172, 270, 13], [196, 276, 18], [1140, 276, 17], [1166, 282, 21], [1192, 272, 14], [1218, 278, 19]].map(([x, y, h], i) => (
@@ -408,7 +408,7 @@ const scenes: Record<string, SceneSpec> = {
         {/* lake with moon reflection column */}
         <path d="M0,256 C260,250 540,252 800,248 C1060,244 1300,254 1600,246 L1600,300 L0,300 Z" fill="#0a141c" />
         <g opacity="0.55">
-          {[[490, 262, 26, 3.2], [500, 272, 22, 2.6], [494, 282, 18, 2.2], [502, 292, 14, 1.8]].map(([x, y, w, h], i) => (
+          {[[630, 262, 26, 3.2], [640, 272, 22, 2.6], [634, 282, 18, 2.2], [642, 292, 14, 1.8]].map(([x, y, w, h], i) => (
             <rect key={i} x={x - w / 2} y={y} width={w} height={h} rx={h / 2} fill="#cfd8cd" opacity={0.5 - i * 0.1} filter="url(#sc3-blur-observation)" />
           ))}
         </g>
@@ -419,25 +419,25 @@ const scenes: Record<string, SceneSpec> = {
           <ellipse cx="154" cy="268" rx="22" ry="6" />
         </g>
         {/* wolf silhouette on shore, head raised, watching the water */}
-        <g transform="translate(1282,236)" fill="#0a141c">
+        <g transform="translate(760,236)" fill="#0a141c">
           <path d="M0,30 q-2.4,-8 2.4,-12 q-5,-2.4 -6.4,-7 q10,-4.4 14,1 q3,-6.4 9,-4.4 q7,2.4 6,8 q-1,4.4 -5,5.4 q3,3.4 1,6 q-3,4 -8,3 q-6,9 -12,4 Z" />
           <path d="M20,-6 l7,-3 1,2 -7,3 Z" />
           <path d="M27,-12 q3,0 3,2 l-3,1 Z" />
           <path d="M4,-4 l-9,1 -2,3 9,-1 Z" opacity="0.7" />
           <path d="M2,30 l-14,2 -1,2 14,-2 Z" opacity="0.7" />
         </g>
-        <circle cx="1300" cy="214" r="1" fill="#d9a662" opacity="0.85" />
+        <circle cx="778" cy="214" r="1" fill="#d9a662" opacity="0.85" />
         {/* its breath in the cold */}
-        <ellipse cx="1312" cy="210" rx="7" ry="3" fill="#cfd8cd" opacity="0.14" filter="url(#sc3-blur-observation)" />
+        <ellipse cx="790" cy="210" rx="7" ry="3" fill="#cfd8cd" opacity="0.14" filter="url(#sc3-blur-observation)" />
         {/* tracks along the shore behind it */}
         <g fill="#0a141c" opacity="0.85">
-          <g transform="translate(1150,268)">
+          <g transform="translate(628,268)">
             <ellipse cx="0" cy="0" rx="2.6" ry="1.7" /><circle cx="-1.6" cy="-1.6" r="0.7" /><circle cx="1.6" cy="-1.6" r="0.7" />
           </g>
-          <g transform="translate(1126,272)">
+          <g transform="translate(604,272)">
             <ellipse cx="0" cy="0" rx="2.6" ry="1.7" /><circle cx="-1.6" cy="-1.6" r="0.7" /><circle cx="1.6" cy="-1.6" r="0.7" />
           </g>
-          <g transform="translate(1102,276)">
+          <g transform="translate(580,276)">
             <ellipse cx="0" cy="0" rx="2.6" ry="1.7" /><circle cx="-1.6" cy="-1.6" r="0.7" /><circle cx="1.6" cy="-1.6" r="0.7" />
           </g>
         </g>
@@ -585,30 +585,30 @@ const scenes: Record<string, SceneSpec> = {
         <path d="M0,236 C300,222 640,228 940,220 C1240,212 1440,224 1600,218 L1600,300 L0,300 Z" fill="#1e1618" />
         <path d="M0,268 C400,260 900,262 1600,256 L1600,300 L0,300 Z" fill="#120e0f" />
         {/* the exposed strata wall on the left — five distinct era bands */}
-        <path d="M40,300 L40,180 C120,168 240,178 320,190 L320,300 Z" fill="#2c2224" />
+        <path d="M430,300 L430,180 C510,168 630,178 710,190 L710,300 Z" fill="#2c2224" />
         <g strokeWidth="1.4" opacity="0.85">
-          <path d="M44,246 C140,240 240,244 316,252" stroke="#4a3a3c" />
-          <path d="M44,254 C140,248 240,252 316,260" stroke="#443638" />
-          <path d="M44,262 C140,256 240,260 316,268" stroke="#3e3032" />
-          <path d="M44,270 C140,264 240,268 316,276" stroke="#382c2e" />
-          <path d="M44,278 C140,272 240,276 316,284" stroke="#32262a" />
+          <path d="M434,246 C530,240 630,244 706,252" stroke="#4a3a3c" />
+          <path d="M434,254 C530,248 630,252 706,260" stroke="#443638" />
+          <path d="M434,262 C530,256 630,260 706,268" stroke="#3e3032" />
+          <path d="M434,270 C530,264 630,268 706,276" stroke="#382c2e" />
+          <path d="M434,278 C530,272 630,276 706,284" stroke="#32262a" />
         </g>
         {/* one fossil kept in the deepest layer — the failure that taught */}
         <g fill="#5c4a4c" opacity="0.8">
-          <circle cx="150" cy="282" r="3" fill="none" stroke="#5c4a4c" strokeWidth="1.2" />
-          <path d="M153,282 l8,0 M141,282 l-8,0 M150,279 l0,-8 M150,285 l0,8" stroke="#5c4a4c" strokeWidth="0.8" />
+          <circle cx="540" cy="282" r="3" fill="none" stroke="#5c4a4c" strokeWidth="1.2" />
+          <path d="M543,282 l8,0 M537,282 l-8,0 M540,279 l0,-8 M540,285 l0,8" stroke="#5c4a4c" strokeWidth="0.8" />
         </g>
         {/* the cliff on the right — broken, honest profile */}
-        <path d="M1320,300 L1320,196 C1380,182 1460,188 1520,204 L1520,300 Z" fill="#241b1d" />
+        <path d="M950,300 L950,196 C1010,182 1090,188 1150,204 L1150,300 Z" fill="#241b1d" />
         {/* a thin seam of gold in the newest stratum — the current work */}
         <g stroke="#d9a662" strokeWidth="1.2" opacity="0.55">
-          <path d="M1330,236 C1390,230 1460,234 1510,240" />
+          <path d="M960,236 C1020,230 1090,234 1140,240" />
         </g>
         {/* scree at the foot of the cliff */}
         <g fill="#1c1416">
-          <ellipse cx="1270" cy="292" rx="20" ry="5" />
-          <ellipse cx="1240" cy="296" rx="14" ry="4" />
-          <ellipse cx="360" cy="294" rx="18" ry="5" />
+          <ellipse cx="900" cy="292" rx="20" ry="5" />
+          <ellipse cx="870" cy="296" rx="14" ry="4" />
+          <ellipse cx="750" cy="294" rx="18" ry="5" />
         </g>
       </g>
     ) as ReactNode,
@@ -1058,38 +1058,38 @@ const scenes: Record<string, SceneSpec> = {
     subjects: (
       <g>
         <path d="M0,272 C400,266 800,268 1200,264 C1440,261 1580,266 1600,264 L1600,300 L0,300 Z" fill="#0a0c16" />
-        {/* constellation 1 — the Wanderer, high left: staff, head, steps */}
+        {/* constellation 1 — the Wanderer, high center-left: staff, head, steps */}
         <g stroke="#c9c2ea" strokeWidth="0.9" opacity="0.55" fill="none">
-          <path d="M300,70 L310,96 L282,124 L314,148 L296,174" />
-          <path d="M310,96 L342,120 L314,148" />
+          <path d="M700,70 L710,96 L682,124 L714,148 L696,174" />
+          <path d="M710,96 L742,120 L714,148" />
         </g>
         <g fill="#e6e0f4">
-          <circle cx="300" cy="70" r="2.2" /><circle cx="310" cy="96" r="1.8" />
-          <circle cx="282" cy="124" r="1.6" /><circle cx="342" cy="120" r="1.4" />
-          <circle cx="314" cy="148" r="2" /><circle cx="296" cy="174" r="1.6" />
+          <circle cx="700" cy="70" r="2.2" /><circle cx="710" cy="96" r="1.8" />
+          <circle cx="682" cy="124" r="1.6" /><circle cx="742" cy="120" r="1.4" />
+          <circle cx="714" cy="148" r="2" /><circle cx="696" cy="174" r="1.6" />
         </g>
-        {/* constellation 2 — the Bear, center-right: the shoulder and the long nose */}
+        {/* constellation 2 — the Bear, center-left: the shoulder and the long nose */}
         <g stroke="#c9c2ea" strokeWidth="0.9" opacity="0.5" fill="none">
-          <path d="M900,60 L944,76 L956,110 L928,124 L890,104 Z" />
-          <path d="M944,76 L986,88" />
+          <path d="M790,60 L834,76 L846,110 L818,124 L780,104 Z" />
+          <path d="M834,76 L876,88" />
         </g>
         <g fill="#e6e0f4">
-          <circle cx="900" cy="60" r="2" /><circle cx="944" cy="76" r="1.6" />
-          <circle cx="956" cy="110" r="1.8" /><circle cx="928" cy="124" r="1.4" />
-          <circle cx="890" cy="104" r="1.6" /><circle cx="986" cy="88" r="1.8" />
+          <circle cx="790" cy="60" r="2" /><circle cx="834" cy="76" r="1.6" />
+          <circle cx="846" cy="110" r="1.8" /><circle cx="818" cy="124" r="1.4" />
+          <circle cx="780" cy="104" r="1.6" /><circle cx="876" cy="88" r="1.8" />
         </g>
-        {/* constellation 3 — the Scale, low right, slightly fainter */}
+        {/* constellation 3 — the Scale, center, slightly fainter */}
         <g stroke="#c9c2ea" strokeWidth="0.8" opacity="0.4" fill="none">
-          <path d="M1250,110 L1250,150 M1250,120 L1224,138 M1250,120 L1276,138" />
+          <path d="M950,110 L950,150 M950,120 L924,138 M950,120 L976,138" />
         </g>
         <g fill="#e6e0f4" opacity="0.85">
-          <circle cx="1250" cy="110" r="1.6" /><circle cx="1250" cy="150" r="1.4" />
-          <circle cx="1224" cy="138" r="1.4" /><circle cx="1276" cy="138" r="1.4" />
-          <circle cx="1250" cy="120" r="2" />
+          <circle cx="950" cy="110" r="1.6" /><circle cx="950" cy="150" r="1.4" />
+          <circle cx="924" cy="138" r="1.4" /><circle cx="976" cy="138" r="1.4" />
+          <circle cx="950" cy="120" r="2" />
         </g>
         {/* the lake: one constellation reflected, broken */}
         <g fill="#c9c2ea" opacity="0.3">
-          <circle cx="314" cy="284" r="1.4" /><circle cx="300" cy="288" r="1.1" /><circle cx="296" cy="292" r="0.9" />
+          <circle cx="714" cy="284" r="1.4" /><circle cx="700" cy="288" r="1.1" /><circle cx="696" cy="292" r="0.9" />
         </g>
         {/* faint horizon mist */}
         <ellipse cx="500" cy="252" rx="380" ry="10" fill="#cdd7d4" opacity="0.04" filter="url(#sc3-blur2-thoughts)" />

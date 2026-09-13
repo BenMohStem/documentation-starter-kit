@@ -741,6 +741,7 @@ a.wwa-system:hover {
 
 /* ---------- scene headers ---------- */
 .wwa-scene-frame {
+  position: relative;
   margin: -1.6rem -1.6rem 1.6rem;
   overflow: hidden;
   border-bottom: 1px solid rgba(95, 113, 97, 0.3);
@@ -749,6 +750,19 @@ a.wwa-system:hover {
 .wwa-scene {
   display: block;
   width: 100%;
+}
+
+.wwa-scene-caption {
+  position: absolute;
+  bottom: 0.55rem;
+  right: 0.9rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(184, 188, 190, 0.4);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .wwa-system-static {
@@ -878,4 +892,48 @@ a.wwa-path:hover {
 footer.nx-footer supplementary,
 .nx-footer {
   background: var(--wwa-bg) !important;
+}
+
+.wwa-footer-map {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.6rem 2rem;
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.6rem 0 1.2rem;
+  border-bottom: 1px solid rgba(95, 113, 97, 0.25);
+}
+
+.wwa-footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+
+.wwa-footer-col-title {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wwa-stone);
+  margin-bottom: 0.2rem;
+}
+
+.wwa-footer-link {
+  font-size: 0.84rem;
+  color: var(--wwa-moonlight-dim) !important;
+  text-decoration: none !important;
+  transition: color 0.4s ease;
+}
+
+.wwa-footer-link:hover {
+  color: var(--wwa-amber) !important;
+}
+
+.wwa-footer-words {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 1.6rem;
 }

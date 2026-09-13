@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
 
 /**
- * SceneHeader v3 — full-depth scene illustrations.
- * Each scene is a composed landscape built like the home hero:
- * a sky gradient, a consistent light source, 3-5 terrain layers
- * with atmospheric perspective (far = lighter/hazier), mist bands,
- * and a unique foreground subject with its own micro-story.
- * No flat banners, no abstract geometry — every page is a place.
+ * SceneHeader v4 — organic, generated scene illustrations.
+ * Every scene is built with the systems that make the home hero work:
+ * seeded generation (stars, clouds, tree clusters, fireflies),
+ * layered atmospheric perspective, a consistent light source with
+ * halo and interplay, a vignette, and film grain. The home hero is
+ * the quality bar; these are the same craft, smaller.
  */
 
 type Ridge = { d: string; fill: string };
@@ -21,16 +21,88 @@ type SceneSpec = {
   pines?: Pine[];
   mist?: { cx: number; cy: number; rx: number; ry: number; o: number }[];
   birds?: [number, number, number][];
+  fireflies?: [number, number][];
+  clouds?: { x: number; y: number; rx: number; ry: number; o: number }[];
+  reflection?: { cy: number; strength: number; from: { x: number; y: number } };
   subjects?: ReactNode;
 };
 
 const H = 300;
 
+/* ---------- seeded generators (same technique as the home hero) ---------- */
+
+function lcg(seed: number) {
+  let s = seed >>> 0;
+  return () => {
+    s = (s * 1103515245 + 12345) >>> 0;
+    return s / 4294967296;
+  };
+}
+
+function genStars(seed: number, count: number, maxY: number, lightX?: number, lightY?: number) {
+  const rnd = lcg(seed);
+  const out: { x: number; y: number; r: number; o: number; t: boolean; d: number }[] = [];
+  for (let i = 0; i < count; i++) {
+    const x = rnd() * 1600;
+    const y = rnd() * maxY;
+    if (lightX !== undefined && lightY !== undefined) {
+      const dx = x - lightX;
+      const dy = y - lightY;
+      if (Math.sqrt(dx * dx + dy * dy) < 110) continue;
+    }
+    out.push({
+      x,
+      y,
+      r: 0.5 + rnd() * 1.2,
+      o: 0.12 + rnd() * 0.5,
+      t: i % 9 === 0,
+      d: rnd() * 6,
+    });
+  }
+  return out;
+}
+
+function genClouds(seed: number, count: number, yMin: number, yMax: number, baseO: number) {
+  const rnd = lcg(seed);
+  const out: { x: number; y: number; rx: number; ry: number; o: number; w: number }[] = [];
+  for (let i = 0; i < count; i++) {
+    out.push({
+      x: rnd() * 1600,
+      y: yMin + rnd() * (yMax - yMin),
+      rx: 130 + rnd() * 220,
+      ry: 12 + rnd() * 16,
+      o: baseO * (0.6 + rnd() * 0.8),
+      w: rnd() * 1.2 - 0.6,
+    });
+  }
+  return out;
+}
+
+function genCluster(
+  rnd: () => number,
+  cx: number,
+  spread: number,
+  baseY: number,
+  yJit: number,
+  sMin: number,
+  sMax: number,
+  count: number
+): [number, number, number][] {
+  const list: [number, number, number][] = [];
+  for (let i = 0; i < count; i++) {
+    const x = cx + (rnd() * 2 - 1) * spread;
+    const s = sMin + rnd() * (sMax - sMin);
+    list.push([x, baseY + (rnd() * 2 - 1) * yJit, s]);
+  }
+  list.sort((a, b) => a[2] - b[2]);
+  return list;
+}
+
 function Pines({ list, fill, scale = 1 }: Pine) {
   return (
     <g fill={fill}>
       {list.map(([x, y, s], i) => (
-        <use key={i} href="#sc-pine" transform={`translate(${x},${y}) scale(${(s * scale).toFixed(2)})`} />
+        <use key={i} href="#sc-pine" transform={`translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${(s * scale).toFixed(2)})`} />
       ))}
     </g>
   );
@@ -45,11 +117,12 @@ export default function SceneHeader({
 }) {
   const S = scenes[scene] ?? scenes.premise;
 
-  const stars: [number, number, number, number][] = [
-    [90, 26, 1.1, 0.55], [260, 58, 0.8, 0.4], [420, 20, 1.3, 0.6], [610, 44, 0.9, 0.45],
-    [790, 16, 1, 0.5], [950, 52, 1.4, 0.65], [1120, 28, 0.9, 0.4], [1290, 60, 1.2, 0.55],
-    [1470, 22, 1, 0.5], [700, 90, 0.7, 0.3], [380, 110, 0.8, 0.3],
-  ];
+  const seedNum = [...scene].reduce((a, c) => a + c.charCodeAt(0), 7);
+  const stars = genStars(seedNum * 13 + 5, 46, 130, S.light?.x, S.light?.y);
+  const clouds = S.clouds
+    ? genClouds(seedNum * 31 + 3, S.clouds.length || 5, 30, 120, 0.06)
+    : null;
+  const cloudEllipses = S.clouds?.map((c, i) => ({ ...c, key: i })) ?? null;
 
   return (
     <div className="wwa-scene-frame">
@@ -77,11 +150,20 @@ export default function SceneHeader({
             <stop offset="40%" stopColor="#e8963f" stopOpacity="0.3" />
             <stop offset="100%" stopColor="#e8963f" stopOpacity="0" />
           </radialGradient>
+          <radialGradient id={`sc3-vignette-${scene}`} cx="50%" cy="46%" r="74%">
+            <stop offset="0%" stopColor="#000000" stopOpacity="0" />
+            <stop offset="70%" stopColor="#000000" stopOpacity="0" />
+            <stop offset="100%" stopColor="#020403" stopOpacity="0.5" />
+          </radialGradient>
           <filter id={`sc3-blur-${scene}`} x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation="8" />
           </filter>
           <filter id={`sc3-blur2-${scene}`} x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation="18" />
+          </filter>
+          <filter id={`sc3-grain-${scene}`}>
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0 0.85 0 0 0 0.5 0" />
           </filter>
           <g id="sc-pine">
             <path d="M-1.4,0 L1.4,0 L1,-9 L-1,-9 Z" />
@@ -96,8 +178,10 @@ export default function SceneHeader({
 
         <rect width="1600" height={H} fill={`url(#sc3-sky-${scene})`} />
 
+        {/* light source with sky-wide glow */}
         {S.light && (
           <>
+            <circle cx={S.light.x} cy={S.light.y} r={S.light.r * 4} fill={`url(#sc3-glow-${scene})`} opacity="0.6" />
             <circle cx={S.light.x} cy={S.light.y} r={S.light.r * 3.6} fill={`url(#sc3-glow-${scene})`} />
             <circle cx={S.light.x} cy={S.light.y} r={S.light.r} fill={S.light.core} opacity="0.96" />
             {S.light.r > 30 && (
@@ -109,9 +193,52 @@ export default function SceneHeader({
           </>
         )}
 
+        {/* generated stars — seeded per scene, avoided near the light */}
         {(S.farStars ?? true) &&
-          stars.map(([x, y, r, o], i) => (
-            <circle key={i} cx={x} cy={y} r={r} fill="#dfe6dd" opacity={o} className="wwa-twinkle" style={{ animationDelay: `${(i % 5) * 1.4}s` }} />
+          stars.map((s, i) => (
+            <circle
+              key={i}
+              cx={s.x}
+              cy={s.y}
+              r={s.r}
+              fill="#dfe6dd"
+              opacity={s.o}
+              className={s.t ? "wwa-twinkle" : undefined}
+              style={s.t ? { animationDelay: `${s.d.toFixed(1)}s` } : undefined}
+            />
+          ))}
+
+        {/* generated high clouds — drifting bands */}
+        {clouds &&
+          clouds.map((c, i) => (
+            <ellipse
+              key={i}
+              cx={c.x}
+              cy={c.y}
+              rx={c.rx}
+              ry={c.ry}
+              fill={S.light?.glow ?? "#cdd7d4"}
+              opacity={c.o}
+              filter={`url(#sc3-blur2-${scene})`}
+              className="wwa-mist-b"
+              style={{ animationDelay: `${(i * 1.7).toFixed(1)}s` }}
+            />
+          ))}
+
+        {/* author-placed clouds (dawn bands etc.) */}
+        {cloudEllipses &&
+          cloudEllipses.map((c) => (
+            <ellipse
+              key={c.key}
+              cx={c.x}
+              cy={c.y}
+              rx={c.rx}
+              ry={c.ry}
+              fill={S.light?.glow ?? "#cdd7d4"}
+              opacity={c.o}
+              filter={`url(#sc3-blur2-${scene})`}
+              className="wwa-mist-a"
+            />
           ))}
 
         {S.ridges.map((r, i) => (
@@ -140,8 +267,25 @@ export default function SceneHeader({
           <use key={i} href="#sc-bird" transform={`translate(${x},${y}) scale(${s})`} stroke="#0a120e" opacity="0.55" />
         ))}
 
+        {/* fireflies — small warm lives in the dark */}
+        {S.fireflies?.map(([x, y], i) => (
+          <circle
+            key={i}
+            cx={x}
+            cy={y}
+            r={1.3 + ((i * 7) % 3) * 0.4}
+            fill="#e8b05f"
+            className="wwa-flicker"
+            style={{ animationDelay: `${(i * 2.1).toFixed(1)}s` }}
+          />
+        ))}
+
         {S.subjects}
+
+        <rect width="1600" height={H} fill={`url(#sc3-vignette-${scene})`} />
+        <rect width="1600" height={H} filter={`url(#sc3-grain-${scene})`} opacity="0.05" />
       </svg>
+      <span className="wwa-scene-caption">{S.label.split(" — ")[0]}</span>
     </div>
   );
 }
@@ -153,6 +297,8 @@ const scenes: Record<string, SceneSpec> = {
     label: "A green valley at dusk — meadow, forest, distant peak, the wanderer arriving",
     sky: ["#0a1611", "#10221a", "#173023", "#1e3b2a"],
     light: { x: 1210, y: 118, r: 40, core: "#e9e4cf", glow: "#d8d2ba" },
+    clouds: [{ x: 980, y: 60, rx: 230, ry: 22, o: 0.06 }, { x: 400, y: 46, rx: 200, ry: 18, o: 0.05 }],
+    fireflies: [[240, 262], [1420, 266], [1240, 258], [160, 254]],
     ridges: [
       { d: "M1180,150 L1268,96 L1356,150 L1600,150 L1600,300 L0,300 L0,150 Z", fill: "#26453a" },
       { d: "M0,182 C260,158 460,168 660,158 C860,148 1020,170 1220,158 C1380,149 1520,164 1600,156 L1600,300 L0,300 Z", fill: "#1e3a2c" },
@@ -194,6 +340,7 @@ const scenes: Record<string, SceneSpec> = {
     label: "Dawn over a wetland — heron in the shallows, reeds, waking flocks, first gold on the water",
     sky: ["#0d1108", "#141d0e", "#1a2712", "#223316"],
     light: { x: 820, y: 168, r: 34, core: "#f0d9a8", glow: "#e8b05f" },
+    clouds: [{ x: 620, y: 70, rx: 300, ry: 24, o: 0.07 }, { x: 1200, y: 90, rx: 260, ry: 20, o: 0.06 }],
     ridges: [
       { d: "M0,178 C280,160 540,168 800,158 C1060,148 1300,168 1600,156 L1600,300 L0,300 Z", fill: "#2a3d22" },
       { d: "M0,212 C320,198 600,206 880,196 C1120,188 1360,206 1600,196 L1600,300 L0,300 Z", fill: "#1f3019" },
@@ -247,6 +394,8 @@ const scenes: Record<string, SceneSpec> = {
     label: "A cold lake under low moon — a wolf on the shore, reading the night",
     sky: ["#080d14", "#0c1520", "#101c2a", "#142636"],
     light: { x: 500, y: 96, r: 32, core: "#e6e9e4", glow: "#b8c9c4" },
+    clouds: [{ x: 1100, y: 54, rx: 280, ry: 20, o: 0.05 }],
+    fireflies: [[1480, 258], [1520, 264], [90, 262]],
     ridges: [
       { d: "M0,172 C240,148 420,162 640,150 C860,138 1040,164 1260,150 C1440,139 1560,158 1600,150 L1600,300 L0,300 Z", fill: "#1c2f3c" },
       { d: "M0,206 C300,188 560,196 820,188 C1080,180 1320,198 1600,188 L1600,300 L0,300 Z", fill: "#142530" },
@@ -300,6 +449,7 @@ const scenes: Record<string, SceneSpec> = {
     label: "A dark pass between peaks — the road ahead, one lantern lit at its far end",
     sky: ["#0d0a10", "#120e16", "#181322", "#1e1930"],
     light: { x: 1380, y: 74, r: 26, core: "#dcd6ea", glow: "#c9c2ea" },
+    clouds: [{ x: 500, y: 60, rx: 320, ry: 22, o: 0.05 }, { x: 1250, y: 92, rx: 240, ry: 18, o: 0.045 }],
     ridges: [
       { d: "M0,120 C160,84 300,108 460,84 C620,60 760,110 920,80 C1080,52 1240,104 1400,74 C1500,58 1570,80 1600,70 L1600,300 L0,300 Z", fill: "#2a2438" },
       { d: "M0,170 C200,140 400,152 600,136 C800,120 1000,152 1200,130 C1360,113 1520,140 1600,128 L1600,300 L0,300 Z", fill: "#201a2c" },
@@ -334,6 +484,8 @@ const scenes: Record<string, SceneSpec> = {
     label: "Sunrise over the world — the first promise, light reaching a sleeping land",
     sky: ["#0e1210", "#18201a", "#2a2a20", "#3a3324"],
     light: { x: 800, y: 210, r: 46, core: "#f4d9a0", glow: "#e8b05f" },
+    clouds: [{ x: 520, y: 130, rx: 340, ry: 26, o: 0.09 }, { x: 1150, y: 150, rx: 300, ry: 22, o: 0.08 }],
+    fireflies: [[380, 262], [1200, 266], [1450, 260]],
     ridges: [
       { d: "M0,196 C220,178 420,186 640,176 C860,166 1060,184 1280,172 C1440,164 1560,178 1600,172 L1600,300 L0,300 Z", fill: "#3a3a2e" },
       { d: "M0,230 C280,216 560,222 840,214 C1120,206 1360,220 1600,212 L1600,300 L0,300 Z", fill: "#2c2c22" },
@@ -371,6 +523,8 @@ const scenes: Record<string, SceneSpec> = {
   plan: {
     label: "Stone by stone — a foundation being laid true, course on course, under a level line",
     sky: ["#0d1013", "#121719", "#161d20", "#1a2226"],
+    clouds: [{ x: 600, y: 60, rx: 300, ry: 20, o: 0.045 }],
+    fireflies: [[1420, 260], [200, 264]],
     ridges: [
       { d: "M0,190 C300,172 600,180 900,170 C1200,160 1440,176 1600,168 L1600,300 L0,300 Z", fill: "#242e33" },
       { d: "M0,232 C300,220 700,226 1000,218 C1300,210 1480,222 1600,216 L1600,300 L0,300 Z", fill: "#1a2327" },
@@ -420,6 +574,7 @@ const scenes: Record<string, SceneSpec> = {
   steps: {
     label: "The record in the rock — strata of eras exposed in a cliff face, each layer kept",
     sky: ["#100d0e", "#181314", "#201a1c", "#282022"],
+    clouds: [{ x: 800, y: 50, rx: 340, ry: 18, o: 0.04 }],
     ridges: [
       { d: "M0,150 C200,124 400,138 600,120 C800,102 960,140 1160,118 C1340,100 1500,134 1600,118 L1600,300 L0,300 Z", fill: "#3a2c2e" },
       { d: "M0,196 C260,176 520,186 780,172 C1040,158 1300,184 1600,168 L1600,300 L0,300 Z", fill: "#2c2224" },
@@ -463,6 +618,8 @@ const scenes: Record<string, SceneSpec> = {
     label: "Everything interacts — forest edge, field rows, a terraced town, smoke and light",
     sky: ["#0b100d", "#101812", "#152017", "#1a2819"],
     light: { x: 1290, y: 120, r: 30, core: "#e9e4cf", glow: "#cdd7d4" },
+    clouds: [{ x: 700, y: 64, rx: 300, ry: 20, o: 0.05 }],
+    fireflies: [[240, 260], [1550, 262], [1120, 258], [700, 266]],
     ridges: [
       { d: "M0,168 C280,152 560,158 840,148 C1120,138 1360,158 1600,146 L1600,300 L0,300 Z", fill: "#24382b" },
       { d: "M0,206 C300,192 600,198 900,188 C1200,178 1420,196 1600,188 L1600,300 L0,300 Z", fill: "#1a2c20" },
@@ -522,6 +679,8 @@ const scenes: Record<string, SceneSpec> = {
   design: {
     label: "The constitution carved at the threshold — a tablet of rules before an open door",
     sky: ["#0c1012", "#11161a", "#151b20", "#192126"],
+    clouds: [{ x: 900, y: 50, rx: 320, ry: 18, o: 0.04 }],
+    fireflies: [[1540, 260], [420, 264]],
     ridges: [
       { d: "M0,182 C280,166 560,172 840,162 C1120,152 1360,172 1600,158 L1600,300 L0,300 Z", fill: "#1e2b30" },
       { d: "M0,224 C320,212 660,218 980,208 C1260,200 1460,212 1600,204 L1600,300 L0,300 Z", fill: "#162024" },
@@ -569,6 +728,7 @@ const scenes: Record<string, SceneSpec> = {
   demo: {
     label: "The training yard — crates stacked on a measured grid, one lit, the engine proving itself",
     sky: ["#0a0e0f", "#0e1516", "#121b1c", "#16211f"],
+    clouds: [{ x: 900, y: 58, rx: 320, ry: 20, o: 0.04 }],
     ridges: [
       { d: "M0,186 C300,172 700,178 1100,168 C1320,163 1500,172 1600,168 L1600,300 L0,300 Z", fill: "#1e302c" },
       { d: "M0,226 C350,214 750,220 1150,210 C1380,205 1520,212 1600,208 L1600,300 L0,300 Z", fill: "#15221f" },
@@ -624,6 +784,7 @@ const scenes: Record<string, SceneSpec> = {
     label: "The great machine — a gear train under the hill, turning slow, lit from within",
     sky: ["#0c0c12", "#11111a", "#15151f", "#191926"],
     light: { x: 430, y: 90, r: 30, core: "#ded8f2", glow: "#9a9ac9" },
+    clouds: [{ x: 800, y: 56, rx: 300, ry: 18, o: 0.04 }],
     ridges: [
       { d: "M0,178 C300,164 700,170 1100,160 C1320,155 1500,164 1600,160 L1600,300 L0,300 Z", fill: "#232338" },
       { d: "M0,222 C350,210 750,216 1150,206 C1370,201 1520,210 1600,206 L1600,300 L0,300 Z", fill: "#191928" },
@@ -676,6 +837,8 @@ const scenes: Record<string, SceneSpec> = {
   std: {
     label: "The floor — hexagonal bedrock laid under still water, tested at every cell",
     sky: ["#0c0f10", "#101518", "#131a1d", "#161e21"],
+    clouds: [{ x: 700, y: 56, rx: 320, ry: 18, o: 0.035 }],
+    fireflies: [[1420, 262], [340, 266]],
     ridges: [
       { d: "M0,188 C320,176 680,182 1040,172 C1280,166 1480,176 1600,170 L1600,300 L0,300 Z", fill: "#20292e" },
       { d: "M0,224 C340,214 740,220 1100,212 C1340,207 1520,214 1600,210 L1600,300 L0,300 Z", fill: "#171f22" },
@@ -717,6 +880,7 @@ const scenes: Record<string, SceneSpec> = {
     label: "Bodies in contact — a resting stack, forces drawn faint, starlight on the solver's work",
     sky: ["#0e0c10", "#141119", "#191622", "#1e1a2c"],
     light: { x: 1120, y: 86, r: 26, core: "#dcd6ea", glow: "#c9a8d8" },
+    clouds: [{ x: 400, y: 48, rx: 280, ry: 16, o: 0.04 }],
     ridges: [
       { d: "M0,180 C300,168 700,174 1100,164 C1320,159 1500,168 1600,164 L1600,300 L0,300 Z", fill: "#2a2434" },
       { d: "M0,226 C340,216 740,222 1140,214 C1360,209 1520,216 1600,212 L1600,300 L0,300 Z", fill: "#1e1a28" },
@@ -768,6 +932,7 @@ const scenes: Record<string, SceneSpec> = {
     label: "Light, arranged honestly — a ray crossing tiles, depth sorted per pixel",
     sky: ["#0a0d0f", "#0e1417", "#121a1e", "#16211f"],
     light: { x: 260, y: 92, r: 28, core: "#dfe9e4", glow: "#8fb8c9" },
+    clouds: [{ x: 1000, y: 54, rx: 300, ry: 16, o: 0.035 }],
     ridges: [
       { d: "M0,182 C320,170 720,176 1120,166 C1340,161 1520,170 1600,166 L1600,300 L0,300 Z", fill: "#1e2c33" },
       { d: "M0,222 C360,212 760,218 1160,208 C1380,203 1530,212 1600,208 L1600,300 L0,300 Z", fill: "#141f24" },
@@ -822,6 +987,7 @@ const scenes: Record<string, SceneSpec> = {
     label: "The doctrine — a great balance scale under stars: claims weighed before they are believed",
     sky: ["#0a0c12", "#0e1118", "#12141f", "#161a28"],
     light: { x: 1340, y: 84, r: 26, core: "#e6e0f4", glow: "#c9c2ea" },
+    clouds: [{ x: 500, y: 44, rx: 320, ry: 16, o: 0.04 }],
     ridges: [
       { d: "M0,196 C300,186 700,190 1100,180 C1320,175 1500,184 1600,180 L1600,300 L0,300 Z", fill: "#1c1e30" },
       { d: "M0,238 C340,230 740,234 1140,226 C1360,222 1520,230 1600,226 L1600,300 L0,300 Z", fill: "#141624" },
@@ -884,6 +1050,7 @@ const scenes: Record<string, SceneSpec> = {
     label: "The thought database — constellations over a dark lake: points joined into shapes, remembered",
     sky: ["#080a12", "#0b0e18", "#0e1220", "#12162a"],
     farStars: true,
+    clouds: [{ x: 700, y: 40, rx: 360, ry: 18, o: 0.035 }, { x: 1300, y: 60, rx: 280, ry: 14, o: 0.03 }],
     ridges: [
       { d: "M0,210 C320,200 700,204 1100,194 C1320,189 1500,198 1600,194 L1600,300 L0,300 Z", fill: "#181b2e" },
       { d: "M0,246 C340,238 740,242 1140,234 C1360,230 1520,238 1600,234 L1600,300 L0,300 Z", fill: "#10121f" },
@@ -933,6 +1100,7 @@ const scenes: Record<string, SceneSpec> = {
   docs: {
     label: "The atlas room — a reading table under lamplight: maps, instruments, the whole project in one place",
     sky: ["#0d0f12", "#11141a", "#141821", "#181d28"],
+    clouds: [{ x: 800, y: 48, rx: 320, ry: 16, o: 0.035 }],
     ridges: [
       { d: "M0,200 C300,190 700,194 1100,184 C1320,179 1500,188 1600,184 L1600,300 L0,300 Z", fill: "#1c202c" },
       { d: "M0,240 C340,232 740,236 1140,228 C1360,224 1520,232 1600,228 L1600,300 L0,300 Z", fill: "#141824" },
@@ -1005,6 +1173,8 @@ const scenes: Record<string, SceneSpec> = {
   gates: {
     label: "The gatehouse — a narrow door in a strong wall: everything passes one check or turns back",
     sky: ["#0d0e10", "#111318", "#141620", "#171924"],
+    clouds: [{ x: 700, y: 52, rx: 340, ry: 18, o: 0.04 }],
+    fireflies: [[380, 262], [1240, 266], [1520, 260]],
     ridges: [
       { d: "M0,204 C300,194 700,198 1100,188 C1320,183 1500,192 1600,188 L1600,300 L0,300 Z", fill: "#1b1e28" },
       { d: "M0,244 C340,236 740,240 1140,232 C1360,228 1520,236 1600,232 L1600,300 L0,300 Z", fill: "#13151e" },
@@ -1071,6 +1241,7 @@ const scenes: Record<string, SceneSpec> = {
     label: "The library of kept results — ordered shelves, a candle, one red spine: the failure kept",
     sky: ["#080a10", "#0b0d16", "#0f1120", "#131528"],
     light: { x: 1360, y: 78, r: 24, core: "#e6e0f4", glow: "#c9c2ea" },
+    clouds: [{ x: 600, y: 46, rx: 300, ry: 16, o: 0.035 }],
     ridges: [
       { d: "M0,204 C300,194 700,200 1100,190 C1320,185 1500,194 1600,190 L1600,300 L0,300 Z", fill: "#1c1e30" },
       { d: "M0,244 C340,236 740,240 1140,232 C1360,228 1520,236 1600,232 L1600,300 L0,300 Z", fill: "#13141f" },

@@ -22,12 +22,14 @@ export const metadata: Metadata = {
     url: BASE,
     siteName: "World Without Answers",
     type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "A quiet moonlit valley — forested ridges around a still lake, one warm light deep in the trees" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "World Without Answers",
     description:
       "A game about a world that does not explain itself — every claim bound to its measurement.",
+    images: ["/og.png"],
   },
 };
 

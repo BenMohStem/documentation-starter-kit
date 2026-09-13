@@ -38,6 +38,25 @@ checkable: *the world did not pause while the player was gone.*
 > It is deliberately plain. This is the engine proving itself, not
 > the world selling itself. Visual polish comes later — on purpose.
 
+## The proof frames
+
+These are real captures from the running engine — not mockups. The
+deterministic replay gate guarantees what you see is what shipped:
+
+<div className="wwa-figures">
+
+<ProofFigure src="/screenshots/wwa_proof_frame1_before_input.png" alt="The engine's world before any player input — the resting scene">
+  **Before input.** The world at rest: the scene as the deterministic
+  simulation composed it, untouched.
+</ProofFigure>
+
+<ProofFigure src="/screenshots/wwa_proof_frame_after_real_wasd_mouse_input.png" alt="The same world after real WASD and mouse input">
+  **After real input.** The same world after WASD movement and mouse
+  look — the player is one participant inside it, never a camera.
+</ProofFigure>
+
+</div>
+
 <div className="wwa-quiet-note">
 
 Not yet in the demo: animals, ecology, building, economy — measured

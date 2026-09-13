@@ -881,6 +881,92 @@ a.wwa-system:hover {
   border-color: var(--wwa-amber);
 }
 
+/* ---------- proof figures ---------- */
+.wwa-figure {
+  margin: 2rem 0;
+  border: 1px solid rgba(95, 113, 97, 0.35);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #0a0f0c;
+}
+
+.wwa-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wwa-figure-caption {
+  padding: 0.7rem 1rem;
+  font-size: 0.8rem;
+  color: var(--wwa-moonlight-dim);
+  line-height: 1.6;
+  border-top: 1px solid rgba(95, 113, 97, 0.25);
+  background: linear-gradient(180deg, rgba(22, 41, 31, 0.25), rgba(12, 21, 16, 0.15));
+}
+
+.wwa-figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+/* ---------- print: the record on paper ---------- */
+@media print {
+  body {
+    background: #fff !important;
+  }
+  .wwa-scene-frame,
+  .wwa-hero,
+  .wwa-atmosphere-frame,
+  .nx-navbar,
+  footer.nx-footer,
+  .nx-sidebar,
+  .wwa-scene-caption,
+  .wwa-thought-filters,
+  .wwa-flicker,
+  .wwa-twinkle {
+    display: none !important;
+  }
+  article p,
+  article li,
+  .wwa-thought-text,
+  .wwa-ledger-claim,
+  .wwa-ledger-why,
+  .wwa-timeline-event-text {
+    color: #1a1a1a !important;
+  }
+  article strong {
+    color: #000 !important;
+  }
+  .wwa-thought,
+  .wwa-ledger-row,
+  .wwa-fact,
+  .wwa-docs-section,
+  .wwa-archive-era,
+  .wwa-corpus-thread {
+    border-color: #ccc !important;
+    background: none !important;
+    break-inside: avoid;
+  }
+  .wwa-thought-body {
+    display: block !important;
+  }
+  .wwa-thought-collapsed {
+    display: block !important;
+  }
+  .wwa-fact-number,
+  .wwa-archive-era-id,
+  .wwa-timeline-era-range {
+    color: #8a6d3b !important;
+  }
+  a {
+    color: #1a1a1a !important;
+    text-decoration: underline !important;
+  }
+}
+
 /* ---------- quiet sections ---------- */
 .wwa-home-section {
   margin: 3.2rem 0;

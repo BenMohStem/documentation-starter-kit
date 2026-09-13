@@ -2,7 +2,7 @@
 
 <SceneHeader scene="std" height={220} />
 
-<span className="wwa-page-title">The floor</span>
+<PageHead overline="The engine · Part 1" title="The floor" />
 
 Before the engine, the floor: memory, strings, numbers, files,
 threads — written by hand, tested adversarially, inherited from
@@ -15,11 +15,15 @@ The floor is where the project learned its hardest lessons —
 including several bug classes that most codebases never meet,
 because the layers beneath them were borrowed rather than owned.
 
+<Reveal delay={40}>
+
 <GlyphCards cards={[
   { glyph: "machine", title: "Designed edge cases", sub: "Identities held over tens of thousands of iterations. Round-trips through every conversion. The strange neighborhoods of floating point." },
   { glyph: "bear", title: "Bugs caught, kept, taught", sub: "Number-parsing and formatting bugs most projects never see — each one kept, with its story. Several are genuinely humbling." },
   { glyph: "machine", title: "Legible, measurable, fixable", sub: "Every allocation, every rounding, every clock tick — yours to see." },
 ]} />
+
+</Reveal>
 
 ## What the floor carries
 

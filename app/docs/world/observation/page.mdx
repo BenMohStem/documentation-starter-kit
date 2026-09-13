@@ -2,7 +2,7 @@
 
 <SceneHeader scene="observation" height={230} />
 
-<span className="wwa-page-title">Observation</span>
+<PageHead overline="The world" title="Observation" />
 
 No journal explains what the animal wants.
 
@@ -11,11 +11,15 @@ and shows it — in tracks, in weather, in behavior, in price. The
 player who watches carefully knows things the player who rushes
 cannot.
 
+<Reveal delay={40}>
+
 <GlyphCards cards={[
   { glyph: "wolf", title: "Read the tracks", sub: "A line of prints along the ridge says what passed, when, and how fast it was moving." },
   { glyph: "crow", title: "Read the birds", sub: "Where the crows gather, something is already happening — grain, carrion, people." },
   { glyph: "city", title: "Read the prices", sub: "What costs more this week tells you about a road, a war, a harvest — news nobody had to announce." },
 ]} />
+
+</Reveal>
 
 > Most games translate the world for you.
 > This one asks you to learn its language — the way you learn a real

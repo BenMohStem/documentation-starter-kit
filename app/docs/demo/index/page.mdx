@@ -2,16 +2,20 @@
 
 <SceneHeader scene="demo" height={230} />
 
-<span className="wwa-page-title">The demo</span>
+<PageHead overline="The demo" title="The demo" />
 
 A from-scratch C engine — physics, a first-person 3D renderer, sound,
 input, deterministic replay — and a playable demonstration on top.
+
+<Reveal delay={40}>
 
 <GlyphCards cards={[
   { glyph: "bear", title: "Real physics, live", sub: "Bodies with mass, friction, contact — stepping every frame in front of you." },
   { glyph: "wanderer", title: "First person, real input", sub: "Move, look, jump. The world responds because it is simulated, not staged." },
   { glyph: "machine", title: "Deterministic replay", sub: "Same inputs, same world, every time. The engine keeps this promise on every release." },
 ]} />
+
+</Reveal>
 
 ## The demo arc
 

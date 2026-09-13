@@ -2,16 +2,20 @@
 
 <SceneHeader scene="physics" height={220} />
 
-<span className="wwa-page-title">Physics</span>
+<PageHead overline="The engine · Part 2" title="Physics" />
 
 The classical core, done carefully — plus a research program into the
 solver itself.
+
+<Reveal delay={40}>
 
 <GlyphCards cards={[
   { glyph: "bear", title: "What runs today", sub: "Fixed timestep, exact overlap tests, impulses with friction. Contacts that remember between frames — warm-started, replaying near-instantly and exactly." },
   { glyph: "machine", title: "The deep question", sub: "The cost of a simulation is memory traffic — and where a body sits in memory changes how fast the solver can think." },
   { glyph: "moon", title: "The discipline", sub: "Oracles. Corrupted controls. Sanitizers. Repetition across fresh runs. One promoted result was retracted within a day — kept, and made the rules stronger." },
 ]} />
+
+</Reveal>
 
 ## The measured spine
 

@@ -2,17 +2,21 @@
 
 <SceneHeader scene="engine" height={230} />
 
-<span className="wwa-page-title">The engine</span>
+<PageHead overline="The engine" title="The engine" />
 
 Beneath the world: an engine written from scratch in C — physics,
 rendering, sound, input, the build system, even the standard functions
 it runs on. Owned end to end. Measured at every step.
+
+<Reveal delay={40}>
 
 <GlyphCards cards={[
   { glyph: "machine", title: "Why build it, not use one", sub: "When every layer is yours, nothing is mysterious. Performance comes from understanding, not luck." },
   { glyph: "bear", title: "The ceiling setter", sub: "How many creatures think, how many bodies rest on each other, how far a signal travels before the frame ends." },
   { glyph: "moon", title: "The price of the world", sub: "Paid in C, measured every step. The engine is not a detour from the idea — it is the idea, taken seriously." },
 ]} />
+
+</Reveal>
 
 ## The iteration rhythm
 

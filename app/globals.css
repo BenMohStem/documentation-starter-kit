@@ -967,6 +967,49 @@ a.wwa-system:hover {
   }
 }
 
+/* ---------- reading flow ---------- */
+.wwa-flow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(95, 113, 97, 0.25);
+}
+
+.wwa-flow-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-decoration: none !important;
+}
+
+.wwa-flow-link.wwa-flow-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.wwa-flow-kind {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--wwa-stone);
+}
+
+.wwa-flow-title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.05rem;
+  color: var(--wwa-amber);
+  letter-spacing: 0.03em;
+  transition: color 0.4s ease;
+}
+
+.wwa-flow-link:hover .wwa-flow-title {
+  color: var(--wwa-amber-soft);
+}
+
 /* ---------- quiet sections ---------- */
 .wwa-home-section {
   margin: 3.2rem 0;

@@ -7,6 +7,7 @@ import Reveal from "@/components/reveal";
 import FactGrid from "@/components/fact-grid";
 import ThoughtsIndex from "@/components/thoughts-index";
 import EvidenceLedger from "@/components/evidence-ledger";
+import EraTimeline from "@/components/era-timeline";
 import Link from "next/link";
 
 export const useMDXComponents = (components) => ({
@@ -20,5 +21,6 @@ export const useMDXComponents = (components) => ({
   FactGrid,
   ThoughtsIndex,
   EvidenceLedger,
+  EraTimeline,
   Link,
 });

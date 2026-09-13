@@ -604,6 +604,106 @@ a.wwa-system:hover {
   line-height: 1.6;
 }
 
+/* ---------- era timeline ---------- */
+.wwa-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2.6rem;
+  margin: 2rem 0;
+}
+
+.wwa-timeline-era {
+  position: relative;
+  border-left: 2px solid rgba(95, 113, 97, 0.45);
+  padding-left: 1.4rem;
+}
+
+.wwa-timeline-era-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+}
+
+.wwa-timeline-era-range {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--wwa-amber);
+}
+
+.wwa-timeline-era-name {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.2rem;
+  color: var(--wwa-paper);
+  letter-spacing: 0.04em;
+}
+
+.wwa-timeline-era-blurb {
+  font-size: 0.86rem;
+  color: var(--wwa-moonlight-dim);
+  line-height: 1.6;
+  margin: 0.3rem 0 1.2rem;
+}
+
+.wwa-timeline-event {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  padding: 0.6rem 0;
+}
+
+.wwa-timeline-event-empty {
+  opacity: 0.65;
+}
+
+.wwa-timeline-dot {
+  position: absolute;
+  left: -1.75rem;
+  top: 1.05rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px solid var(--wwa-bg);
+  flex-shrink: 0;
+}
+
+.wwa-timeline-event-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.wwa-timeline-event-date {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--wwa-stone);
+}
+
+.wwa-timeline-event-kind {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.wwa-timeline-event-title {
+  display: block;
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.04rem;
+  color: var(--wwa-paper);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.3rem;
+}
+
+.wwa-timeline-event-text {
+  font-size: 0.9rem;
+  color: var(--wwa-silver);
+  line-height: 1.75;
+  margin: 0;
+}
+
 /* ---------- quiet sections ---------- */
 .wwa-home-section {
   margin: 3.2rem 0;

@@ -5,6 +5,7 @@ export default {
   thoughts: "Thoughts",
   plan: "The Plan",
   steps: "Steps & Eras",
+  timeline: "Timeline",
   systems: "Systems",
   world: {
     title: "The World",

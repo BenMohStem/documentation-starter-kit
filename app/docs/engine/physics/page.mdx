@@ -13,6 +13,44 @@ solver itself.
   { glyph: "moon", title: "The discipline", sub: "Oracles. Corrupted controls. Sanitizers. Repetition across fresh runs. One promoted result was retracted within a day — kept, and made the rules stronger." },
 ]} />
 
+## The measured spine
+
+Every number below survived the full gate battery — independent
+oracle, armed negative control, sanitizers, fresh-process
+repetition, two independent runs — or it does not appear here.
+
+<FactGrid facts={[
+  { number: "70.98×", label: "Warm-started contact replay at zero drift — 32 cold iterations vs 0 warm, residual target 1e-2.", source: "era 3.50 replay audit" },
+  { number: "5.7×", label: "One shared spatial index with consumer masks vs four independent spatial structures, at 1‰ churn.", source: "era 2.13 integration" },
+  { number: "3.11×", label: "Adaptive layout selector vs natural order, 256K bodies, hub topology, two independent runs.", source: "era 3.189" },
+  { number: "≤ 1e-6", label: "Fischer–Burmeister complementarity residual the solver line drives toward, per contact.", source: "era 3.207–3.208" },
+]} />
+
+## The research program, in one paragraph
+
+Contacts are a graph; the solver walks it every frame. The program
+asked, in order: can contacts *remember* (warm-start — yes,
+70.98× replay at zero drift)? Can the graph be *reordered* for the
+cache (layout management — sometimes, 3.11× on hub topologies at
+256K bodies, and *never* universally)? Can the solver *converge
+faster* (PSOR with workload-dependent relaxation — promising, one
+case 50.4M → 15.4M cycles, no production promotion yet)? Each
+question was answered by measurement, and each negative is kept.
+
+## What was learned the hard way
+
+- **A "2× faster" claim once died to fresh-process repetition** —
+  the spread *between* runs was larger than the claimed effect. The
+  promotion was retracted the same session, and the noise-floor rule
+  was born;
+- **The instrument is audited before it measures** — one layout
+  benchmark silently capped its declared churn at ~534 of 12,288
+  contacts. The stated workload never ran. The corrected benchmark
+  reversed the conclusion;
+- **No technique wins everywhere** — the most repeated finding in
+  the whole record. Every promotion carries its scope: where it
+  wins, and where it is known to lose.
+
 > Nothing about the physics is claimed on vibes.
 
 <div className="wwa-quiet-note">

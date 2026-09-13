@@ -4,6 +4,8 @@ import SceneHeader from "@/components/scene-header";
 import GlyphCards from "@/components/glyph-cards";
 import Atmosphere from "@/components/atmosphere";
 import Reveal from "@/components/reveal";
+import FactGrid from "@/components/fact-grid";
+import ThoughtsIndex from "@/components/thoughts-index";
 import Link from "next/link";
 
 export const useMDXComponents = (components) => ({
@@ -14,5 +16,7 @@ export const useMDXComponents = (components) => ({
   GlyphCards,
   Atmosphere,
   Reveal,
+  FactGrid,
+  ThoughtsIndex,
   Link,
 });

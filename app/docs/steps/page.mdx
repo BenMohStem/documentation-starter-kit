@@ -6,6 +6,12 @@
 
 Every era numbered. Nothing renumbered. Failures kept.
 
+The version numbers are not marketing — they are addresses. Each
+number points at a folder in the archive: its design, its runs, its
+report, and its verdict. When a later iteration invalidates an
+earlier claim, the earlier claim is not edited — it is marked, and
+the correction carries its own number.
+
 <div className="wwa-archive-era">
 
 <span className="wwa-archive-era-id">v0.x – 1.0</span>
@@ -18,7 +24,7 @@ Every era numbered. Nothing renumbered. Failures kept.
 
 <span className="wwa-archive-era-id">1.4 – 1.9</span>
 <div className="wwa-archive-era-name">The engine lab</div>
-<div className="wwa-archive-era-note">The founding measurements — including the first great lesson: a "smarter" layout that lost badly, kept forever.</div>
+<div className="wwa-archive-era-note">The founding measurements — including the first great lesson: a "smarter" layout that lost badly, kept forever. Also the packed-vs-linked broadphase studies and the first determinism gates.</div>
 
 </div>
 
@@ -26,7 +32,7 @@ Every era numbered. Nothing renumbered. Failures kept.
 
 <span className="wwa-archive-era-id">2.0 – 2.9</span>
 <div className="wwa-archive-era-name">No universal winner · The demo</div>
-<div className="wwa-archive-era-note">Broadphase terrain mapped honestly; physics became playable. The demo became the project's permanent entry point.</div>
+<div className="wwa-archive-era-note">Broadphase terrain mapped honestly — brute force, uniform grid, sweep-and-prune, each winning on its own workload, none promoted universally. Physics became playable. The demo became the project's permanent entry point.</div>
 
 </div>
 
@@ -42,7 +48,7 @@ Every era numbered. Nothing renumbered. Failures kept.
 
 <span className="wwa-archive-era-id">2.53 – 2.98</span>
 <div className="wwa-archive-era-name">The integrated world</div>
-<div className="wwa-archive-era-note">One shared spatial sense serving everything — the largest integrated win. The engine learned to catch its own measurement errors.</div>
+<div className="wwa-archive-era-note">One shared spatial sense serving everything — the largest integrated win (5.7× at 1‰ churn). The engine learned to catch its own measurement errors.</div>
 
 </div>
 
@@ -61,6 +67,14 @@ Every era numbered. Nothing renumbered. Failures kept.
 <div className="wwa-archive-era-note">The first living systems enter the actual world.</div>
 
 </div>
+
+## The record in numbers
+
+<FactGrid facts={[
+  { number: "3.50", label: "The warm-start replay audit — 70.98× at zero drift, the record's most-cited single result.", source: "shelf 3.x" },
+  { number: "7", label: "Gated iterations in the layout-manager program alone — 3.185 through 3.191, each pre-registered before running.", source: "shelf 3.x" },
+  { number: "2", label: "Promotions retracted the same session they were made — both kept, both load-bearing in today's rules.", source: "the incident ledger" },
+]} />
 
 <div className="wwa-quiet-note">
 

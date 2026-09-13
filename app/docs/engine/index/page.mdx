@@ -14,6 +14,21 @@ it runs on. Owned end to end. Measured at every step.
   { glyph: "moon", title: "The price of the world", sub: "Paid in C, measured every step. The engine is not a detour from the idea — it is the idea, taken seriously." },
 ]} />
 
+## The iteration rhythm
+
+Engine work does not proceed by feature list. It proceeds by
+numbered iteration, each with the same anatomy: a **design written
+before any code runs**, a battery of oracles and armed negative
+controls, sanitizers on every build, and a report that states what
+was promoted — and what was not. A failed iteration is not a lost
+week; it is a mapped wall. The next design walks around it.
+
+<FactGrid facts={[
+  { number: "3 parts", label: "Every engine layer is documented in depth: the floor, the physics, the renderer.", source: "this section" },
+  { number: "2 compilers", label: "Every battery runs on the release compiler and an independent one — a green result that only one compiler produces is investigated, not celebrated.", source: "the release battery" },
+  { number: "1 rule", label: "Organize the data so that the cheaper physics calculation is also the cheaper memory traversal.", source: "the governing rule" },
+]} />
+
 <div className="wwa-paths" style={{ marginTop: "1.6rem" }}>
 
 <Link className="wwa-path" href="/docs/engine/std">

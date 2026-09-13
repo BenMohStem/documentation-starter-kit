@@ -1,6 +1,6 @@
 # The Doctrine
 
-<div className="wwa-atmosphere-frame"><Atmosphere variant="stars" height={150} /></div>
+<SceneHeader scene="doctrine" height={230} />
 
 <span className="wwa-page-title">The doctrine</span>
 
@@ -8,6 +8,21 @@ How the library decides what is true. These rules were not written
 in advance and then followed — they were *learned*, one caught
 mistake at a time, and each rule exists because a measurement without
 it once fooled the project.
+
+## The gates, numbered
+
+The engine's iteration designs freeze these rules before any
+measurement runs. They are cited by number in the record — a
+promotion that says "D1 met" is claiming all of this:
+
+<FactGrid facts={[
+  { number: "D1", label: "Promotion bar — effect must exceed 2× the measured noise floor, on both of two independent runs, oracle green, negative control caught.", source: "the promotion gate" },
+  { number: "D2", label: "Never-lose bar — where a policy might act, its worst case must stay within noise of doing nothing.", source: "the safety gate" },
+  { number: "D4", label: "Instrument first — the probe must agree across mutation models before any policy timing is believed.", source: "the instrument gate" },
+  { number: "D6", label: "A control that cannot fail is not a control — every battery carries an armed, corrupted run.", source: "the negative control" },
+  { number: "D7", label: "Operator freeze — the numerical core is byte-frozen between comparisons; the diff is audited mechanically.", source: "the freeze gate" },
+  { number: "D8", label: "No post-hoc tuning — frozen thresholds stay frozen; a failure is a finding, not a knob.", source: "the pre-registration gate" },
+]} />
 
 ## What a claim must survive
 
@@ -31,6 +46,50 @@ it once fooled the project.
    is a finding, not a knob;
 6. **Pre-registration.** Each experiment's design is written before
    it runs. Deviations get dated amendments — never silent rewrites.
+
+## The incident ledger
+
+Every rule above has a scar. The major incidents, kept visible:
+
+<div className="wwa-archive-era">
+
+<span className="wwa-archive-era-id">3.185-1</span>
+<div className="wwa-archive-era-name">The retraction that built the noise floor</div>
+<div className="wwa-archive-era-note">A promoted 1.44× layout win, measured in a single process with median-of-3. Fresh-process repetition exposed run-to-run spreads of 59–302 cycles/contact — larger than the claimed effect. Retracted the same session; the interleaved, min-of-K, explicit-noise-floor methodology became standing doctrine.</div>
+
+</div>
+
+<div className="wwa-archive-era">
+
+<span className="wwa-archive-era-id">3.189-1</span>
+<div className="wwa-archive-era-name">The concurrent-battery collision</div>
+<div className="wwa-archive-era-note">A timing battery ran while 128K/256K jobs held the pinned core. Identity measured 157 cycles/contact against a true ~51 — noise inflated 2–3×. Caught the same session: jobs killed, clean re-run counted instead. Law: never time against a busy pinned core.</div>
+
+</div>
+
+<div className="wwa-archive-era">
+
+<span className="wwa-archive-era-id">3.171</span>
+<div className="wwa-archive-era-name">The workload that never ran</div>
+<div className="wwa-archive-era-note">A K-cache churn benchmark declared 5%–20% mutation rates; the selector formula capped executed churn at ~534 of 12,288 contacts. The declared workload never ran. Corrected with a coprime permutation — and the corrected benchmark reversed the conclusion: neither direction promoted.</div>
+
+</div>
+
+<div className="wwa-archive-era">
+
+<span className="wwa-archive-era-id">3.162 · 3.163</span>
+<div className="wwa-archive-era-name">The confined working set · The mistimed region</div>
+<div className="wwa-archive-era-note">One benchmark's declared working set was silently confined to 65,536 entries; another timed a full digest on the transient path but a cheap checksum on the resident path. Both stated-vs-executed failures, both caught by audit, both corrections kept with the originals.</div>
+
+</div>
+
+<div className="wwa-archive-era">
+
+<span className="wwa-archive-era-id">3.190 A7</span>
+<div className="wwa-archive-era-name">The record-pair corruption</div>
+<div className="wwa-archive-era-note">A degree-probe consumed contact records in pairs where each contact carries two — silently corrupting every degree measurement that preceded the fix. The audit that had claimed "5/5 through 20%" was wrong; the honest envelope was 0–10%. Every affected number re-derived, the trail kept as the diagnosis.</div>
+
+</div>
 
 ## What the numbers must carry
 

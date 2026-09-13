@@ -6,20 +6,53 @@
 
 The world can only be as honest as the engine underneath it.
 
+Most projects build the visible game first and patch the machinery
+when it complains. This one inverts the order: prove the machinery,
+then let the world arrive on it. The reason is the project's own
+history — every time a world system was prototyped early, its real
+cost turned out to live in the engine layers below it: memory layout,
+broadphase, determinism. Measuring those first is not a detour; it
+is the shortcut.
+
 <GlyphCards cards={[
   { glyph: "farm", title: "1 · The floor", sub: "A from-scratch standard layer, tested adversarially. Own every layer; nothing stays mysterious." },
   { glyph: "bear", title: "2 · The physics core", sub: "Bodies, mass, friction, contact — running, replaying deterministically, staying correct at scale." },
   { glyph: "wanderer", title: "3 · The senses", sub: "One shared sense of what-is-near-what, serving physics, sound, sight, and AI alike." },
-  { glyph: "city", title: "4–6 · The world wakes", sub: "Ecology connects. Settlements trade. Kingdoms emerge. And far up — the Moon, by machine." },
+  { glyph: "machine", title: "4 · The mechanisms", sub: "Energy budgets, division of labor, signal fields — the world's social physics, proven small before it is allowed to grow." },
+  { glyph: "city", title: "5–6 · The world wakes", sub: "Ecology connects. Settlements trade. Kingdoms emerge. And far up — the Moon, by machine." },
 ]} />
+
+## The order, and why it is not negotiable
+
+Each step earns the next. The physics core cannot be trusted until
+the floor beneath it is understood to the byte. The senses cannot be
+shared until their cost is measured against each consumer. The living
+systems cannot be connected until each survives alone — a food web
+that collapses in isolation will collapse louder in company.
+
+The engine research line exists because the plan kept hitting the
+same wall: *the simulation's cost is memory traffic*. Where a body
+sits in memory changes how fast the solver can think about it. That
+single finding reordered the whole roadmap — memory and physics are
+now tuned together, not sequentially.
 
 > A step is taken when two things are true: the design cannot proceed
 > honestly without it, and the engine can carry it — measured, not
 > assumed.
 
+## What "done" means
+
+Not a feature list. A standard:
+
+<FactGrid facts={[
+  { number: "1 region", label: "Where a player who walks away for an hour returns to a place that changed without them.", source: "the demo arc" },
+  { number: "0 scripts", label: "No scripted events in the living systems — everything emerges or does not happen.", source: "the design" },
+  { number: "1 promise", label: "Same inputs, same world, every time — determinism kept on every release.", source: "the gates" },
+]} />
+
 <div className="wwa-quiet-note">
 
-Done will mean: one region where a player who walks away for an hour
-returns to a place that changed without them.
+The measured record behind this order lives in the
+<Link href="/research"> research library</Link>.
 
 </div>

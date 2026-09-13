@@ -293,6 +293,174 @@ a.wwa-system:hover {
   line-height: 1.55;
 }
 
+/* ---------- fact grid (measured numbers) ---------- */
+.wwa-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.wwa-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid rgba(95, 113, 97, 0.35);
+  border-radius: 0.75rem;
+  background: linear-gradient(180deg, rgba(22, 41, 31, 0.3), rgba(12, 21, 16, 0.18));
+}
+
+.wwa-fact-number {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  color: var(--wwa-amber-soft);
+}
+
+.wwa-fact-label {
+  font-size: 0.86rem;
+  color: var(--wwa-paper);
+  line-height: 1.5;
+}
+
+.wwa-fact-source {
+  font-size: 0.72rem;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.06em;
+  color: var(--wwa-stone);
+  text-transform: uppercase;
+}
+
+/* ---------- thought database ---------- */
+.wwa-thought-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.6rem 0 1.8rem;
+}
+
+.wwa-thought-chip {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  padding: 0.34rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(95, 113, 97, 0.4);
+  background: transparent;
+  color: var(--wwa-stone);
+  cursor: pointer;
+  transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.wwa-thought-chip:hover {
+  border-color: rgba(217, 166, 98, 0.5);
+  color: var(--wwa-silver);
+}
+
+.wwa-thought-chip-on {
+  border-color: var(--wwa-amber) !important;
+  color: var(--wwa-amber) !important;
+  background: rgba(217, 166, 98, 0.08);
+}
+
+.wwa-thoughts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.wwa-thought {
+  border: 1px solid rgba(95, 113, 97, 0.3);
+  border-radius: 0.75rem;
+  background: linear-gradient(180deg, rgba(22, 41, 31, 0.25), rgba(12, 21, 16, 0.15));
+  cursor: pointer;
+  transition: border-color 0.4s ease;
+  overflow: hidden;
+}
+
+.wwa-thought:hover {
+  border-color: rgba(217, 166, 98, 0.35);
+}
+
+.wwa-thought-open {
+  border-color: rgba(217, 166, 98, 0.45);
+}
+
+.wwa-thought-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  padding: 0.95rem 1.2rem;
+}
+
+.wwa-thought-n {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  color: var(--wwa-amber);
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+.wwa-thought-title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.02rem;
+  color: var(--wwa-paper);
+  letter-spacing: 0.02em;
+  flex: 1;
+}
+
+.wwa-thought-arrow {
+  color: var(--wwa-stone);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.wwa-thought-body {
+  padding: 0 1.2rem 1.1rem 3.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.wwa-thought-collapsed {
+  display: none;
+}
+
+.wwa-thought-text {
+  color: var(--wwa-silver);
+  line-height: 1.75;
+  font-size: 0.94rem;
+  margin: 0;
+}
+
+.wwa-thought-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem 1rem;
+}
+
+.wwa-thought-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
+.wwa-thought-tag::before {
+  content: "# ";
+  opacity: 0.6;
+}
+
+.wwa-thought-source {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  color: var(--wwa-stone);
+  letter-spacing: 0.06em;
+  margin-left: auto;
+  text-transform: uppercase;
+}
+
 /* ---------- quiet sections ---------- */
 .wwa-home-section {
   margin: 3.2rem 0;

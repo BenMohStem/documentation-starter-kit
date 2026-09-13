@@ -13,6 +13,28 @@ input, deterministic replay — and a playable demonstration on top.
   { glyph: "machine", title: "Deterministic replay", sub: "Same inputs, same world, every time. The engine keeps this promise on every release." },
 ]} />
 
+## The demo arc
+
+The demo tells one story, the same story every time, because it is
+simulated rather than staged:
+
+1. A region with terrain, light, and weather of its own;
+2. A settlement of bodies and simple mechanisms that work — stacked,
+   pushed, linked, weighed;
+3. A player who can step away and come back to a place that kept
+   running.
+
+The arc's last beat is the project's founding promise made
+checkable: *the world did not pause while the player was gone.*
+
+## What the demo proves, every release
+
+<FactGrid facts={[
+  { number: "full battery", label: "Oracles, negative controls, sanitizers, fresh-process repetition — all green, or there is no release.", source: "the gates" },
+  { number: "replay exact", label: "Recorded inputs replay to identical state, byte for byte, on every build that ships.", source: "determinism gate" },
+  { number: "2 layouts", label: "Broadphase layouts toggle live in the demo with a key — the same world, different memory order, deterministic both ways.", source: "era 2.10–2.15" },
+]} />
+
 > It is deliberately plain. This is the engine proving itself, not
 > the world selling itself. Visual polish comes later — on purpose.
 

@@ -423,6 +423,179 @@ function SceneGlyph({ kind }: { kind: string }) {
       </svg>
     );
 
+  if (kind === "science")
+    return (
+      <svg {...common}>
+        <rect width="200" height="92" fill="#0d1014" />
+        <circle cx="160" cy="20" r="7" fill="#cfd3bd" opacity="0.6" />
+        <path d="M0,70 C60,62 140,66 200,62 L200,92 L0,92 Z" fill="#111820" />
+        {/* a night experiment: a rod, a suspended stone, a measured mark */}
+        <g stroke="#8fb8c9" strokeWidth="1">
+          <path d="M40,24 L40,74" />
+          <path d="M34,24 L46,24" />
+        </g>
+        {/* the pendulum: line + bob */}
+        <path d="M40,24 L70,58" stroke="#5a4a3a" strokeWidth="1" />
+        <circle cx="70" cy="58" r="5" fill="#3a3026" stroke="#5a4a3a" strokeWidth="1" />
+        {/* arc of the swing, drawn */}
+        <path d="M40,58 A30,30 0 0 1 100,58" fill="none" stroke="#8fb8c9" strokeWidth="0.8" strokeDasharray="2 4" opacity="0.6" />
+        {/* the measured marks along the ground: a ruled baseline */}
+        <g stroke="#565a86" strokeWidth="1">
+          <path d="M30,76 L120,76" />
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <path key={i} d={`M${34 + i * 16},76 l0,${i % 2 ? 3 : 5}`} />
+          ))}
+        </g>
+        {/* chalk marks on the stone: the hypothesis being tested */}
+        <g stroke="#d9a662" strokeWidth="0.9" opacity="0.75">
+          <path d="M50,40 L62,40" /><path d="M50,46 L58,46" />
+        </g>
+        {/* stars observed through a simple sighting-tube, right */}
+        <g stroke="#8fb8c9" strokeWidth="1.2" opacity="0.8">
+          <path d="M150,44 L166,40 L166,52 Z" fill="none" />
+        </g>
+        <g fill="#dfe9e4" opacity="0.8">
+          <circle cx="160" cy="46" r="0.9" /><circle cx="172" cy="40" r="0.7" /><circle cx="176" cy="50" r="0.6" />
+        </g>
+        {/* flame under a crucible — chemistry, quiet */}
+        <g>
+          <path d="M120,70 q3,-8 0,-14 q6,6 4,14 Z" fill="#e8a052" opacity="0.55" />
+          <path d="M122,74 l-6,4 12,0 Z" fill="#3a3026" />
+        </g>
+      </svg>
+    );
+
+  if (kind === "society")
+    return (
+      <svg {...common}>
+        <rect width="200" height="92" fill="#0f1116" />
+        <circle cx="46" cy="18" r="7" fill="#cfd3bd" opacity="0.55" />
+        <path d="M0,76 L200,76 L200,92 L0,92 Z" fill="#11141c" />
+        {/* a council: figures in a ring, one standing, deliberating */}
+        <g fill="#1c202e">
+          {/* seated figures, a circle of five */}
+          <g transform="translate(100,66)">
+            <circle cx="-28" cy="-6" r="3.4" /><path d="M-32,-2 q4,-3 8,0 l0,8 q-4,-2 -8,0 Z" />
+            <circle cx="-14" cy="-9" r="3.4" /><path d="M-18,-5 q4,-3 8,0 l0,8 q-4,-2 -8,0 Z" />
+            <circle cx="14" cy="-9" r="3.4" /><path d="M10,-5 q4,-3 8,0 l0,8 q-4,-2 -8,0 Z" />
+            <circle cx="28" cy="-6" r="3.4" /><path d="M24,-2 q4,-3 8,0 l0,8 q-4,-2 -8,0 Z" />
+          </g>
+          {/* the one standing, mid-argument */}
+          <g transform="translate(100,40)" fill="#262c3e">
+            <circle cx="0" cy="-14" r="3.6" />
+            <path d="M-4,-10 q4,-2 8,0 l1,16 q-6,2 -10,0 Z" />
+            {/* raised arm */}
+            <path d="M3,-8 q6,-2 9,-7 l2,1 q-4,6 -10,8 Z" />
+          </g>
+        </g>
+        {/* the tally board behind them: what each wants */}
+        <g transform="translate(46,30)">
+          <rect x="0" y="0" width="26" height="20" rx="1.4" fill="#181c2a" stroke="#2c3248" strokeWidth="0.8" />
+          <g stroke="#565a86" strokeWidth="0.7">
+            <path d="M4,5 L22,5" /><path d="M4,10 L22,10" /><path d="M4,15 L16,15" />
+          </g>
+        </g>
+        {/* a fire between them — the debate is warm */}
+        <path d="M96,76 q3,-8 0,-13 q5,6 4,13 Z" fill="#e8a052" opacity="0.4" />
+        {/* weights and grain: what is being divided */}
+        <g fill="#1c202e">
+          <ellipse cx="150" cy="82" rx="7" ry="3" />
+          <ellipse cx="164" cy="84" rx="5" ry="2.4" />
+        </g>
+      </svg>
+    );
+
+  if (kind === "logistics")
+    return (
+      <svg {...common}>
+        <rect width="200" height="92" fill="#100e0c" />
+        <circle cx="170" cy="18" r="7" fill="#ddd8c2" opacity="0.6" />
+        {/* a supply road over a plain: carts and wagons in a line toward camp */}
+        <path d="M0,72 C50,66 120,68 200,64 L200,92 L0,92 Z" fill="#151210" />
+        <path d="M0,80 C60,75 140,78 200,74 L200,92 L0,92 Z" fill="#0f0d0b" />
+        {/* the road, worn */}
+        <path d="M20,86 C70,80 130,78 178,74 L180,78 C132,82 72,84 22,90 Z" fill="#1c1814" />
+        {/* three wagons in file, small to large (nearer) */}
+        <g fill="#241e18" stroke="#3a3026" strokeWidth="0.8">
+          <rect x="128" y="70" width="12" height="7" rx="1" />
+          <rect x="146" y="72" width="14" height="8" rx="1" />
+          <rect x="60" y="78" width="17" height="9" rx="1" />
+        </g>
+        {/* wheels on the near wagon */}
+        <g fill="none" stroke="#3a3026" strokeWidth="1">
+          <circle cx="65" cy="90" r="3" /><circle cx="74" cy="90" r="3" />
+        </g>
+        {/* draft ox, pulling */}
+        <g fill="#241e18" transform="translate(88,74)">
+          <path d="M0,10 q-2,-5 2,-7 q-1,-4 3,-4 l8,-1 q4,0 5,3 q2,4 0,7 q-3,3 -8,3 l-7,1 Z" />
+          <path d="M14,-4 l4,-1 1,2 -4,1 Z" />
+          <path d="M-4,3 l-6,3 1,2 6,-3 Z" opacity="0.8" />
+        </g>
+        {/* cargo: sacks and spear shafts on the near wagon */}
+        <g fill="#2e2620">
+          <ellipse cx="66" cy="76" rx="6" ry="3" />
+          <ellipse cx="72" cy="74" rx="5" ry="2.6" />
+        </g>
+        <g stroke="#3a3026" strokeWidth="0.9">
+          <path d="M78,70 L82,66" /><path d="M80,70 L84,66" />
+        </g>
+        {/* distant camp: tents and a watchfire at the road's end */}
+        <g fill="#1a1610">
+          <path d="M14,66 L20,58 L26,66 Z" />
+          <path d="M24,68 L29,62 L34,68 Z" />
+        </g>
+        <circle cx="20" cy="64" r="1.6" fill="#e8a052" opacity="0.6" />
+        <circle cx="20" cy="64" r="7" fill="#e8a052" opacity="0.1" />
+      </svg>
+    );
+
+  if (kind === "automation")
+    return (
+      <svg {...common}>
+        <rect width="200" height="92" fill="#0d120e" />
+        {/* a field machine: hopper, belt, paddles — sorting grain unattended */}
+        <path d="M0,74 C50,68 140,72 200,66 L200,92 L0,92 Z" fill="#131b14" />
+        {/* the frame */}
+        <g stroke="#3a5244" strokeWidth="1.6" fill="none">
+          <path d="M56,74 L56,44 L128,44 L128,74" />
+          <path d="M68,44 L92,28 L116,44" />
+        </g>
+        {/* the hopper, pouring */}
+        <path d="M76,44 L88,28 L112,28 L120,44 Z" fill="#22352c" stroke="#3a5244" strokeWidth="1" />
+        {/* the belt: rollers and slats */}
+        <g>
+          <circle cx="66" cy="56" r="6" fill="none" stroke="#5f7161" strokeWidth="1.4" />
+          <circle cx="118" cy="56" r="6" fill="none" stroke="#5f7161" strokeWidth="1.4" />
+          <path d="M66,50 L118,50 M66,62 L118,62" stroke="#3a5244" strokeWidth="1" />
+          {Array.from({ length: 5 }).map((_, i) => (
+            <rect key={i} x={72 + i * 9} y="48.6" width="5" height="14.8" rx="1" fill="#22352c" opacity="0.9" />
+          ))}
+        </g>
+        {/* grain: what falls through */}
+        <g fill="#c9b98a">
+          <circle cx="74" cy="68" r="0.8" /><circle cx="80" cy="70" r="0.7" /><circle cx="86" cy="69" r="0.8" />
+        </g>
+        {/* sorted output chutes: heavy here, chaff there */}
+        <path d="M128,52 L146,64" stroke="#3a5244" strokeWidth="1.2" />
+        <path d="M128,60 L146,72" stroke="#3a5244" strokeWidth="1.2" />
+        <ellipse cx="152" cy="68" rx="6" ry="2.4" fill="#2e2620" />
+        <ellipse cx="154" cy="76" rx="4" ry="2" fill="#1c2418" opacity="0.8" />
+        {/* the waterwheel powering it, off-frame right */}
+        <g stroke="#3a5244" strokeWidth="1.2" fill="none" opacity="0.85">
+          <circle cx="160" cy="62" r="12" />
+          {Array.from({ length: 8 }).map((_, i) => (
+            <rect key={i} x="158.5" y="47" width="3" height="6" rx="0.6" fill="#3a5244" transform={`rotate(${i * 45} 160 62)`} stroke="none" />
+          ))}
+        </g>
+        {/* a lantern the farmer hung and left — the machine runs alone */}
+        <g>
+          <rect x="44" y="34" width="4" height="6" rx="1" fill="#5a4a3a" stroke="none" />
+          <circle cx="46" cy="42" r="2.2" fill="#ffca85" opacity="0.85" />
+          <circle cx="46" cy="42" r="9" fill="#ffca85" opacity="0.1" />
+        </g>
+      </svg>
+    );
+
   return (
     <svg {...common}>
       <rect width="200" height="92" fill="#0d120e" />

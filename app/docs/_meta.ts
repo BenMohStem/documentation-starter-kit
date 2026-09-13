@@ -2,6 +2,7 @@ export default {
   index: "Documentation",
   idea: "The Idea",
   design: "The Design",
+  thoughts: "Thoughts",
   plan: "The Plan",
   steps: "Steps & Eras",
   systems: "Systems",

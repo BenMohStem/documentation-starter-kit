@@ -1,6 +1,6 @@
 # How It Is Tested
 
-<SceneHeader scene="demo" height={200} />
+<SceneHeader scene="gates" height={230} />
 
 <span className="wwa-page-title">How it is tested</span>
 
@@ -12,9 +12,41 @@ A claim is worth exactly as much as the evidence behind it.
   { glyph: "moon", title: "The instruments are tested too", sub: "The tools that measure the engine are audited before any number they produce is believed." },
 ]} />
 
+## The release battery
+
+Every release runs the same battery, in the same order, and every
+stage must pass or there is no release:
+
+1. **Source gate** — the build compiles clean under strict flags:
+   every warning an error, sanitizers armed;
+2. **Oracle gate** — every subsystem's independent oracle runs green,
+   and the negative controls fail *as designed* — a control that
+   cannot fail proves nothing;
+3. **Sanitizer gate** — address, undefined behavior, and leak checks
+   across the full workload set;
+4. **Determinism gate** — recorded inputs replay to identical state,
+   byte for byte;
+5. **Demo gate** — the playable demonstration runs the complete arc,
+   start to finish, on the release binary.
+
+<FactGrid facts={[
+  { number: "3 sanitizers", label: "Address, UB, and leak checks run across the full workload set before any timing number is recorded.", source: "the release battery" },
+  { number: "byte-exact", label: "Replay compares final state exactly — a wrong byte is a failed gate, not a tolerance.", source: "determinism gate" },
+  { number: "100%", label: "Of the battery, every release — or the release does not exist.", source: "the rule" },
+]} />
+
+## The retraction stories
+
+The strictness is not temperament. It is scar tissue:
+
 > Twice, a promoted result turned out to be a measurement artifact.
-> Both times: caught, retracted, and the rules made stronger. Both
-> stories are kept.
+> A layout "win" of 1.44× died to fresh-process repetition — the
+> noise between runs was larger than the effect. A churn benchmark
+> turned out to have never run its declared workload at all: a
+> selector formula capped executed mutations at a fraction of what
+> was stated, and the corrected benchmark *reversed* the conclusion.
+> Both times: caught, retracted the same session, and the rules made
+> stronger. Both stories are kept.
 
 <div className="wwa-quiet-note">
 

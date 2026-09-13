@@ -6,8 +6,37 @@
 
 The quiet part of the world's beauty: light, depth, distance.
 
+The renderer is written to one aesthetic doctrine — simple geometry,
+excellent light — and one engineering doctrine: every rasterization
+path must pass a per-pixel oracle before it is promoted. The result
+is deliberately plain and deliberately trustworthy.
+
 <GlyphCards cards={[
   { glyph: "machine", title: "Tiles, tested per pixel", sub: "Triangles sorted into screen tiles, exact per-pixel depth — promoted only after passing a per-pixel oracle across adversarial scenes." },
   { glyph: "moon", title: "The aesthetic target", sub: "Simple geometry, excellent light. The world's beauty from composition and atmosphere — never asset density." },
   { glyph: "bear", title: "Kept out, deliberately", sub: "Faster paths that failed honest speed bars. The kept-out list is as deliberate as the promoted one." },
 ]} />
+
+## What the oracle saw
+
+<FactGrid facts={[
+  { number: "per-pixel", label: "Depth compared exactly, tile by tile, across adversarial scenes — overlap, silhouettes, grazing angles.", source: "the renderer gates" },
+  { number: "1.36×", label: "Direct renderer visibility vs intermediate-array paths, 32×32 scene — locality compound interest.", source: "era 2.13 consumer study" },
+  { number: "packed cells", label: "Contiguous-cell candidate layout promoted to demo default over linked lists — measurable, deterministic, toggled live by a key.", source: "era 2.10–2.15" },
+]} />
+
+## Why it stays simple
+
+The graphics doctrine is written into the design: the world should
+look simple but impressive — excellent light, strong composition,
+simple geometry, beautiful atmosphere. The renderer serves that
+doctrine rather than fighting it: tiles and exact depth are enough
+for readable silhouettes and honest light, and everything the engine
+does not spend on pixels it can spend on the world thinking.
+
+<div className="wwa-quiet-note">
+
+The renderer's measurement history lives in the
+<Link href="/research"> research library</Link>.
+
+</div>

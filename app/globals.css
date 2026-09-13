@@ -461,6 +461,44 @@ a.wwa-system:hover {
   text-transform: uppercase;
 }
 
+.wwa-thought-section {
+  margin: 2.2rem 0;
+}
+
+.wwa-thought-section-title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-weight: 500;
+  font-size: 1.15rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wwa-moonlight);
+  margin: 0 0 0.2rem;
+}
+
+.wwa-thought-section-blurb {
+  font-size: 0.82rem;
+  color: var(--wwa-stone);
+  margin: 0 0 1rem;
+  letter-spacing: 0.03em;
+}
+
+.wwa-thought-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+}
+
+.wwa-thought-link {
+  font-size: 0.82rem;
+  color: var(--wwa-amber) !important;
+  text-decoration-color: rgba(217, 166, 98, 0.35) !important;
+  text-underline-offset: 4px;
+}
+
+.wwa-thought-link:hover {
+  text-decoration-color: var(--wwa-amber) !important;
+}
+
 /* ---------- quiet sections ---------- */
 .wwa-home-section {
   margin: 3.2rem 0;

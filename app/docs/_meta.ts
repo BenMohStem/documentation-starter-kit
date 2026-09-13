@@ -30,7 +30,7 @@ export default {
     type: "menu",
     items: {
       index: "Overview",
-      std: "Std Layer",
+      std: "The Floor",
       physics: "Physics",
       renderer: "Renderer",
     },

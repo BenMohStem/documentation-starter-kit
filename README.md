@@ -9,22 +9,31 @@ claim is bound to its measurement**. Promotions, negative results,
 retractions, and the doctrine that decides between them are all
 published. A visitor should never have to guess what is real.
 
+## The four ways to read the project
+
+- **Timeline** (`/docs/timeline`) — the dated chronology: founding,
+  promotions, retractions, incidents, on one spine
+- **Ledger** (`/research/ledger`) — every claim with its verdict and
+  its scope
+- **Thoughts** (`/docs/thoughts`) — the settled positions, numbered
+  and sourced
+- **Doctrine** (`/research/doctrine`) — the gates a measurement must
+  survive, learned one caught mistake at a time
+
 ## Sections
 
 - **World** — the premise, emergence, observation, and roadmap
-- **Demo** — what runs today, and the build/validation gates
-- **Engine** — std layer, builder, physics, broadphase & locality,
-  renderer, quantized numerics
-- **Record** — evidence ledger, the doctrine (D1–D8), integrity
-  incidents, era timeline
-- **Research** — the paper corpus, a full literature-to-engine loop,
-  and the use policy
+- **Demo** — what runs today, the proof frames, and the build gates
+- **Engine** — std layer, physics, renderer
+- **Systems** — ecology, economy, engineering, war, science, the Moon
+- **Library** (`/research`) — the era shelves and the corpus catalog
 
 ## Status vocabulary
 
 Every claim carries a status label: `FOUNDATION`, `PROMOTED`,
 `PROMOTED (SCOPED)`, `CANDIDATE`, `RESEARCH ONLY`, `NOT PROMOTED`,
-`REJECTED`, `RETRACTED`, `INVALIDATED`, `SUPERSEDED`.
+`REJECTED`, `RETRACTED`, `INVALIDATED`, `SUPERSEDED`. The vocabulary
+is defined on the ledger page and never diluted.
 
 ## Local Development
 
